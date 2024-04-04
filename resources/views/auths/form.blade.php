@@ -406,7 +406,36 @@
                 },
                 error: function(xhr, status, error) {
                     console.error('Error:', error);
+                    // Menampilkan pesan kesalahan kepada pengguna
+                    var errors = xhr.responseJSON
+                    .errors; // Mendapatkan semua pesan kesalahan dari respons JSON
+
+                    // Menampilkan pesan kesalahan untuk setiap field inputan
+                    if (errors) {
+                        if (errors.email) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Email Error',
+                                text: errors.email[
+                                0], // Menampilkan pesan kesalahan untuk email
+                                showConfirmButton: false,
+                                timer: 2000 // Menampilkan pesan selama 2 detik
+                            });
+                        }
+                        if (errors.password) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Password Error',
+                                text: errors.password[
+                                0], // Menampilkan pesan kesalahan untuk password
+                                showConfirmButton: false,
+                                timer: 2000 // Menampilkan pesan selama 2 detik
+                            });
+                        }
+                        // Tambahan penanganan pesan kesalahan untuk field inputan lainnya
+                    }
                 }
+
             });
 
             // Jangan lakukan submit form secara default
