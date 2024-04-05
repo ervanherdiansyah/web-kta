@@ -38,7 +38,7 @@ class AuthController extends Controller
             return '/dashboard/home';
         } else if (Auth::user()->role === 'user') {
             toast('Berhasil Login!!!', 'success');
-            return '/user/home';
+            return '/peserta/home';
         }
     }
     // Fungsi untuk logout

@@ -24,7 +24,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'foto',
     ];
 
     /**
@@ -54,5 +55,13 @@ class User extends Authenticatable
     public function pendaftaran()
     {
         return $this->hasOne(Pendaftaran::class, 'user_id');
+    }
+    public function profile()
+    {
+        return $this->hasOne(ModelBiodata::class, 'user_id');
+    }
+    public function form()
+    {
+        return $this->hasOne(ModelBiodata::class, 'user_id');
     }
 }

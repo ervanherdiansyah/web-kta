@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Profile;
 
 use App\Http\Controllers\Controller;
-use App\Models\Biodata\ModelBiodata;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +16,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user()->id;
-        $profile = ModelBiodata::with('user')->where('user_id', $user)->first();
+        $profile = Profile::with('user')->where('user_id', $user)->first();
         return view('dashboard.pages.profile.profile', compact('profile'));
     }
 
@@ -25,18 +25,23 @@ class ProfileController extends Controller
         $file_name = $request->foto->getClientOriginalName();
         $namaGambar = str_replace(' ', '_', $file_name);
         $image = $request->foto->storeAs('public/foto', $namaGambar);
-        $accountUser = ModelBiodata::create([
+        $accountUser = Profile::create([
             'user_id' => Auth::user()->id,
-            'nama_lengkap' => $request->nama_lengkap,
+            'fullname' => $request->fullname,
             'email' => $request->email,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'alamat' => $request->alamat,
-            'no_wa' => $request->no_wa,
-            'no_alter' => $request->no_alter,
+            'nohp' => $request->nohp,
             'foto' => 'foto/' . $namaGambar,
         ]);
+
+        $user = User::where('id', Auth::user()->id)->first();
+        if ($request->hasFile('foto')) {
+            $file_name = $request->foto->getClientOriginalName();
+            $namaGambar = str_replace(' ', '_', $file_name);
+            $user->foto = 'foto/' . $namaGambar;
+            $request->foto->storeAs('public/foto', $namaGambar);
+        }
+        $user->save();
+
         toast('Berhasil Tambah Data!!!', 'success');
         return redirect('/dashboard/profile');
     }
@@ -51,42 +56,40 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $user = Auth::user()->id;
-        $biodata = ModelBiodata::where('user_id', $user)->first();
+        $profile = Profile::where('user_id', $user)->first();
         if (Request()->hasFile('foto')) {
-            if (Storage::exists($biodata->foto)) {
-                Storage::delete($biodata->foto);
+            if (Storage::exists($profile->foto)) {
+                Storage::delete($profile->foto);
             }
 
             $file_name = $request->foto->getClientOriginalName();
             $namaGambar = str_replace(' ', '_', $file_name);
             $image = $request->foto->storeAs('public/foto', $namaGambar);
 
-            // Update biodata based on conditions
-            $biodata->update([
-                'nama_lengkap' => $request->nama_lengkap,
+            // Update profile based on conditions
+            $profile->update([
+                'fullname' => $request->fullname,
                 'email' => $request->email,
-                'tempat_lahir' => $request->tempat_lahir,
-                'tanggal_lahir' => $request->tanggal_lahir,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'alamat' => $request->alamat,
-                'no_wa' => $request->no_wa,
-                'no_alter' => $request->no_alter,
+                'nohp' => $request->nohp,
                 'foto' => 'foto/' . $namaGambar,
             ]);
         } else {
-            // Update biodata without changing the foto fields
-            $biodata->update([
-                'user_id' => Auth::user()->id,
-                'nama_lengkap' => $request->nama_lengkap,
+            // Update profile without changing the foto fields
+            $profile->update([
+                'fullname' => $request->fullname,
                 'email' => $request->email,
-                'tempat_lahir' => $request->tempat_lahir,
-                'tanggal_lahir' => $request->tanggal_lahir,
-                'jenis_kelamin' => $request->jenis_kelamin,
-                'alamat' => $request->alamat,
-                'no_wa' => $request->no_wa,
-                'no_alter' => $request->no_alter,
+                'nohp' => $request->nohp,
             ]);
         }
+
+        $user = User::where('id', Auth::user()->id)->first();
+        if ($request->hasFile('foto')) {
+            $file_name = $request->foto->getClientOriginalName();
+            $namaGambar = str_replace(' ', '_', $file_name);
+            $user->foto = 'foto/' . $namaGambar;
+            $request->foto->storeAs('public/foto', $namaGambar);
+        }
+        $user->save();
 
         toast('Berhasil Update Data!!!', 'success');
         Alert::success('Data berhasil ditambahkan', 'Success Message');
@@ -96,7 +99,7 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         $user = Auth::user()->id;
-        $accountUser = ModelBiodata::where('id', $user)->first();
+        $accountUser = Profile::where('id', $user)->first();
         $accountUser->delete();
         toast('Berhasil Delete Data!!!', 'success');
         return redirect('/dashboard/profile');

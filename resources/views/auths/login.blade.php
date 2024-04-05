@@ -19,7 +19,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('argon') }}/assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="{{ asset('argon') }}/assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/logo-fojb.png') }}">
     <title>
         WEBSITE KTA
     </title>
@@ -141,9 +141,20 @@
                             <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden"
                                 style="background-image: url('argon/assets/img/bgp.jpg');background-size: cover;">
                                 <span class="mask opacity-6" style="background-color: #86B6F6;"></span>
-                                <h4 class="mt-5 text-white font-weight-bolder position-relative">WEBSITE KTA</h4>
-                                <p class="text-white position-relative">The more effortless the writing looks, the more
-                                    effort the writer actually put into the process.</p>
+                                <h4 class="mt-5 text-white font-weight-bolder position-relative">WEBSITE OPREC ANGGOTA
+                                </h4>
+                                <p class="text-white position-relative">Forum OSIS Jawa Barat adalah organisasi binaan
+                                    Dinas Pendidikan Provinsi Jawa Barat, Suatu wadah perkumpulan dan pengembangan
+                                    kualitas diri para pelajar tingkat SMA/SMK/MA Se-Derajat yang tergabung dalam
+                                    kepengurusan OSIS ditiap sekolah dengan Visi “menjadi inkubator pemimpin muda Jawa
+                                    Barat berkarakter STRONG untuk Indonesia Emas Tahun 2045” FOJB ini Didirikan oleh 6
+                                    anak muda hebat asli Jawa Barat sejak 5 Januari 2013 menjadikan FOJB sebagai
+                                    Perkumpulan OSIS tertua di Indonesia. Proses pengukuhannya secara resmi dilakukan
+                                    oleh Gubernur Jawa Barat saat itu. Dewasa kini Ikatan Alumni FOJB atau kerap disebut
+                                    IKAL telah mencapai 15.000 anggota yang tersebar di berbagai posisi strategis di
+                                    Jawa Barat bahkan Luar Negeri. Kedepannya Forum OSIS Jawa Barat akan terus berbenah
+                                    hingga alumni-alumni nya dapat terus berkarya dan bermanfaat untuk
+                                    masyarakat Indonesia..</p>
                             </div>
                         </div>
                     </div>

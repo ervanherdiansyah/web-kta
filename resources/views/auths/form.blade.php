@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('argon') }}/assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="{{ asset('argon') }}/assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="{{ asset('assets/img/logo-fojb.png') }}">
     <title>
         WEBSITE KTA
     </title>
@@ -28,10 +28,18 @@
             <span class="mask bg-gradient-dark opacity-6"></span>
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-5 text-center mx-auto">
-                        <h1 class="text-white mb-2 mt-5">WEBSITE KTA</h1>
-                        <p class="text-lead text-white">Use these awesome forms to login or create new account in your
-                            project for free.</p>
+                    <div class="col-lg-10 text-center mx-auto">
+                        <h1 class="text-white mb-2 mt-5">WEBSITE OPREC ANGGOTA</h1>
+                        <p class="text-lead text-white">Forum OSIS Jawa Barat adalah organisasi binaan Dinas Pendidikan
+                            Provinsi Jawa Barat, Suatu wadah perkumpulan dan pengembangan kualitas diri para pelajar
+                            tingkat SMA/SMK/MA Se-Derajat yang tergabung dalam kepengurusan OSIS ditiap sekolah dengan
+                            Visi “menjadi inkubator pemimpin muda Jawa Barat berkarakter STRONG untuk Indonesia Emas
+                            Tahun 2045” FOJB ini Didirikan oleh 6 anak muda hebat asli Jawa Barat sejak 5 Januari 2013
+                            menjadikan FOJB sebagai Perkumpulan OSIS tertua di Indonesia. Proses pengukuhannya secara
+                            resmi dilakukan oleh Gubernur Jawa Barat saat itu. Dewasa kini Ikatan Alumni FOJB atau kerap
+                            disebut IKAL telah mencapai 15.000 anggota yang tersebar di berbagai posisi strategis di
+                            Jawa Barat bahkan Luar Negeri. Kedepannya Forum OSIS Jawa Barat akan terus berbenah hingga
+                            alumni-alumni nya dapat terus berkarya dan bermanfaat untuk masyarakat Indonesia..</p>
                     </div>
                 </div>
             </div>
@@ -190,6 +198,9 @@
                                                     <option value="Hindu"
                                                         @if (old('agama') == 'Hindu') selected @endif>Hindu
                                                     </option>
+                                                    <option value="konghuchu"
+                                                        @if (old('agama') == 'konghuchu') selected @endif>konghuchu
+                                                    </option>
                                                 </select>
                                                 @error('agama')
                                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -306,8 +317,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="example-text-input"
-                                                    class="form-control-label">Jurusan</label>
+                                                <label for="example-text-input" class="form-control-label">Jenjang
+                                                    Pendidikan</label>
                                                 <select name="jurusan" id=""
                                                     class="form-control form-select">
                                                     <option value="">Pilih</option>
@@ -408,7 +419,7 @@
                     console.error('Error:', error);
                     // Menampilkan pesan kesalahan kepada pengguna
                     var errors = xhr.responseJSON
-                    .errors; // Mendapatkan semua pesan kesalahan dari respons JSON
+                        .errors; // Mendapatkan semua pesan kesalahan dari respons JSON
 
                     // Menampilkan pesan kesalahan untuk setiap field inputan
                     if (errors) {
@@ -417,7 +428,7 @@
                                 icon: 'error',
                                 title: 'Email Error',
                                 text: errors.email[
-                                0], // Menampilkan pesan kesalahan untuk email
+                                    0], // Menampilkan pesan kesalahan untuk email
                                 showConfirmButton: false,
                                 timer: 2000 // Menampilkan pesan selama 2 detik
                             });
@@ -427,7 +438,7 @@
                                 icon: 'error',
                                 title: 'Password Error',
                                 text: errors.password[
-                                0], // Menampilkan pesan kesalahan untuk password
+                                    0], // Menampilkan pesan kesalahan untuk password
                                 showConfirmButton: false,
                                 timer: 2000 // Menampilkan pesan selama 2 detik
                             });

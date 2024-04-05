@@ -2,18 +2,14 @@
 
 use App\Http\Controllers\Autentikasi\AuthController;
 use App\Http\Controllers\Dashboard\Account\UserAccountController;
-use App\Http\Controllers\Dashboard\Guru\GuruController;
 use App\Http\Controllers\Dashboard\Home\HomeController;
-use App\Http\Controllers\Dashboard\Jadwal\JadwalPendaftranController;
+use App\Http\Controllers\Dashboard\Pembayaran\PembayaranController as PembayaranPembayaranController;
 use App\Http\Controllers\Dashboard\Pendaftaran\PendaftaranController;
 use App\Http\Controllers\Dashboard\Profile\ProfileController;
-use App\Http\Controllers\Dashboard\Siswa\SiswaController;
-use App\Http\Controllers\Dashboard\Spp\SppController;
-use App\Http\Controllers\HomeController as ControllersHomeController;
-use App\Http\Controllers\PendaftaranController as ControllersPendaftaranController;
 use App\Http\Controllers\Siswa\Home\HomeController as HomeHomeController;
+use App\Http\Controllers\Siswa\Pembayaran\PembayaranController;
 use App\Http\Controllers\Siswa\Pendaftaran\PendaftaranController as PendaftaranPendaftaranController;
-use App\Models\Pendaftaran\Pendaftaran;
+use App\Http\Controllers\Siswa\Profile\ProfileController as ProfileProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,37 +68,12 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/profile/update/{id}', [ProfileController::class, 'update']);
             Route::delete('/profile/destroy/{id}', [ProfileController::class, 'destroy']);
 
-            //Jadwal Pendaftaran
-            Route::get('/jadwal', [JadwalPendaftranController::class, 'index']);
-            Route::post('/jadwal/create', [JadwalPendaftranController::class, 'store']);
-            Route::get('/jadwal/edit/{id}', [JadwalPendaftranController::class, 'edit']);
-            Route::post('/jadwal/update/{id}', [JadwalPendaftranController::class, 'update']);
-            Route::delete('/jadwal/destroy/{id}', [JadwalPendaftranController::class, 'destroy']);
-
-            //Data Siswa
-            Route::get('/siswa', [SiswaController::class, 'index']);
-            Route::post('/siswa/create', [SiswaController::class, 'store']);
-            Route::get('/siswa/edit/{id}', [SiswaController::class, 'edit']);
-            Route::post('/siswa/update/{id}', [SiswaController::class, 'update']);
-            Route::delete('/siswa/destroy/{id}', [SiswaController::class, 'destroy']);
-            Route::get('/siswa/export', [SiswaController::class, 'exportExcel']);
-            Route::post('/siswa/import', [SiswaController::class, 'importExcel']);
-
-            //Data Guru
-            Route::get('/guru', [GuruController::class, 'index']);
-            Route::post('/guru/create', [GuruController::class, 'store']);
-            Route::get('/guru/edit/{id}', [GuruController::class, 'edit']);
-            Route::post('/guru/update/{id}', [GuruController::class, 'update']);
-            Route::delete('/guru/destroy/{id}', [GuruController::class, 'destroy']);
-            Route::get('/guru/export', [GuruController::class, 'exportExcel']);
-            Route::post('/guru/import', [GuruController::class, 'importExcel']);
-
-            //Data Spp
-            Route::get('/spp', [SppController::class, 'index']);
-            Route::post('/spp/create', [SppController::class, 'store']);
-            Route::get('/spp/edit/{id}', [SppController::class, 'edit']);
-            Route::post('/spp/update/{id}', [SppController::class, 'update']);
-            Route::delete('/spp/destroy/{id}', [SppController::class, 'destroy']);
+            //Data Pembayaran
+            Route::get('/pembayaran', [PembayaranPembayaranController::class, 'index']);
+            Route::post('/pembayaran/create', [PembayaranPembayaranController::class, 'store']);
+            Route::get('/pembayaran/edit/{id}', [PembayaranPembayaranController::class, 'edit']);
+            Route::post('/pembayaran/update/{id}', [PembayaranPembayaranController::class, 'update']);
+            Route::delete('/pembayaran/destroy/{id}', [PembayaranPembayaranController::class, 'destroy']);
 
             //Change Password
             Route::get('/changepassword', [UserAccountController::class, 'indexupdatepassword']);
@@ -111,7 +82,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::prefix('user')
+    Route::prefix('peserta')
         ->middleware('role:user')
         ->group(function () {
             //Home
@@ -121,12 +92,16 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/pendaftaran', [PendaftaranPendaftaranController::class, 'index']);
             Route::post('/pendaftaran/create', [PendaftaranPendaftaranController::class, 'store']);
 
+            //pembayaran
+            Route::get('/pembayaran', [PembayaranController::class, 'index']);
+            Route::post('/pembayaran/create', [PembayaranController::class, 'store']);
+
             //Profile
-            Route::get('/profile', [ProfileController::class, 'index']);
-            Route::post('/profile/create', [ProfileController::class, 'store']);
-            Route::get('/profile/edit/{id}', [ProfileController::class, 'edit']);
-            Route::post('/profile/update/{id}', [ProfileController::class, 'update']);
-            Route::delete('/profile/destroy/{id}', [ProfileController::class, 'destroy']);
+            Route::get('/profile', [ProfileProfileController::class, 'index']);
+            Route::post('/profile/create', [ProfileProfileController::class, 'store']);
+            Route::get('/profile/edit/{id}', [ProfileProfileController::class, 'edit']);
+            Route::post('/profile/update/{id}', [ProfileProfileController::class, 'update']);
+            Route::delete('/profile/destroy/{id}', [ProfileProfileController::class, 'destroy']);
 
             //Change Password
             Route::get('/changepassword', [UserAccountController::class, 'indexupdatepassword']);
