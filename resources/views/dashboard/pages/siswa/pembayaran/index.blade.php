@@ -14,19 +14,33 @@
                             <div class="card-header pb-0 pt-3 bg-transparent">
                                 {{-- <h6 class="text-capitalize">Information</h6> --}}
                             </div>
-                            <div class="card-body p-3">
-                                <div style="text-align: center; ">
-                                    <i class="fa fa-money" style="font-size: 100px; color: #007bff;"></i>
+                            @if ($pembayaran->status === 'Unpaid')
+                                <div class="card-body p-3">
+                                    <div style="text-align: center; ">
+                                        <i class="fa fa-money" style="font-size: 100px; color: #007bff;"></i>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <p type="button"
+                                            style="font-size: 15px; color: #007bff; border: none; background: none;">Lakukan
+                                            pembayaran disini !!!</p>
+                                        <button type="button" class="btn btn-info" id="pay-button"
+                                            style="font-size: 20px; color: #007bff; border: none; background: none;">Bayar
+                                            Sekarang
+                                        </button>
+                                    </div>
                                 </div>
-                                <div style="text-align: center;">
-                                    <p type="button"
-                                        style="font-size: 15px; color: #007bff; border: none; background: none;">Lakukan
-                                        pembayaran disini !!!</p>
-                                    <button type="button" class="btn btn-info" id="pay-button"
-                                        style="font-size: 20px; color: #007bff; border: none; background: none;">Bayar
-                                        Sekarang</button>
+                            @else
+                                <div class="card-body p-3">
+                                    <div style="text-align: center; ">
+                                        <i class="fa fa-check-circle-o" style="font-size: 100px; color: #42ec8f;"></i>
+                                    </div>
+                                    <div style="text-align: center;">
+                                        <p type="button"
+                                            style="font-size: 15px; color: #007bff; border: none; background: none;">Anda
+                                            Sudah Membayar !!!</p>
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -37,33 +51,34 @@
         </footer>
     </div>
 @endsection
-@push('midtrans')
-    <script type="text/javascript">
-        // For example trigger on button clicked, or any time you need
-        var payButton = document.getElementById('pay-button');
-        payButton.addEventListener('click', function() {
-            // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
-            window.snap.pay('{{ $snapToken }}', {
-                onSuccess: function(result) {
-                    /* You may add your own implementation here */
-                    alert("payment success!");
-                    console.log(result);
-                },
-                onPending: function(result) {
-                    /* You may add your own implementation here */
-                    alert("wating your payment!");
-                    console.log(result);
-                },
-                onError: function(result) {
-                    /* You may add your own implementation here */
-                    alert("payment failed!");
-                    console.log(result);
-                },
-                onClose: function() {
-                    /* You may add your own implementation here */
-                    alert('you closed the popup without finishing the payment');
-                }
-            })
-        });
-    </script>
-@endpush
+@if ($pembayaran->status === 'Unpaid')
+    @push('midtrans')
+        <script type="text/javascript">
+            // For example trigger on button clicked, or any time you need
+            var payButton = document.getElementById('pay-button');
+            payButton.addEventListener('click', function() {
+                // Trigger snap popup. @TODO: Replace TRANSACTION_TOKEN_HERE with your transaction token
+                window.snap.pay('{{ $snapToken }}', {
+                    onSuccess: function(result) {
+                        /* You may add your own implementation here */
+                        window.location.href = '/peserta/home';
+                    },
+                    onPending: function(result) {
+                        /* You may add your own implementation here */
+                        alert("wating your payment!");
+                        console.log(result);
+                    },
+                    onError: function(result) {
+                        /* You may add your own implementation here */
+                        alert("payment failed!");
+                        console.log(result);
+                    },
+                    onClose: function() {
+                        /* You may add your own implementation here */
+                        alert('you closed the popup without finishing the payment');
+                    }
+                })
+            });
+        </script>
+    @endpush
+@endif

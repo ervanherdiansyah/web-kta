@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Autentikasi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Form;
+use App\Models\Pembayaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,7 +64,7 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
-
+        // $request->session()->put('registerData', $request->all());
         try {
             $user = User::create([
                 'name' => $request->name,
@@ -71,7 +72,12 @@ class AuthController extends Controller
                 'password' => bcrypt($request->password),
                 'role' => 'user',
             ]);
-
+            // $registerData = $request->session()->get('registerData');
+            // $responseData = [
+            //     'user' => $user,
+            //     'registerData' => $registerData,
+            // ];
+            $request->session()->put('user_id', $user->id);
             return response()->json($user);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 422); // respons kesalahan dengan status kode 422 (Unprocessable Entity)
@@ -106,9 +112,9 @@ class AuthController extends Controller
             $namaGambar = str_replace(' ', '_', $file_name);
             $image = $request->foto->storeAs('public/foto', $namaGambar);
         }
-
+        $userId = $request->session()->get('user_id') ?? $request->user_id;
         $form = Form::create([
-            'user_id' => $request->user_id,
+            'user_id' => $userId,
             'nama_lengkap' => $request->nama_lengkap,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tempat_lahir' => $request->tempat_lahir,
@@ -132,6 +138,15 @@ class AuthController extends Controller
             'foto' => $file_name ? 'pas_foto/' . $namaGambar : null,
 
         ]);
+
+        $pembayaran = Pembayaran::create([
+            'user_id' => $userId,
+            'jumlah_pembayaran' => 35000,
+            'tanggal_pembayaran' => now(),
+            'status' => 'Unpaid',
+        ]);
+        $request->session()->forget('user_id');
+
         toast('Berhasil Pendaftaran!!!', 'success');
         return redirect('/');
     }

@@ -9,49 +9,48 @@ use Illuminate\Support\Facades\Auth;
 
 class PembayaranController extends Controller
 {
-    public function indexx()
-    {
-        return view('dashboard.pages.siswa.pembayaran.index');
-    }
+
     public function index(Request $request)
     {
-        $pembayaran = Pembayaran::create([
-            'user_id' => Auth::user()->id,
-            'jumlah_pembayaran' => 3000,
-            'tanggal_pembayaran' => now(),
-            'status' => 'Unpaid',
-        ]);
-        // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = config('midtrans.serverKey');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
-        \Midtrans\Config::$isProduction = false;
-        // Set sanitization on (default)
-        \Midtrans\Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
-        \Midtrans\Config::$is3ds = true;
 
-        \Midtrans\Config::$overrideNotifUrl = config('app.url') . '/api/callback';
-        // \Midtrans\Config::$overrideNotifUrl = 'https://2efa-114-79-55-67.ngrok-free.app/api/callback';
-        $price = 35000;
-        $item_details[] = array(
-            'id' => rand(), // ID unik untuk ongkir
-            'price' => $pembayaran->jumlah_pembayaran, // Harga ongkir
-            'quantity' => 1, // Jumlahnya adalah 1 karena ongkir adalah satu item
-            'name' => 'Biaya Pendaftaran', // Nama item ongkir
-        );
-        $params = array(
-            'transaction_details' => array(
-                'order_id' => $pembayaran->id,
-                'gross_amount' => $pembayaran->jumlah_pembayaran,
-            ),
-            'customer_details' => array(
-                'first_name' => Auth::user()->name,
-                'email' => Auth::user()->email,
-            ),
-            'item_details' => $item_details,
-        );
-        $snapToken = \Midtrans\Snap::getSnapToken($params);
-        return view('dashboard.pages.siswa.pembayaran.index', compact('snapToken'));
+        $pembayaran = Pembayaran::where('user_id', Auth::user()->id)->first();
+
+        if ($pembayaran && $pembayaran->status == 'Paid') {
+            return view('dashboard.pages.siswa.pembayaran.index', compact('pembayaran'));
+        } else {
+            // Set your Merchant Server Key
+            \Midtrans\Config::$serverKey = config('midtrans.serverKey');
+            // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+            \Midtrans\Config::$isProduction = false;
+            // Set sanitization on (default)
+            \Midtrans\Config::$isSanitized = true;
+            // Set 3DS transaction for credit card to true
+            \Midtrans\Config::$is3ds = true;
+
+            // \Midtrans\Config::$overrideNotifUrl = config('app.url') . '/api/callback';
+            \Midtrans\Config::$overrideNotifUrl = 'https://eef6-114-79-49-224.ngrok-free.app/api/callback';
+
+            $price = 35000;
+            $item_details[] = array(
+                'id' => rand(), // ID unik untuk ongkir
+                'price' => $pembayaran->jumlah_pembayaran, // Harga ongkir
+                'quantity' => 1, // Jumlahnya adalah 1 karena ongkir adalah satu item
+                'name' => 'Biaya Pendaftaran', // Nama item ongkir
+            );
+            $params = array(
+                'transaction_details' => array(
+                    'order_id' => $pembayaran->id,
+                    'gross_amount' => $pembayaran->jumlah_pembayaran,
+                ),
+                'customer_details' => array(
+                    'first_name' => Auth::user()->name,
+                    'email' => Auth::user()->email,
+                ),
+                'item_details' => $item_details,
+            );
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+            return view('dashboard.pages.siswa.pembayaran.index', compact('snapToken', 'pembayaran'));
+        }
     }
 
     public function callback(Request $request)

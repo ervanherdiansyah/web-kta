@@ -309,6 +309,10 @@
                                                         @if (old('kelas') == 'XII') selected @endif>
                                                         XII
                                                     </option>
+                                                    <option value="SLTP Sederajat"
+                                                        @if (old('kelas') == 'SLTP Sederajat') selected @endif>
+                                                        SLT Sederajat
+                                                    </option>
                                                 </select>
                                                 @error('kelas')
                                                     <div class="alert alert-danger">{{ $message }}</div>
@@ -333,6 +337,14 @@
                                                     <option value="MA"
                                                         @if (old('jurusan') == 'MA') selected @endif>
                                                         MA
+                                                    </option>
+                                                    <option value="SMP"
+                                                        @if (old('jurusan') == 'SMP') selected @endif>
+                                                        SMP
+                                                    </option>
+                                                    <option value="MTS"
+                                                        @if (old('jurusan') == 'MTS') selected @endif>
+                                                        MTS
                                                     </option>
                                                 </select>
                                                 @error('jurusan')
@@ -397,6 +409,8 @@
                 method: 'POST',
                 data: $(this).serialize(), // Serialize formulir untuk dikirimkan
                 success: function(response) {
+
+                    sessionStorage.setItem('registerData', JSON.stringify(response));
                     // Sembunyikan formulir register akun setelah berhasil membuat akun
                     $('#register-form-container').hide();
                     // Tampilkan formulir pendaftaran setelah berhasil mendaftar akun
@@ -451,6 +465,23 @@
 
             // Jangan lakukan submit form secara default
             event.preventDefault();
+        });
+
+        // Saat dokumen dimuat
+        $(document).ready(function() {
+            // Periksa apakah ada data register akun dalam sesi
+            var registerData = JSON.parse(sessionStorage.getItem('registerData'));
+            if (registerData) {
+                // Sembunyikan formulir register akun dan tampilkan formulir pendaftaran
+                $('#register-form-container').hide();
+                $('#registration-form-container').show();
+
+                // Tampilkan data register akun di form pendaftaran (jika perlu)
+                // contoh: $('#nama').val(registerData.nama);
+
+                // Hapus data register akun dari sesi (opsional)
+                sessionStorage.removeItem('registerData');
+            }
         });
     </script>
 </body>

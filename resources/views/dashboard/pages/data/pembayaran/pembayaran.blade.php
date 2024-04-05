@@ -174,7 +174,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ url('/dashboard/profile/update/' . $profile->id) }}" method="POST"
+                        <form action="{{ url('/dashboard/profile/update/' . $item->id) }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf
                             <div class="row">
@@ -183,7 +183,7 @@
                                         <label for="example-text-input" class="form-control-label">Nama
                                         </label>
                                         <input name="user_id" class="form-control" type="text"
-                                            value="{{ $profile->user_id }} ">
+                                            value="{{ $item->user_id }} ">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -191,7 +191,7 @@
                                         <label for="example-text-input" class="form-control-label">Jumlah
                                             pembayaran</label>
                                         <input name="jumlah_pembayaran" class="form-control" type="text"
-                                            value="{{ $jumlah_pembayaran->nohp }}">
+                                            value="{{ $item->jumlah_pembayaran }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -199,7 +199,7 @@
                                         <label for="example-text-input" class="form-control-label">Status
                                         </label>
                                         <input name="status" class="form-control" type="text"
-                                            value="{{ $profile->status }}">
+                                            value="{{ $item->status }}">
                                     </div>
                                 </div>
 

@@ -27,10 +27,10 @@
     @if (Request::is('peserta/profile*'))
         <div class="position-absolute w-100 min-height-300 top-0"
             style="background-image: url('{{ config('app.url') }}/argon/assets/img/bgp.jpg'); background-position-y: 50%;">
-            <span class="mask bg-danger opacity-6"></span>
+            <span class="mask opacity-6" style="background-color: #17A55C;"></span>
         </div>
     @else
-        <div class="min-height-300 bg-danger position-absolute w-100" style="background-color: blue;"></div>
+        <div class="min-height-300 position-absolute w-100" style="background-color: #17A55C;"></div>
     @endif
     @include('dashboard.component.siswa.sidebar.sidebar')
     @if (Request::is('peserta/profile*'))
