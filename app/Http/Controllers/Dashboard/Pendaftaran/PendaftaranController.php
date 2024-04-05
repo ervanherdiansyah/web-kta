@@ -20,6 +20,21 @@ class PendaftaranController extends Controller
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'nama_lengkap' => 'required|string|max:255',
+            'tanggal_lahir' => 'required',
+            'tempat_lahir' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+            'agama' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'hp' => 'required|string|max:255',
+            'alamat' => 'required|string|max:255',
+            'instagram' => 'required|string|max:255',
+            'jurusan' => 'required|string|max:255',
+            'kelas' => 'required|string|max:255',
+            'asal_sekolah' => 'required|string|max:255',
+            'alamat_asal_sekolah' => 'required|string|max:255',
+        ]);
         $file_name = null;
         if ($request->hasFile('foto')) {
             $file_name = $request->foto->getClientOriginalName();

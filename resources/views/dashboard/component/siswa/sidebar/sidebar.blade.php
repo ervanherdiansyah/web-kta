@@ -28,7 +28,7 @@
                     <span class="nav-link-text ms-1">Information</span>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->is('peserta/pembayaran') ? 'active' : '' }}"
                     href="{{ url('/peserta/pembayaran') }}">
                     <div
@@ -37,7 +37,7 @@
                     </div>
                     <span class="nav-link-text ms-1">Pembayaran</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Setting</h6>
             </li>
