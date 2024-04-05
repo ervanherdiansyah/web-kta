@@ -53,13 +53,13 @@ Route::group(['middleware' => 'auth'], function () {
 
             //Pendaftaran
             Route::get('/pendaftaran', [PendaftaranController::class, 'index']);
-            Route::get('/pendaftaran/terverifikasi', [PendaftaranController::class, 'indexverif']);
-            Route::get('/pendaftaran/notverifikasi', [PendaftaranController::class, 'indexnotverif']);
             Route::post('/pendaftaran/create', [PendaftaranController::class, 'store']);
             Route::get('/pendaftaran/edit/{id}', [PendaftaranController::class, 'edit']);
             Route::post('/pendaftaran/update/{id}', [PendaftaranController::class, 'update']);
             Route::delete('/pendaftaran/destroy/{id}', [PendaftaranController::class, 'destroy']);
             Route::post('/pendaftaran/update/status/{id}', [PendaftaranController::class, 'updatestatus']);
+            Route::get('/pendaftaran/export', [PendaftaranController::class, 'exportExcel']);
+            Route::post('/pendaftaran/import', [PendaftaranController::class, 'importExcel']);
 
             //Profile
             Route::get('/profile', [ProfileController::class, 'index']);

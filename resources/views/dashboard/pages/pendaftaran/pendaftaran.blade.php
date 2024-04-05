@@ -9,12 +9,21 @@
             <div class="col-12 ">
                 <div class="card mb-4 ">
                     <div class="card-header pb-0">
+                        <h6 class="d-lg-none">Data Siswa</h6>
                         <div class="d-flex align-items-center">
-                            <h6>Data Pendaftaran</h6>
-                            <button type="button" class="btn btn-primary btn-sm ms-auto" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal">
-                                Tambah Pendaftaran
-                            </button>
+                            <h6 class="d-none d-lg-block">Data Siswa</h6>
+                            <div class="d-flex flex-wrap align-items-center ms-auto gap-2">
+                                <a href="{{ url('/dashboard/pendaftaran/export') }}"
+                                    class="btn btn-primary btn-sm ms-auto">Export</a>
+                                {{-- <button type="button" class="btn btn-primary btn-sm ms-auto" data-bs-toggle="modal"
+                                    data-bs-target="#import">
+                                    Import
+                                </button> --}}
+                                <button type="button" class="btn btn-primary btn-sm ms-auto" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    Tambah Pendaftaran
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body px-4 pt-0 pb-2">
@@ -668,6 +677,35 @@
         </div>
     @endforeach
     <!-- End Modal Verifikasi Data-->
+
+    <!-- Modal Import Data-->
+    <div class="modal fade" id="import" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Import Data Pendaftaran</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ url('/dashboard/pendaftaran/import') }}" method="Post"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="example-text-input" class="form-control-label">Import Data Pendaftaran</label>
+                                <input name="upload" class="form-control" type="file">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Import Data-->
 
     <script>
         fetch('https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json')

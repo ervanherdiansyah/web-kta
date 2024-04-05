@@ -3,12 +3,15 @@
 namespace App\Imports;
 
 use App\Models\Data\Guru;
+use App\Models\Form;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class GuruImport implements ToModel, WithHeadingRow
+class FormImport implements ToModel, WithHeadingRow
 {
+
+
     public function model(array $row)
     {
         $tanggal_lahir = null;
@@ -21,21 +24,20 @@ class GuruImport implements ToModel, WithHeadingRow
             }
         }
 
-        return new Guru([
-            'nip' => $row['nip'],
-            'nik' => $row['nik'],
+        return new Form([
             'nama_lengkap' => $row['nama_lengkap'],
             'jenis_kelamin' => $row['jenis_kelamin'],
             'tempat_lahir' => $row['tempat_lahir'],
             'tanggal_lahir' => $tanggal_lahir,
             'agama' => $row['agama'],
+            'asal_sekolah' => $row['asal_sekolah'],
+            'alamat_asal_sekolah' => $row['alamat_asal_sekolah'],
+            'kelas' => $row['kelas'],
+            'jurusan' => $row['jurusan'],
             'email' => $row['email'],
             'hp' => $row['hp'],
+            'instagram' => $row['instagram'],
             'alamat' => $row['alamat'],
-            'provinsi' => $row['provinsi'],
-            'kota_kabupaten' => $row['kota_kabupaten'],
-            'kecamatan' => $row['kecamatan'],
-            'kelurahan' => $row['kelurahan'],
             'created_at' => now(),
             'updated_at' => now(),
         ]);

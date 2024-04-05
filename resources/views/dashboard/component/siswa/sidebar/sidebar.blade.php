@@ -9,7 +9,7 @@
                 <span class="ms-1 font-weight-bold">{{ Auth::user()->name }}</span>
             </a>
         @else
-            <a class="navbar-brand m-0" href=" {{ url('/dashboard/home') }}">
+            <a class="navbar-brand m-0" href=" {{ url('/peserta/home') }}">
                 <img src="{{ asset('argon') }}/assets/img/foto.png" class="navbar-brand-img h-100" alt="main_logo">
                 <span class="ms-1 font-weight-bold">{{ Auth::user()->name }}</span>
             </a>

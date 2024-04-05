@@ -11,7 +11,7 @@
                                 style="display:block; margin:auto; max-width: 100%" alt="profile_image"
                                 class="w-100 border-radius-lg shadow-sm">
                         @else
-                            <img src="{{ asset('argon') }}/assets/img/team-1.jpg" alt="profile_image"
+                            <img src="{{ asset('argon') }}/assets/img/foto.png" alt="profile_image"
                                 class="w-100 border-radius-lg shadow-sm">
                         @endif
                     </div>
@@ -26,10 +26,10 @@
                             @endif
                         </h5>
                         <p class="mb-0 font-weight-bold text-sm">
-                            @if (isset($profile) && $profile->email != null)
-                                {{ $profile->email }}
+                            @if (isset($profile) && $profile->nohp != null)
+                                {{ $profile->nohp }}
                             @else
-                                blabla
+                                087xxx
                             @endif
                         </p>
                     </div>

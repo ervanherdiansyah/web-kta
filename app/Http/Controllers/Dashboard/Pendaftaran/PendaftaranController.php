@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Dashboard\Pendaftaran;
 
+use App\Exports\FormExport;
 use App\Http\Controllers\Controller;
+use App\Imports\FormImport;
 use App\Models\Form;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PendaftaranController extends Controller
 {
@@ -127,6 +130,18 @@ class PendaftaranController extends Controller
         $pendaftaran->delete();
 
         toast('Berhasil Hapus Data!!!', 'success');
+        return redirect('/dashboard/pendaftaran');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new FormExport, 'data-pendaftaran.xlsx');
+    }
+    public function importExcel(Request $request)
+    {
+        Excel::import(new FormImport, $request->file('upload'));
+
+        toast('Berhasil Import Data!!!', 'success');
         return redirect('/dashboard/pendaftaran');
     }
 }
