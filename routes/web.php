@@ -104,7 +104,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::delete('/profile/destroy/{id}', [ProfileProfileController::class, 'destroy']);
 
             //Change Password
-            Route::get('/changepassword', [UserAccountController::class, 'indexupdatepassword']);
+            Route::get('/changepassword', [UserAccountController::class, 'indexupdatepassworduser']);
             Route::post('/changepassword', [UserAccountController::class, 'updatepassword'])->name('changepassword');
         });
 });

@@ -17,6 +17,7 @@ class UserAccountController extends Controller
         return view('dashboard.pages.account.account', compact('accountUser'));
     }
 
+
     public function store(Request $request)
     {
         $accountUser = User::create([
@@ -58,6 +59,11 @@ class UserAccountController extends Controller
     {
 
         return view('dashboard.pages.pengaturan.changepassword');
+    }
+    public function indexupdatepassworduser()
+    {
+
+        return view('dashboard.pages.siswa.pengaturan.changepassword');
     }
     public function updatepassword(Request $request)
     {
