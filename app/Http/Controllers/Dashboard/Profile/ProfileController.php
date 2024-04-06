@@ -16,7 +16,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user()->id;
-        $profile = Profile::with('user')->where('user_id', $user)->first();
+        $profile = User::where('id', $user)->first();
         return view('dashboard.pages.profile.profile', compact('profile'));
     }
 
@@ -46,41 +46,33 @@ class ProfileController extends Controller
         return redirect('/dashboard/profile');
     }
 
-    public function edit()
-    {
-        $user = Auth::user()->id;
-        $accountUser = User::with('user')->where('id', $user)->first();
-        return view('dashboard.pages.account.editAccount', compact('accountUser'));
-    }
-
     public function update(Request $request, $id)
     {
-        $user = Auth::user()->id;
-        $profile = Profile::where('user_id', $user)->first();
-        if (Request()->hasFile('foto')) {
-            if (Storage::exists($profile->foto)) {
-                Storage::delete($profile->foto);
-            }
+        // $user = Auth::user()->id;
+        // $profile = User::where('id', $user)->first();
+        // if (Request()->hasFile('foto')) {
+        //     if (Storage::exists($profile->foto)) {
+        //         Storage::delete($profile->foto);
+        //     }
 
-            $file_name = $request->foto->getClientOriginalName();
-            $namaGambar = str_replace(' ', '_', $file_name);
-            $image = $request->foto->storeAs('public/foto', $namaGambar);
+        //     $file_name = $request->foto->getClientOriginalName();
+        //     $namaGambar = str_replace(' ', '_', $file_name);
+        //     $image = $request->foto->storeAs('public/foto', $namaGambar);
 
-            // Update profile based on conditions
-            $profile->update([
-                'fullname' => $request->fullname,
-                'email' => $request->email,
-                'nohp' => $request->nohp,
-                'foto' => 'foto/' . $namaGambar,
-            ]);
-        } else {
-            // Update profile without changing the foto fields
-            $profile->update([
-                'fullname' => $request->fullname,
-                'email' => $request->email,
-                'nohp' => $request->nohp,
-            ]);
-        }
+        //     $profile->update([
+        //         'fullname' => $request->fullname,
+        //         'email' => $request->email,
+        //         'nohp' => $request->nohp,
+        //         'foto' => 'foto/' . $namaGambar,
+        //     ]);
+        // } else {
+        //     $profile->update([
+        //         'name' => $request->name,
+        //         'fullname' => $request->fullname,
+        //         'email' => $request->email,
+        //         'nohp' => $request->nohp,
+        //     ]);
+        // }
 
         $user = User::where('id', Auth::user()->id)->first();
         if ($request->hasFile('foto')) {
@@ -89,10 +81,13 @@ class ProfileController extends Controller
             $user->foto = 'foto/' . $namaGambar;
             $request->foto->storeAs('public/foto', $namaGambar);
         }
+        $user->name = $request->name;
+        $user->fullname = $request->fullname;
+        $user->email = $request->email;
+        $user->nohp = $request->nohp;
         $user->save();
 
         toast('Berhasil Update Data!!!', 'success');
-        Alert::success('Data berhasil ditambahkan', 'Success Message');
         return redirect('/dashboard/profile');
     }
 

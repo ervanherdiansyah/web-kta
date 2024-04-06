@@ -85,6 +85,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Username</label>
+                                        <input name="name" class="form-control" type="text"
+                                            value="{{ $profile->name ?? '' }} "
+                                            @if (isset($profile) && $profile->name) readonly @endif>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Nama Lengkap</label>
                                         <input name="fullname" class="form-control" type="text"
                                             value="{{ $profile->fullname ?? '' }} "
@@ -140,7 +148,8 @@
         </footer>
 
         @if (isset($profile))
-            <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -155,10 +164,23 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label for="example-text-input" class="form-control-label">Username</label>
+                                            <input name="name" class="form-control" type="text"
+                                                value="{{ $profile->name }} ">
+                                            @error('name')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Nama
                                                 Lengkap</label>
                                             <input name="fullname" class="form-control" type="text"
                                                 value="{{ $profile->fullname }} ">
+                                            @error('fullname')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -167,6 +189,9 @@
                                                 Whatsapp</label>
                                             <input name="nohp" class="form-control" type="text"
                                                 value="{{ $profile->nohp }}">
+                                            @error('nohp')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -175,6 +200,9 @@
                                             </label>
                                             <input name="email" class="form-control" type="email"
                                                 value="{{ $profile->email }}">
+                                            @error('email')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -182,6 +210,9 @@
                                             <label for="example-text-input" class="form-control-label">Foto
                                                 Profile</label>
                                             <input name="foto" class="form-control" type="file">
+                                            @error('foto')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>

@@ -105,6 +105,6 @@ Route::group(['middleware' => 'auth'], function () {
 
             //Change Password
             Route::get('/changepassword', [UserAccountController::class, 'indexupdatepassworduser']);
-            Route::post('/changepassword', [UserAccountController::class, 'updatepassword'])->name('changepassword');
+            Route::post('/changepassword', [UserAccountController::class, 'updatepassworduser'])->name('changepassword-user');
         });
 });

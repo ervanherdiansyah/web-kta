@@ -21,7 +21,7 @@
                                         </div>
                                         <div class="card-body">
                                             {{-- <p class="text-uppercase text-sm">User Information</p> --}}
-                                            <form action="{{ Route('changepassword') }}" method="POST">
+                                            <form action="{{ Route('changepassword-user') }}" method="POST">
                                                 @csrf
                                                 <div class="row">
                                                     <div class="col-md-6">

@@ -81,6 +81,22 @@ class UserAccountController extends Controller
         ]);
     }
 
+    public function updatepassworduser(Request $request)
+    {
+        $request->validate([
+            'current_password' => ['required'],
+            'password' => ['required', 'confirmed'],
+        ]);
+        if (Hash::check($request->current_password, auth()->user()->password)) {
+            auth()->user()->update(['password' => Hash::make($request->password)]);
+            alert('Sukses', 'Password Berhasil Diganti', 'success');
+            return redirect('/peserta/changepassword');
+        }
+        throw ValidationException::withMessages([
+            'current_password' => 'your current password does not mact with our record',
+        ]);
+    }
+
 
     public function ubahpassword(Request $request, $id)
     {

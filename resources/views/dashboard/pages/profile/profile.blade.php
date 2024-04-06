@@ -26,8 +26,8 @@
                             @endif
                         </h5>
                         <p class="mb-0 font-weight-bold text-sm">
-                            @if (isset($profile) && $profile->email != null)
-                                {{ $profile->email }}
+                            @if (isset($profile) && $profile->nohp != null)
+                                {{ $profile->nohp }}
                             @else
                                 blabla
                             @endif
@@ -74,7 +74,7 @@
                             @if ($profile != null)
                                 <button type="button" class="btn btn-primary btn-sm ms-auto" data-bs-toggle="modal"
                                     data-bs-target="#update">
-                                    Edit Biodata
+                                    Edit Profile
                                 </button>
                             @endif
                         </div>
@@ -83,6 +83,14 @@
                         <form action="{{ url('/dashboard/profile/create') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Username</label>
+                                        <input name="name" class="form-control" type="text"
+                                            value="{{ $profile->name ?? '' }} "
+                                            @if (isset($profile) && $profile->name) readonly @endif>
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Nama Lengkap</label>
@@ -114,10 +122,10 @@
                                             <img src="{{ asset('storage/' . $profile->foto) }}"
                                                 style="display:block; margin:auto; max-width: 100%">
                                         @endisset
-                                        @empty($profile->foto)
+                                        {{-- @empty($profile->foto)
                                             <label for="example-text-input" class="form-control-label">Foto Profile</label>
                                             <input name="foto" class="form-control" type="file">
-                                        @endempty
+                                        @endempty --}}
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +148,8 @@
         </footer>
 
         @if (isset($profile))
-            <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -153,6 +162,13 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="example-text-input" class="form-control-label">Username</label>
+                                            <input name="name" class="form-control" type="text"
+                                                value="{{ $profile->name }} ">
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Nama
