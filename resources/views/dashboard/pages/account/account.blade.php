@@ -198,7 +198,7 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Username</label>
                                         <input name="name" class="form-control" type="text"
-                                            value="{{ $accountUser->name }}">
+                                            value="{{ $item->name }}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -206,7 +206,7 @@
                                         <label for="example-text-input" class="form-control-label">Email
                                             address</label>
                                         <input name="email" class="form-control" type="email"
-                                            value="{{ $accountUser->email }}">
+                                            value="{{ $item->email }}">
                                     </div>
                                 </div>
 
