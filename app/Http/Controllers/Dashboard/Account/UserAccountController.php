@@ -41,7 +41,6 @@ class UserAccountController extends Controller
                         data-original-title="Edit user">
                         <i class="fas fa-edit text-success text-sm opacity-10"></i>
                         </a>
-                                                
                         <a type="button" class="" data-bs-toggle="modal"
                             data-bs-target="#delete' . $data->id . '">
                             <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>

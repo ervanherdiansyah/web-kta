@@ -47,7 +47,6 @@
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Asal Kota/Kabupaten Sekolah</th>
-
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Tempat Lahir</th>
@@ -640,13 +639,9 @@
 @push('script')
     <!-- Tautkan file JavaScript jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {{-- <script src="//cdn.datatables.net/2.0.1/js/dataTables.min.js"></script> --}}
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
     <script type="text/javascript">
-        // $(document).ready(function() {
-        //     $('#myTable').DataTable();
-        // });
         $(document).ready(function() {
             loadData();
         });

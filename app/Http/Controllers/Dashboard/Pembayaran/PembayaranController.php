@@ -26,7 +26,7 @@ class PembayaranController extends Controller
                         ->orWhere('jumlah_pembayaran', 'like', '%' . $searchValue . '%')
                         ->orWhere('status', 'like', '%' . $searchValue . '%')
                         ->orWhereHas('user', function ($query) use ($searchValue) {
-                            $query->where('nama', 'like', '%' . $searchValue . '%');
+                            $query->where('name', 'like', '%' . $searchValue . '%');
                         });
                 });
             }
