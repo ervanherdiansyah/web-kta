@@ -29,7 +29,7 @@ class UserAccountController extends Controller
 
             return DataTables::of($data)
                 ->addColumn('name', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->user->name . '</p> ';
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->name . '</p> ';
                 })
                 ->addColumn('email', function ($data) {
                     return '<p class="text-xs font-weight-bold mb-0">' . $data->email . '</p> ';
