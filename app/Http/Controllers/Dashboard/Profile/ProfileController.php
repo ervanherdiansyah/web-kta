@@ -73,7 +73,12 @@ class ProfileController extends Controller
         //         'nohp' => $request->nohp,
         //     ]);
         // }
-
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'fullname' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'nohp' => 'required|string|max:255',
+        ]);
         $user = User::where('id', Auth::user()->id)->first();
         if ($request->hasFile('foto')) {
             $file_name = $request->foto->getClientOriginalName();

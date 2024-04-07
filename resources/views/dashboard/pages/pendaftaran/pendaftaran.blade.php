@@ -1,7 +1,9 @@
 @extends('dashboard.layouts.layout')
 @section('title', 'Data Pendaftaran')
 @section('css')
-    <link rel="stylesheet" href="//cdn.datatables.net/2.0.1/css/dataTables.dataTables.min.css" />
+    {{-- <link rel="stylesheet" href="//cdn.datatables.net/2.0.1/css/dataTables.dataTables.min.css" /> --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
 @endsection
 @section('content')
     <div class="container-fluid py-4 ">
@@ -35,16 +37,17 @@
                                             Nama</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Asal Sekolah</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Asal Kota/Kabupaten Sekolah</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Kelas</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Jurusan</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Asal Sekolah</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Asal Kota/Kabupaten Sekolah</th>
+
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Tempat Lahir</th>
@@ -74,93 +77,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($pendaftaran as $item)
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    {{-- <div>
-                                                <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3"
-                                                    alt="user1">
-                                            </div> --}}
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">{{ $item->nama_lengkap }}</h6>
-                                                        {{-- <p class="text-xs text-secondary mb-0">john@creative-tim.com</p> --}}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->asal_sekolah }}</p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->alamat_asal_sekolah }}
-                                                </p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->kelas }}</p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->jurusan }}
-                                                </p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->tempat_lahir }}</p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->tanggal_lahir }}
-                                                </p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->jenis_kelamin }}</p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->agama }}
-                                                </p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->email }}</p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->hp }}
-                                                </p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->instagram }}</p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->alamat }}
-                                                </p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
 
-                                            <td class="align-middle">
-                                                {{-- <a href="{{ url('/dashboard/account/edit/' . $item->id) }}"
-                                                    class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                                    data-original-title="Edit user">
-                                                    <i class="fas fa-edit text-success text-sm opacity-10"></i>
-                                                </a> --}}
-                                                <a type="button" class="" data-bs-toggle="modal"
-                                                    data-bs-target="#update{{ $item->id }}">
-                                                    <i class="fas fa-edit text-success text-sm opacity-10"></i>
-                                                </a>
-                                                <a type="button" class="" data-bs-toggle="modal"
-                                                    data-bs-target="#delete{{ $item->id }}">
-                                                    <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
-                                                </a>
-
-                                            </td>
-                                        </tr>
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -638,12 +555,11 @@
 
             </div>
         </div>
-        </div>
     @endforeach
     <!-- End Modal Update Data-->
 
     <!-- Modal Verifikasi Data-->
-    @foreach ($pendaftaran as $item)
+    {{-- @foreach ($pendaftaran as $item)
         <div class="modal fade" id="updatestatus{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -675,7 +591,7 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
     <!-- End Modal Verifikasi Data-->
 
     <!-- Modal Import Data-->
@@ -724,13 +640,93 @@
 @push('script')
     <!-- Tautkan file JavaScript jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="//cdn.datatables.net/2.0.1/js/dataTables.min.js"></script>
-    <script>
+    {{-- <script src="//cdn.datatables.net/2.0.1/js/dataTables.min.js"></script> --}}
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
+
+
+    {{-- <script type="text/javascript">
         let table = new DataTable('#myTablee');
-    </script>
-    <script>
+    </script> --}}
+    <script type="text/javascript">
+        // $(document).ready(function() {
+        //     $('#myTable').DataTable();
+        // });
         $(document).ready(function() {
-            $('#myTable').DataTable();
+            loadData();
         });
+
+        function loadData() {
+            $('#myTable').DataTable({
+                processing: true,
+                pagination: true,
+                responsive: false,
+                serverSide: true,
+                searching: true,
+                ordering: false,
+                ajax: {
+                    url: "{{ url('/dashboard/pendaftaran') }}",
+                },
+                columns: [{
+                        data: "nama_lengkap",
+                        name: "nama_lengkap"
+                    },
+                    {
+                        data: "kelas",
+                        name: "kelas"
+                    },
+                    {
+                        data: "jurusan",
+                        name: "jurusan"
+                    },
+                    {
+                        data: "asal_sekolah",
+                        name: "asal_sekolah"
+                    },
+                    {
+                        data: "alamat_asal_sekolah",
+                        name: "alamat_asal_sekolah"
+                    },
+                    {
+                        data: "jenis_kelamin",
+                        name: "jenis_kelamin"
+                    },
+                    {
+                        data: "tempat_lahir",
+                        name: "tempat_lahir"
+                    },
+                    {
+                        data: "tanggal_lahir",
+                        name: "tanggal_lahir"
+                    },
+                    {
+                        data: "agama",
+                        name: "agama"
+                    },
+
+                    {
+                        data: "email",
+                        name: "email"
+                    },
+                    {
+                        data: "hp",
+                        name: "hp"
+                    },
+                    {
+                        data: "instagram",
+                        name: "instagram"
+                    },
+                    {
+                        data: "alamat",
+                        name: "alamat"
+                    },
+                    {
+                        data: "action",
+                        name: "action"
+                    },
+                ],
+            });
+        }
     </script>
 @endpush

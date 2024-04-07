@@ -11,14 +11,75 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use Yajra\DataTables\Facades\DataTables;
 
 class PendaftaranController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::where('role', 'siswa')->get();
-        $pendaftaran = Form::latest()->get();
-        return view('dashboard.pages.pendaftaran.pendaftaran', compact('pendaftaran', 'user'));
+        $pendaftaran = Form::get();
+
+        if ($request->ajax()) {
+            $data = new Form;
+            $data = $data->latest();
+            return DataTables::of($data)
+                ->addColumn('nama_lengkap', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->nama_lengkap . '</p> ';
+                })
+                ->addColumn('kelas', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->kelas . '</p> ';
+                })
+                ->addColumn('jurusan', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->jurusan . '</p> ';
+                })
+                ->addColumn('asal_sekolah', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->asal_sekolah . '</p> ';
+                })
+                ->addColumn('alamat_asal_sekolah', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->alamat_asal_sekolah . '</p> ';
+                })
+                ->addColumn('jenis_kelamin', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->jenis_kelamin . '</p> ';
+                })
+                ->addColumn('tempat_lahir', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->tempat_lahir . '</p> ';
+                })
+                ->addColumn('tanggal_lahir', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->tanggal_lahir . '</p> ';
+                })
+                ->addColumn('agama', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->agama . '</p> ';
+                })
+                ->addColumn('email', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->email . '</p> ';
+                })
+                ->addColumn('hp', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->hp . '</p> ';
+                })
+                ->addColumn('instagram', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->instagram . '</p> ';
+                })
+                ->addColumn('alamat', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->alamat . '</p> ';
+                })
+                ->addColumn('action', function ($data) {
+                    return
+                        '<a type="button" class="" data-bs-toggle="modal"
+                                                    data-bs-target="#update' . $data->id . '">
+                                                    <i class="fas fa-edit text-success text-sm opacity-10"></i>
+                                                </a> 
+                                                
+                                                <a type="button" class="" data-bs-toggle="modal"
+                                                    data-bs-target="#delete' . $data->id . '">
+                                                    <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
+                                                </a> 
+                                                ';
+                })
+                ->rawColumns(['nama_lengkap', 'kelas', 'jurusan', 'asal_sekolah', 'alamat_asal_sekolah', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'email', 'hp', 'instagram', 'alamat', 'action'])
+                ->make(true);
+        }
+
+        return view('dashboard.pages.pendaftaran.pendaftaran', compact('pendaftaran'));
     }
 
     public function store(Request $request)

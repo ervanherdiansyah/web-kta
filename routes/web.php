@@ -52,7 +52,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/account/changepassword/{id}', [UserAccountController::class, 'ubahpassword'])->name('change');
 
             //Pendaftaran
-            Route::get('/pendaftaran', [PendaftaranController::class, 'index']);
+            Route::get('/pendaftaran', [PendaftaranController::class, 'index'])->name('pendaftaran.index');
             Route::post('/pendaftaran/create', [PendaftaranController::class, 'store']);
             Route::get('/pendaftaran/edit/{id}', [PendaftaranController::class, 'edit']);
             Route::post('/pendaftaran/update/{id}', [PendaftaranController::class, 'update']);
