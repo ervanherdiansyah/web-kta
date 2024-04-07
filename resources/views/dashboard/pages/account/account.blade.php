@@ -209,11 +209,6 @@
                                             value="{{ $item->email }}">
                                     </div>
                                 </div>
-
-                                <div class="d-flex align-items-center">
-                                    {{-- <p class="mb-0">Edit Profile</p> --}}
-                                    <button type="submit" class="btn btn-primary btn-sm ms-auto">Submit</button>
-                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
