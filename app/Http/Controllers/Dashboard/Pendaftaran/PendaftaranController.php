@@ -20,6 +20,28 @@ class PendaftaranController extends Controller
         $pendaftaran = Form::latest()->paginate(10);
 
         if ($request->ajax()) {
+            $data = Form::query();
+
+            // Proses pencarian
+            if (!empty($request->search['value'])) {
+                $searchValue = $request->search['value'];
+                $data->where(function ($query) use ($searchValue) {
+                    $query->where('nama_lengkap', 'like', '%' . $searchValue . '%')
+                        ->orWhere('kelas', 'like', '%' . $searchValue . '%')
+                        ->orWhere('jurusan', 'like', '%' . $searchValue . '%')
+                        ->orWhere('asal_sekolah', 'like', '%' . $searchValue . '%')
+                        ->orWhere('alamat_asal_sekolah', 'like', '%' . $searchValue . '%')
+                        ->orWhere('jenis_kelamin', 'like', '%' . $searchValue . '%')
+                        ->orWhere('tempat_lahir', 'like', '%' . $searchValue . '%')
+                        ->orWhere('tanggal_lahir', 'like', '%' . $searchValue . '%')
+                        ->orWhere('agama', 'like', '%' . $searchValue . '%')
+                        ->orWhere('email', 'like', '%' . $searchValue . '%')
+                        ->orWhere('hp', 'like', '%' . $searchValue . '%')
+                        ->orWhere('instagram', 'like', '%' . $searchValue . '%')
+                        ->orWhere('alamat', 'like', '%' . $searchValue . '%');
+                });
+            }
+
             $data = new Form;
             $data = $data->latest();
             return DataTables::of($data)
