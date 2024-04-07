@@ -14,9 +14,10 @@ class UserAccountController extends Controller
 {
     public function index(Request $request)
     {
-        $accountUser = User::where('role', 'user')->paginate(10);
+        $accountUser = User::paginate(10);
+
         if ($request->ajax()) {
-            $data = User::where('role', 'user')->latest();
+            $data = User::latest();
 
             // Proses pencarian
             if (!empty($request->search['value'])) {
