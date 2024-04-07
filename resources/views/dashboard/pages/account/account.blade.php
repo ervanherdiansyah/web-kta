@@ -173,12 +173,59 @@
                             <hr class="horizontal dark">
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
     @endforeach
     <!-- End Modal Create Data-->
+
+    <!-- Modal Update Data-->
+    @foreach ($accountUser as $item)
+        <div class="modal fade" id="update{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Pembayaran</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ url('/dashboard/account/update/' . $item->id) }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Username</label>
+                                        <input name="name" class="form-control" type="text"
+                                            value="{{ $accountUser->name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Email
+                                            address</label>
+                                        <input name="email" class="form-control" type="email"
+                                            value="{{ $accountUser->email }}">
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-center">
+                                    {{-- <p class="mb-0">Edit Profile</p> --}}
+                                    <button type="submit" class="btn btn-primary btn-sm ms-auto">Submit</button>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    <!-- End Modal Update Data-->
 
 @endsection
 @push('script')

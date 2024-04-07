@@ -40,11 +40,10 @@ class UserAccountController extends Controller
                 })
                 ->addColumn('action', function ($data) {
                     return
-                        '<a href="' . url('/dashboard/account/edit/' . $data->id) . '"
-                        class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                        data-original-title="Edit user">
+                        '<a type="button" class="" data-bs-toggle="modal"
+                        data-bs-target="#update' . $data->id . '">
                         <i class="fas fa-edit text-success text-sm opacity-10"></i>
-                        </a>
+                    </a> 
                         <a type="button" class="" data-bs-toggle="modal"
                             data-bs-target="#delete' . $data->id . '">
                             <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>

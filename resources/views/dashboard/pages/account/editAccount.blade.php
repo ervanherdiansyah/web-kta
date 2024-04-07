@@ -47,21 +47,6 @@
                                                         <button type="submit"
                                                             class="btn btn-primary btn-sm ms-auto">Submit</button>
                                                     </div>
-
-                                                    {{-- <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="example-text-input" class="form-control-label">First
-                                                            name</label>
-                                                        <input class="form-control" type="text" value="Jesse">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="example-text-input" class="form-control-label">Last
-                                                            name</label>
-                                                        <input class="form-control" type="text" value="Lucky">
-                                                    </div>
-                                                </div> --}}
                                                 </div>
                                                 <hr class="horizontal dark">
                                             </form>
