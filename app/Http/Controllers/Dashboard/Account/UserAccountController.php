@@ -34,6 +34,9 @@ class UserAccountController extends Controller
                 ->addColumn('email', function ($data) {
                     return '<p class="text-xs font-weight-bold mb-0">' . $data->email . '</p> ';
                 })
+                ->addColumn('role', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->role . '</p> ';
+                })
                 ->addColumn('action', function ($data) {
                     return
                         '<a href="' . url('/dashboard/account/edit/' . $data->id) . '"
@@ -51,7 +54,7 @@ class UserAccountController extends Controller
                                 aria-hidden="true"></i>
                         </a>';
                 })
-                ->rawColumns(['name', 'email', 'action'])
+                ->rawColumns(['name', 'email', 'role', 'action'])
                 ->make(true);
         }
         return view('dashboard.pages.account.account', compact('accountUser'));

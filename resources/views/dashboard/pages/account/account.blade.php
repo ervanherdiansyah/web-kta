@@ -87,8 +87,7 @@
                                         aria-label=".form-select-sm example" id="">
                                         <option selected>Pilih Role</option>
                                         <option value="admin">Admin</option>
-                                        <option value="guru">Guru</option>
-                                        <option value="siswa">Siswa</option>
+                                        <option value="user">User</option>
                                     </select>
                                 </div>
                             </div>
@@ -134,8 +133,8 @@
 
     <!-- Modal Create Data-->
     @foreach ($accountUser as $item)
-        <div class="modal fade" id="updatepassword{{ $item->id }}" tabindex="-1"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="updatepassword{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
