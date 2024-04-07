@@ -641,12 +641,8 @@
     <!-- Tautkan file JavaScript jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     {{-- <script src="//cdn.datatables.net/2.0.1/js/dataTables.min.js"></script> --}}
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
-    {{-- <script type="text/javascript">
-        let table = new DataTable('#myTablee');
-    </script> --}}
     <script type="text/javascript">
         // $(document).ready(function() {
         //     $('#myTable').DataTable();
@@ -659,7 +655,7 @@
             $('#myTable').DataTable({
                 processing: true,
                 pagination: true,
-                responsive: false,
+                responsive: true,
                 serverSide: true,
                 searching: true,
                 ordering: false,

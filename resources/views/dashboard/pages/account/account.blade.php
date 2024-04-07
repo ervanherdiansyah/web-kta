@@ -1,7 +1,9 @@
 @extends('dashboard.layouts.layout')
 @section('title', 'User Account')
 @section('css')
-    <link rel="stylesheet" href="//cdn.datatables.net/2.0.1/css/dataTables.dataTables.min.css" />
+    {{-- <link rel="stylesheet" href="//cdn.datatables.net/2.0.1/css/dataTables.dataTables.min.css" /> --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+
 @endsection
 @section('content')
     <div class="container-fluid py-4 ">
@@ -34,47 +36,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($accountUser as $item)
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    {{-- <div>
-                                                <img src="../assets/img/team-2.jpg" class="avatar avatar-sm me-3"
-                                                    alt="user1">
-                                            </div> --}}
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">{{ $item->name }}</h6>
-                                                        {{-- <p class="text-xs text-secondary mb-0">john@creative-tim.com</p> --}}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->email }}</p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
-                                            <td>
-                                                <p class="text-xs font-weight-bold mb-0">{{ $item->role }}</p>
-                                                {{-- <p class="text-xs text-secondary mb-0">Organization</p> --}}
-                                            </td>
 
-                                            <td class="align-middle">
-                                                <a href="{{ url('/dashboard/account/edit/' . $item->id) }}"
-                                                    class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
-                                                    data-original-title="Edit user">
-                                                    <i class="fas fa-edit text-success text-sm opacity-10"></i>
-                                                </a>
-                                                <a type="button" class="" data-bs-toggle="modal"
-                                                    data-bs-target="#delete{{ $item->id }}">
-                                                    <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
-                                                </a>
-                                                <a type="button" class="" data-bs-toggle="modal"
-                                                    data-bs-target="#updatepassword{{ $item->id }}">
-                                                    <i class="fa fa-cog text-info text-sm opacity-10"
-                                                        aria-hidden="true"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -224,10 +186,42 @@
 @push('script')
     <!-- Tautkan file JavaScript jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="//cdn.datatables.net/2.0.1/js/dataTables.min.js"></script>
-    <script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript">
         $(document).ready(function() {
-            $('#myTable').DataTable();
+            loadData();
         });
+
+        function loadData() {
+            $('#myTable').DataTable({
+                processing: true,
+                pagination: true,
+                responsive: true,
+                serverSide: true,
+                searching: true,
+                ordering: false,
+                ajax: {
+                    url: "{{ url('/dashboard/account') }}",
+                },
+                columns: [{
+                        data: "name",
+                        name: "name"
+                    },
+                    {
+                        data: "email",
+                        name: "email"
+                    },
+                    {
+                        data: "role",
+                        name: "role"
+                    },
+                    {
+                        data: "action",
+                        name: "action"
+                    },
+                ],
+            });
+        }
     </script>
 @endpush

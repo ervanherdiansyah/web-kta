@@ -8,12 +8,53 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Validation\ValidationException;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserAccountController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $accountUser = User::where('role', 'user')->get();
+        $accountUser = User::where('role', 'user')->paginate(10);
+        if ($request->ajax()) {
+            $data = User::latest();
+
+            // Proses pencarian
+            if (!empty($request->search['value'])) {
+                $searchValue = $request->search['value'];
+                $data->where(function ($query) use ($searchValue) {
+                    $query->where('name', 'like', '%' . $searchValue . '%')
+                        ->orWhere('email', 'like', '%' . $searchValue . '%');
+                });
+            }
+
+            return DataTables::of($data)
+                ->addColumn('name', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->user->name . '</p> ';
+                })
+                ->addColumn('email', function ($data) {
+                    return '<p class="text-xs font-weight-bold mb-0">' . $data->email . '</p> ';
+                })
+                ->addColumn('action', function ($data) {
+                    return
+                        '<a href="' . url('/dashboard/account/edit/' . $data->id) . '"
+                        class="text-secondary font-weight-bold text-xs" data-toggle="tooltip"
+                        data-original-title="Edit user">
+                        <i class="fas fa-edit text-success text-sm opacity-10"></i>
+                        </a>
+                                                
+                        <a type="button" class="" data-bs-toggle="modal"
+                            data-bs-target="#delete' . $data->id . '">
+                            <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
+                        </a> 
+                        <a type="button" class="" data-bs-toggle="modal"
+                            data-bs-target="#updatepassword' . $data->id . '">
+                            <i class="fa fa-cog text-info text-sm opacity-10"
+                                aria-hidden="true"></i>
+                        </a>';
+                })
+                ->rawColumns(['name', 'email', 'action'])
+                ->make(true);
+        }
         return view('dashboard.pages.account.account', compact('accountUser'));
     }
 
