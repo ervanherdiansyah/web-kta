@@ -68,7 +68,7 @@
                                         aria-label=".form-select-sm example" id="">
                                         <option selected>Pilih Peserta</option>
                                         <option value="admin">Admin</option>
-                                        <option value="guru">Guru</option>
+                                        <option value="user">Guru</option>
                                         <option value="siswa">Siswa</option>
                                     </select>
                                 </div>
