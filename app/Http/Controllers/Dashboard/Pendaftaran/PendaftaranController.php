@@ -17,7 +17,7 @@ class PendaftaranController extends Controller
 {
     public function index(Request $request)
     {
-        $pendaftaran = Form::get();
+        // $pendaftaran = Form::get();
 
         if ($request->ajax()) {
             $data = new Form;
@@ -79,7 +79,7 @@ class PendaftaranController extends Controller
                 ->make(true);
         }
 
-        return view('dashboard.pages.pendaftaran.pendaftaran', compact('pendaftaran'));
+        return view('dashboard.pages.pendaftaran.pendaftaran');
     }
 
     public function store(Request $request)

@@ -306,7 +306,7 @@
     <!-- End Modal Create Data-->
 
     <!-- Modal Delete Data-->
-    @foreach ($pendaftaran as $item)
+    {{-- @foreach ($pendaftaran as $item)
         <div class="modal fade" id="delete{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -329,11 +329,11 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
     <!-- End Modal Delete Data-->
 
     <!-- Modal Update Data-->
-    @foreach ($pendaftaran as $item)
+    {{-- @foreach ($pendaftaran as $item)
         <div class="modal fade" id="update{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -555,7 +555,7 @@
 
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
     <!-- End Modal Update Data-->
 
     <!-- Modal Verifikasi Data-->
