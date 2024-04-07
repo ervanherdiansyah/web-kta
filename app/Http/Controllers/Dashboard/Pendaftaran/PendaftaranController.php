@@ -42,8 +42,6 @@ class PendaftaranController extends Controller
                 });
             }
 
-            $data = new Form;
-            $data = $data->latest();
             return DataTables::of($data)
                 ->addColumn('nama_lengkap', function ($data) {
                     return '<p class="text-xs font-weight-bold mb-0">' . $data->nama_lengkap . '</p> ';
