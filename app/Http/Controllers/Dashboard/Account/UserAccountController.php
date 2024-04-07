@@ -16,7 +16,7 @@ class UserAccountController extends Controller
     {
         $accountUser = User::where('role', 'user')->paginate(10);
         if ($request->ajax()) {
-            $data = User::latest();
+            $data = User::where('role', 'user')->latest();
 
             // Proses pencarian
             if (!empty($request->search['value'])) {
