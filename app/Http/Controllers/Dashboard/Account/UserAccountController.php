@@ -14,10 +14,10 @@ class UserAccountController extends Controller
 {
     public function index(Request $request)
     {
-        $accountUser = User::paginate(10);
+        $accountUser = User::where('role', 'user')->latest()->paginate(10);
 
         if ($request->ajax()) {
-            $data = User::latest();
+            $data = User::where('role', 'user')->latest();
 
             // Proses pencarian
             if (!empty($request->search['value'])) {
@@ -43,7 +43,7 @@ class UserAccountController extends Controller
                         '<a type="button" class="" data-bs-toggle="modal"
                         data-bs-target="#update' . $data->id . '">
                         <i class="fas fa-edit text-success text-sm opacity-10"></i>
-                    </a> 
+                        </a> 
                         <a type="button" class="" data-bs-toggle="modal"
                             data-bs-target="#delete' . $data->id . '">
                             <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
