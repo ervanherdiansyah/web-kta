@@ -20,7 +20,7 @@ class PendaftaranController extends Controller
         $pendaftaran = Form::latest()->paginate(10);
 
         if ($request->ajax()) {
-            $data = Form::query();
+            $data = Form::latest();
 
             // Proses pencarian
             if (!empty($request->search['value'])) {
