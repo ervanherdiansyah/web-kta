@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
+use Illuminate\Support\Facades\Session;
+
 class AuthController extends Controller
 {
     //Login
@@ -145,6 +147,7 @@ class AuthController extends Controller
             'tanggal_pembayaran' => now(),
             'status' => 'Unpaid',
         ]);
+
         $request->session()->forget('user_id');
 
         toast('Berhasil Pendaftaran!!!', 'success');

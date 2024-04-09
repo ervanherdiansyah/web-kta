@@ -385,18 +385,34 @@
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('argon') }}/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
     <script>
+        // function getProvinces() {
+        //     fetch('https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json')
+        //         .then(response => response.json())
+        //         .then(provinces => {
+        //             const provinceSelect = document.getElementById('kota');
+        //             provinceSelect.innerHTML = '<option value="">Pilih Provinsi</option>';
+        //             provinces.forEach(province => {
+        //                 const option = document.createElement('option');
+        //                 option.text = province.name;
+        //                 option.value = province.name; // Nilai dari opsi disetel menjadi nama provinsi
+        //                 option.dataset.id = province.id; // Menyimpan ID provinsi ke dalam atribut data
+        //                 provinceSelect.add(option);
+        //             });
+        //         });
+        // }
         fetch('https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json')
             .then(response => response.json())
             .then(provinces => {
                 var data = provinces;
-                var tampung = '<option>Pilih Kota/Kabupaten</option>';
+                var tampung = '<option value="">Pilih Kota/Kabupaten</option>';
                 data.forEach(element => {
                     tampung +=
-                        `<option data-reg="${element.id}" value="${element.name}">${element.name}</option>`
+                        `<option value="${element.name}">${element.name}</option>`
                 });
                 document.getElementById('kota').innerHTML = tampung;
             });
     </script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -428,6 +444,7 @@
                     var userId = response.id;
                     // Menetapkan nilai ID pengguna ke input tersembunyi
                     $('input[name="user_id"]').val(userId);
+                    // $('#register-form-container').show();
                 },
                 error: function(xhr, status, error) {
                     console.error('Error:', error);
@@ -478,9 +495,12 @@
 
                 // Tampilkan data register akun di form pendaftaran (jika perlu)
                 // contoh: $('#nama').val(registerData.nama);
+                // sessionStorage.removeItem('registerData');
 
+            }
+            // Jika masih ada sesi 'registerData' tetapi validasi gagal, jangan hapus sesi
+            else if (registerData === null) {
                 // Hapus data register akun dari sesi (opsional)
-                sessionStorage.removeItem('registerData');
             }
         });
     </script>

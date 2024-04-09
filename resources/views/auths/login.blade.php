@@ -129,7 +129,7 @@
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-4 text-sm mx-auto">
                                         Don't have an account?
-                                        <a href="{{ url('/register') }}"
+                                        <a href="{{ url('/register') }}" id="signUpLink"
                                             class="text-primary text-gradient font-weight-bold">Sign
                                             up</a>
                                     </p>
@@ -180,6 +180,14 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('argon') }}/assets/js/argon-dashboard.min.js?v=2.0.4"></script>
+    <script type="">// Mengambil tautan "Sign up" dengan ID atau kelas tertentu
+        var signUpLink = document.getElementById('signUpLink');
+        
+        // Menambahkan event click pada tautan "Sign up"
+        signUpLink.addEventListener('click', function() {
+            // Menghapus data registerData dari sessionStorage
+            sessionStorage.removeItem('registerData');
+        });</script>
 </body>
 
 </html>
