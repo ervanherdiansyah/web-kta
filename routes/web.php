@@ -7,6 +7,7 @@ use App\Http\Controllers\Dashboard\Pembayaran\PembayaranController as Pembayaran
 use App\Http\Controllers\Dashboard\Pendaftaran\PendaftaranController;
 use App\Http\Controllers\Dashboard\Profile\ProfileController;
 use App\Http\Controllers\Siswa\Home\HomeController as HomeHomeController;
+use App\Http\Controllers\Siswa\Kta\KtaSiswaController;
 use App\Http\Controllers\Siswa\Pembayaran\PembayaranController;
 use App\Http\Controllers\Siswa\Pendaftaran\PendaftaranController as PendaftaranPendaftaranController;
 use App\Http\Controllers\Siswa\Profile\ProfileController as ProfileProfileController;
@@ -95,6 +96,9 @@ Route::group(['middleware' => 'auth'], function () {
             //pembayaran
             Route::get('/pembayaran', [PembayaranController::class, 'index']);
             Route::post('/pembayaran/create', [PembayaranController::class, 'store']);
+
+            //KTA
+            Route::get('/kta', [KtaSiswaController::class, 'index']);
 
             //Profile
             Route::get('/profile', [ProfileProfileController::class, 'index']);

@@ -5,13 +5,33 @@
             aria-hidden="true" id="iconSidenav"></i>
         @if (isset(Auth::user()->foto) != null)
             <a class="navbar-brand m-0" href=" {{ url('/peserta/home') }}">
-                <img src="{{ asset('storage/' . Auth::user()->foto) }}" class="navbar-brand-img h-100" alt="main_logo">
-                <span class="ms-1 font-weight-bold">{{ Auth::user()->name }}</span>
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('storage/' . Auth::user()->foto) }}" class="navbar-brand-img" alt="main_logo"
+                        style="height: 50px; margin-right: 10px;">
+                    <div>
+                        <div>
+                            <span class="font-weight-bold">{{ Auth::user()->name }}</span>
+                        </div>
+                        <div>
+                            <span class="font-weight-bold">{{ Auth::user()->profile->nohp }}</span>
+                        </div>
+                    </div>
+                </div>
             </a>
         @else
             <a class="navbar-brand m-0" href=" {{ url('/peserta/home') }}">
-                <img src="{{ asset('argon') }}/assets/img/foto.png" class="navbar-brand-img h-100" alt="main_logo">
-                <span class="ms-1 font-weight-bold">{{ Auth::user()->name }}</span>
+                <div class="d-flex align-items-center">
+                    <img src="{{ asset('argon') }}/assets/img/foto.png" class="navbar-brand-img" alt="main_logo"
+                        style="height: 50px; margin-right: 10px;">
+                    <div>
+                        <div>
+                            <span class="font-weight-bold">{{ Auth::user()->name }}</span>
+                        </div>
+                        <div>
+                            <span class="font-weight-bold">{{ Auth::user()->profile->nohp }}</span>
+                        </div>
+                    </div>
+                </div>
             </a>
         @endif
     </div>
@@ -26,6 +46,16 @@
                         <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Information</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('peserta/kta') ? 'active' : '' }}"
+                    href="{{ url('/peserta/kta') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa fa-user text-success text-sm opacity-10" aria-hidden="true"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">KTA</span>
                 </a>
             </li>
             {{-- <li class="nav-item">
