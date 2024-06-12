@@ -613,6 +613,34 @@
                     </div>
                 </div>
             </div>
+            <script>
+                // function getProvinces() {
+                //     fetch('https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json')
+                //         .then(response => response.json())
+                //         .then(provinces => {
+                //             const provinceSelect = document.getElementById('kota');
+                //             provinceSelect.innerHTML = '<option value="">Pilih Provinsi</option>';
+                //             provinces.forEach(province => {
+                //                 const option = document.createElement('option');
+                //                 option.text = province.name;
+                //                 option.value = province.name; // Nilai dari opsi disetel menjadi nama provinsi
+                //                 option.dataset.id = province.id; // Menyimpan ID provinsi ke dalam atribut data
+                //                 provinceSelect.add(option);
+                //             });
+                //         });
+                // }
+                fetch('https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json')
+                    .then(response => response.json())
+                    .then(provinces => {
+                        var data = provinces;
+                        var tampung = '<option value="">Pilih Kota/Kabupaten</option>';
+                        data.forEach(element => {
+                            tampung +=
+                                `<option value="${element.name}">${element.name}</option>`
+                        });
+                        document.getElementById('kota').innerHTML = tampung;
+                    });
+            </script>
         @endif
         <footer class="footer pt-3  ">
             @include('dashboard.component.footer.footer')
