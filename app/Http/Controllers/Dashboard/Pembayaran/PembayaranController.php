@@ -33,13 +33,13 @@ class PembayaranController extends Controller
 
             return DataTables::of($data)
                 ->addColumn('user_id', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->user->name . '</p> ';
+                    return htmlspecialchars($data->user->name);
                 })
                 ->addColumn('jumlah_pembayaran', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->jumlah_pembayaran . '</p> ';
+                    return htmlspecialchars($data->jumlah_pembayaran);
                 })
                 ->addColumn('status', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->status . '</p> ';
+                    return htmlspecialchars($data->status);
                 })
                 ->addColumn('action', function ($data) {
                     return
@@ -58,7 +58,7 @@ class PembayaranController extends Controller
                 ->make(true);
         }
 
-        return view('dashboard.pages.data.pembayaran.pembayaran', compact('pembayaran'));
+        return view('dashboard.pages.data.pembayaran.pembayaran');
     }
     public function store(Request $request)
     {
@@ -83,8 +83,6 @@ class PembayaranController extends Controller
         $pembayaran = Pembayaran::findOrFail($id);
 
         // Lakukan proses update
-        $pembayaran->user_id = $request->user_id;
-        $pembayaran->jumlah_pembayaran = $request->jumlah_pembayaran;
         $pembayaran->status = $request->status;
 
         $pembayaran->save();

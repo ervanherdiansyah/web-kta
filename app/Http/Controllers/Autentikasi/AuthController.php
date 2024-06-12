@@ -41,7 +41,10 @@ class AuthController extends Controller
             return '/dashboard/home';
         } else if (Auth::user()->role === 'user') {
             toast('Berhasil Login!!!', 'success');
-            return '/peserta/home';
+            return '/peserta/biodata';
+        } else if (Auth::user()->role === 'pengurus') {
+            toast('Berhasil Login!!!', 'success');
+            return '/pengurus/biodata';
         }
     }
     // Fungsi untuk logout

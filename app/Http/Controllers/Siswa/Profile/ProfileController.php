@@ -76,7 +76,8 @@ class ProfileController extends Controller
         // }
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'fullname' => 'required|string|max:255',
+            'nama_depan' => 'required|string|max:255',
+            'nama_belakang' => 'required|string|max:255',
             'email' => 'required|string|max:255',
             'nohp' => 'required|string|max:255',
         ]);
@@ -88,7 +89,8 @@ class ProfileController extends Controller
             $request->foto->storeAs('public/foto', $namaGambar);
         }
         $user->name = $request->name;
-        $user->fullname = $request->fullname;
+        $user->nama_depan = $request->nama_depan;
+        $user->nama_belakang = $request->nama_belakang;
         $user->email = $request->email;
         $user->nohp = $request->nohp;
         $user->save();

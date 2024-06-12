@@ -86,7 +86,8 @@
                                         aria-label=".form-select-sm example" id="">
                                         <option selected>Pilih Role</option>
                                         <option value="admin">Admin</option>
-                                        <option value="user">User</option>
+                                        <option value="user">Peserta</option>
+                                        <option value="pengurus">Pengurus</option>
                                     </select>
                                 </div>
                             </div>
@@ -104,7 +105,7 @@
     <!-- End Modal Create Data-->
 
     <!-- Modal Delete Data-->
-    @foreach ($accountUser as $item)
+    {{-- @foreach ($accountUser as $item)
         <div class="modal fade" id="delete{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -127,11 +128,11 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
     <!-- End Modal Delete Data-->
 
-    <!-- Modal Create Data-->
-    @foreach ($accountUser as $item)
+    <!-- Modal Ubah passowrd Data-->
+    {{-- @foreach ($accountUser as $item)
         <div class="modal fade" id="updatepassword{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -166,7 +167,6 @@
                                     </div>
                                 </div>
                                 <div class="d-flex align-items-center">
-                                    {{-- <p class="mb-0">Edit Profile</p> --}}
                                     <button type="submit" class="btn btn-primary btn-sm ms-auto">Submit</button>
                                 </div>
                             </div>
@@ -176,11 +176,11 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
     <!-- End Modal Create Data-->
 
     <!-- Modal Update Data-->
-    @foreach ($accountUser as $item)
+    {{-- @foreach ($accountUser as $item)
         <div class="modal fade" id="update{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -219,8 +219,11 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
     <!-- End Modal Update Data-->
+
+    <div id="modals-container"></div>
+
 
 @endsection
 @push('script')
@@ -261,6 +264,129 @@
                         name: "action"
                     },
                 ],
+                drawCallback: function(settings) {
+                    var api = this.api();
+                    $('#modals-container').empty();
+                    api.rows().every(function(rowIdx, tableLoop, rowLoop) {
+                        var data = this.data();
+                        var userName = $('<div>').html(data.user_id).text()
+                            .trim(); // Decode HTML entities and trim spaces
+                        $('#modals-container').append(`
+                            <!-- Delete Modal -->
+                            <div class="modal fade" id="delete${data.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete User ${userName}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url('/dashboard/account/destroy/') }}/${data.id}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Update Modal -->
+                            <div class="modal fade" id="update${data.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Update Password</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url('/dashboard/account/update/') }}/${data.id}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="example-text-input" class="form-control-label">Nama</label>
+                                                            <input name="name" class="form-control" type="text" value="${data.name}">
+                                                            @error('name')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="example-text-input" class="form-control-label">Jumlah pembayaran</label>
+                                                            <input name="email" class="form-control" type="email" value="${data.email}">
+                                                            @error('email')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="role${data.id}" class="form-control-label">Status</label>
+                                                            <select name="role" class="form-control form-select" id="role${data.id}">
+                                                                <option value="admin" ${data.role === 'admin' ? 'selected' : ''}>Admin</option>
+                                                                <option value="user" ${data.role === 'peserta' ? 'selected' : ''}>Peserta</option>
+                                                                <option value="pengurus" ${data.role === 'pengurus' ? 'selected' : ''}>Pengurus</option>
+                                                            </select>
+                                                            @error('role')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Update Password Modal -->
+                            <div class="modal fade" id="updatepassword${data.id}" tabindex="-1" aria-labelledby="updatePasswordLabel${data.id}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="updatePasswordLabel${data.id}">Update Password</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url('/dashboard/account/changepassword') }}/${data.id}" method="POST">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="password${data.id}" class="form-control-label">Password</label>
+                                                        <input type="password" name="password" class="form-control" id="password${data.id}">
+                                                        @error('password')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="password_confirmation${data.id}" class="form-control-label">Password Confirmation</label>
+                                                        <input type="password" name="password_confirmation" class="form-control" id="password_confirmation${data.id}">
+                                                        @error('password_confirmation')
+                                                            <div class="alert alert-danger">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                    <div class="d-flex align-items-center">
+                                                        <button type="submit" class="btn btn-primary btn-sm ms-auto">Submit</button>
+                                                    </div>
+                                                </div>
+                                                <hr class="horizontal dark">
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    });
+                }
             });
         }
     </script>

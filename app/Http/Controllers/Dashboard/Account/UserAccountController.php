@@ -17,7 +17,7 @@ class UserAccountController extends Controller
         $accountUser = User::where('role', 'user')->latest()->paginate(10);
 
         if ($request->ajax()) {
-            $data = User::where('role', 'user')->latest();
+            $data = User::where('role', 'user')->orWhere('role', 'pengurus')->latest()->get();
 
             // Proses pencarian
             if (!empty($request->search['value'])) {
@@ -30,13 +30,13 @@ class UserAccountController extends Controller
 
             return DataTables::of($data)
                 ->addColumn('name', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->name . '</p> ';
+                    return $data->name;
                 })
                 ->addColumn('email', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->email . '</p> ';
+                    return $data->email;
                 })
                 ->addColumn('role', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->role . '</p> ';
+                    return $data->role === 'user' ? 'peserta' : $data->role;
                 })
                 ->addColumn('action', function ($data) {
                     return
@@ -108,6 +108,11 @@ class UserAccountController extends Controller
 
         return view('dashboard.pages.siswa.pengaturan.changepassword');
     }
+    public function indexupdatepasswordpengurus()
+    {
+
+        return view('dashboard.pages.pengurus.pengaturan.changepassword');
+    }
     public function updatepassword(Request $request)
     {
         $request->validate([
@@ -140,6 +145,21 @@ class UserAccountController extends Controller
         ]);
     }
 
+    public function updatepasswordpengurus(Request $request)
+    {
+        $request->validate([
+            'current_password' => ['required'],
+            'password' => ['required', 'confirmed'],
+        ]);
+        if (Hash::check($request->current_password, auth()->user()->password)) {
+            auth()->user()->update(['password' => Hash::make($request->password)]);
+            alert('Sukses', 'Password Berhasil Diganti', 'success');
+            return redirect('/peserta/changepassword');
+        }
+        throw ValidationException::withMessages([
+            'current_password' => 'your current password does not mact with our record',
+        ]);
+    }
 
     public function ubahpassword(Request $request, $id)
     {

@@ -6,6 +6,13 @@ use App\Http\Controllers\Dashboard\Home\HomeController;
 use App\Http\Controllers\Dashboard\Pembayaran\PembayaranController as PembayaranPembayaranController;
 use App\Http\Controllers\Dashboard\Pendaftaran\PendaftaranController;
 use App\Http\Controllers\Dashboard\Profile\ProfileController;
+use App\Http\Controllers\pengurus\Biodata\BiodataController as BiodataBiodataController;
+use App\Http\Controllers\pengurus\Home\HomeController as PengurusHomeHomeController;
+use App\Http\Controllers\pengurus\Kta\KtaSiswaController as KtaKtaSiswaController;
+use App\Http\Controllers\pengurus\Pembayaran\PembayaranController as PengurusPembayaranPembayaranController;
+use App\Http\Controllers\pengurus\Pendaftaran\PendaftaranController as PengurusPendaftaranPendaftaranController;
+use App\Http\Controllers\pengurus\Profile\ProfileController as PengurusProfileProfileController;
+use App\Http\Controllers\Siswa\Biodata\BiodataController;
 use App\Http\Controllers\Siswa\Home\HomeController as HomeHomeController;
 use App\Http\Controllers\Siswa\Kta\KtaSiswaController;
 use App\Http\Controllers\Siswa\Pembayaran\PembayaranController;
@@ -76,6 +83,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/pembayaran/update/{id}', [PembayaranPembayaranController::class, 'update']);
             Route::delete('/pembayaran/destroy/{id}', [PembayaranPembayaranController::class, 'destroy']);
 
+            Route::get('/cetak-all-kta', [KtaSiswaController::class, 'cetakAllKTA']);
+
             //Change Password
             Route::get('/changepassword', [UserAccountController::class, 'indexupdatepassword']);
             Route::post('/changepassword', [UserAccountController::class, 'updatepassword'])->name('changepassword');
@@ -96,9 +105,20 @@ Route::group(['middleware' => 'auth'], function () {
             //pembayaran
             Route::get('/pembayaran', [PembayaranController::class, 'index']);
             Route::post('/pembayaran/create', [PembayaranController::class, 'store']);
+            Route::post('/payment', [PembayaranController::class, 'payment']);
 
             //KTA
             Route::get('/kta', [KtaSiswaController::class, 'index']);
+
+            //Biodata
+            Route::get('/biodata', [BiodataController::class, 'index']);
+            Route::post('/biodata/create', [BiodataController::class, 'store']);
+            Route::get('/biodata/edit/{id}', [BiodataController::class, 'edit']);
+            Route::post('/biodata/update/{id}', [BiodataController::class, 'update']);
+            Route::delete('/biodata/destroy/{id}', [BiodataController::class, 'destroy']);
+
+            //cetak kta
+            Route::get('/cetak-kta', [KtaSiswaController::class, 'cetakKTA']);
 
             //Profile
             Route::get('/profile', [ProfileProfileController::class, 'index']);
@@ -107,8 +127,59 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/profile/update/{id}', [ProfileProfileController::class, 'update']);
             Route::delete('/profile/destroy/{id}', [ProfileProfileController::class, 'destroy']);
 
+            Route::post('/orders/shipping-fee', [PembayaranController::class, 'shippingFee']);
+            Route::post('/orders/choose-package', [PembayaranController::class, 'checkout']);
+
             //Change Password
             Route::get('/changepassword', [UserAccountController::class, 'indexupdatepassworduser']);
             Route::post('/changepassword', [UserAccountController::class, 'updatepassworduser'])->name('changepassword-user');
         });
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::prefix('pengurus')
+        ->middleware('role:pengurus')
+        ->group(function () {
+            //Home
+            Route::get('/home', [PengurusHomeHomeController::class, 'index']);
+
+            //Pendaftaran
+            Route::get('/pendaftaran', [PengurusPendaftaranPendaftaranController::class, 'index']);
+            Route::post('/pendaftaran/create', [PengurusPendaftaranPendaftaranController::class, 'store']);
+
+            //pembayaran
+            Route::get('/pembayaran', [PengurusPembayaranPembayaranController::class, 'index']);
+            Route::post('/pembayaran/create', [PengurusPembayaranPembayaranController::class, 'store']);
+            Route::post('/payment', [PengurusPembayaranPembayaranController::class, 'payment']);
+
+            //KTA
+            Route::get('/kta', [KtaKtaSiswaController::class, 'index']);
+
+            //Biodata
+            Route::get('/biodata', [BiodataBiodataController::class, 'index']);
+            Route::post('/biodata/create', [BiodataBiodataController::class, 'store']);
+            Route::get('/biodata/edit/{id}', [BiodataBiodataController::class, 'edit']);
+            Route::post('/biodata/update/{id}', [BiodataBiodataController::class, 'update']);
+            Route::delete('/biodata/destroy/{id}', [BiodataBiodataController::class, 'destroy']);
+
+            //cetak kta
+            Route::get('/cetak-kta', [KtaKtaSiswaController::class, 'cetakKTA']);
+
+            //Profile
+            Route::get('/profile', [PengurusProfileProfileController::class, 'index']);
+            Route::post('/profile/create', [PengurusProfileProfileController::class, 'store']);
+            Route::get('/profile/edit/{id}', [PengurusProfileProfileController::class, 'edit']);
+            Route::post('/profile/update/{id}', [PengurusProfileProfileController::class, 'update']);
+            Route::delete('/profile/destroy/{id}', [PengurusProfileProfileController::class, 'destroy']);
+
+            Route::post('/orders/shipping-fee', [PengurusPembayaranPembayaranController::class, 'shippingFee']);
+            Route::post('/orders/choose-package', [PengurusPembayaranPembayaranController::class, 'checkout']);
+
+            //Change Password
+            Route::get('/changepassword', [UserAccountController::class, 'indexupdatepasswordpengurus']);
+            Route::post('/changepassword', [UserAccountController::class, 'updatepasswordpengurus'])->name('changepassword-pengurus');
+        });
+});
+
+//get kota
+Route::get('/get-cities/{province_id}', [KtaSiswaController::class, 'getCities']);

@@ -14,18 +14,18 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        \App\Models\User::create([
+        \App\Models\User::where('id', 1)->update([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin'),
             'role' => 'admin'
         ]);
 
-        \App\Models\User::create([
-            'name' => 'user',
-            'email' => 'user@gmail.com',
-            'password' => bcrypt('user'),
-            'role' => 'user'
-        ]);
+        // \App\Models\User::create([
+        //     'name' => 'user',
+        //     'email' => 'user@gmail.com',
+        //     'password' => bcrypt('user'),
+        //     'role' => 'user'
+        // ]);
     }
 }

@@ -32,7 +32,7 @@
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Status</th>
-                                        <th class="text-secondary opacity-7"></th>
+                                        {{-- <th class="text-secondary opacity-7"></th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -100,7 +100,7 @@
     <!-- End Modal Create Data-->
 
     <!-- Modal Delete Data-->
-    @foreach ($pembayaran as $item)
+    {{-- @foreach ($pembayaran as $item)
         <div class="modal fade" id="delete{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -176,20 +176,17 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
     <!-- End Modal Update Data-->
 
-
+    <!-- Placeholder for dynamic modals -->
+    <div id="modals-container"></div>
 @endsection
 @push('script')
     <!-- Tautkan file JavaScript jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {{-- <script src="//cdn.datatables.net/2.0.1/js/dataTables.min.js"></script> --}}
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
-    <script type="text/javascript">
-        // $(document).ready(function() {
-        //     $('#myTable').DataTable();
-        // });
+    <script>
         $(document).ready(function() {
             loadData();
         });
@@ -217,11 +214,85 @@
                         data: "status",
                         name: "status"
                     },
-                    {
-                        data: "action",
-                        name: "action"
-                    },
+                    // {
+                    //     data: "action",
+                    //     name: "action"
+                    // },
                 ],
+                drawCallback: function(settings) {
+                    var api = this.api();
+                    $('#modals-container').empty();
+                    api.rows().every(function(rowIdx, tableLoop, rowLoop) {
+                        var data = this.data();
+                        var userName = $('<div>').html(data.user_id).text()
+                            .trim(); // Decode HTML entities and trim spaces
+                        $('#modals-container').append(`
+                            <!-- Delete Modal -->
+                            <div class="modal fade" id="delete${data.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Delete User ${userName}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url('/dashboard/pembayaran/destroy/') }}/${data.id}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Update Modal -->
+                            <div class="modal fade" id="update${data.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Update Pembayaran</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url('/dashboard/pembayaran/update/') }}/${data.id}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="example-text-input" class="form-control-label">Nama</label>
+                                                            <input name="user_id" class="form-control" type="text" value="${userName}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="example-text-input" class="form-control-label">Jumlah pembayaran</label>
+                                                            <input name="jumlah_pembayaran" class="form-control" type="text" value="${data.jumlah_pembayaran}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="example-text-input" class="form-control-label">Status</label>
+                                                            <input name="status" class="form-control" type="text" value="${data.status}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    });
+                }
             });
         }
     </script>

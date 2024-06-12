@@ -44,56 +44,55 @@ class PendaftaranController extends Controller
 
             return DataTables::of($data)
                 ->addColumn('nama_lengkap', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->nama_lengkap . '</p> ';
+                    return $data->nama_lengkap;
                 })
                 ->addColumn('kelas', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->kelas . '</p> ';
+                    return $data->kelas;
                 })
                 ->addColumn('jurusan', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->jurusan . '</p> ';
+                    return $data->jurusan;
                 })
                 ->addColumn('asal_sekolah', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->asal_sekolah . '</p> ';
+                    return $data->asal_sekolah;
                 })
                 ->addColumn('alamat_asal_sekolah', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->alamat_asal_sekolah . '</p> ';
+                    return $data->alamat_asal_sekolah;
                 })
                 ->addColumn('jenis_kelamin', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->jenis_kelamin . '</p> ';
+                    return $data->jenis_kelamin;
                 })
                 ->addColumn('tempat_lahir', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->tempat_lahir . '</p> ';
+                    return $data->tempat_lahir;
                 })
                 ->addColumn('tanggal_lahir', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->tanggal_lahir . '</p> ';
+                    return $data->tanggal_lahir;
                 })
                 ->addColumn('agama', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->agama . '</p> ';
+                    return $data->agama;
                 })
                 ->addColumn('email', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->email . '</p> ';
+                    return $data->email;
                 })
                 ->addColumn('hp', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->hp . '</p> ';
+                    return $data->hp;
                 })
                 ->addColumn('instagram', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->instagram . '</p> ';
+                    return $data->instagram;
                 })
                 ->addColumn('alamat', function ($data) {
-                    return '<p class="text-xs font-weight-bold mb-0">' . $data->alamat . '</p> ';
+                    return $data->alamat;
                 })
                 ->addColumn('action', function ($data) {
                     return
                         '<a type="button" class="" data-bs-toggle="modal"
-                                                    data-bs-target="#update' . $data->id . '">
-                                                    <i class="fas fa-edit text-success text-sm opacity-10"></i>
-                                                </a> 
-                                                
-                                                <a type="button" class="" data-bs-toggle="modal"
-                                                    data-bs-target="#delete' . $data->id . '">
-                                                    <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
-                                                </a> 
-                                                ';
+                            data-bs-target="#update' . $data->id . '">
+                            <i class="fas fa-edit text-success text-sm opacity-10"></i>
+                        </a> 
+                        <a type="button" class="" data-bs-toggle="modal"
+                            data-bs-target="#delete' . $data->id . '">
+                            <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
+                        </a> 
+                        ';
                 })
                 ->rawColumns(['nama_lengkap', 'kelas', 'jurusan', 'asal_sekolah', 'alamat_asal_sekolah', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'email', 'hp', 'instagram', 'alamat', 'action'])
                 ->make(true);

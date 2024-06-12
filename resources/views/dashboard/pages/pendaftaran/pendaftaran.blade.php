@@ -11,20 +11,26 @@
             <div class="col-12 ">
                 <div class="card mb-4 ">
                     <div class="card-header pb-0">
-                        <h6 class="d-lg-none">Data Siswa</h6>
+                        <h6 class="d-lg-none">Data Peserta</h6>
                         <div class="d-flex align-items-center">
-                            <h6 class="d-none d-lg-block">Data Siswa</h6>
+                            <h6 class="d-none d-lg-block">Data Peserta</h6>
+
                             <div class="d-flex flex-wrap align-items-center ms-auto gap-2">
+                                <a href="{{ url('/dashboard/cetak-all-kta') }}" target="_blank"
+                                    class="btn btn-primary btn-sm">Cetak
+                                    KTA</a>
                                 <a href="{{ url('/dashboard/pendaftaran/export') }}"
                                     class="btn btn-primary btn-sm ms-auto">Export</a>
                                 {{-- <button type="button" class="btn btn-primary btn-sm ms-auto" data-bs-toggle="modal"
                                     data-bs-target="#import">
                                     Import
                                 </button> --}}
+
                                 <button type="button" class="btn btn-primary btn-sm ms-auto" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
                                     Tambah Pendaftaran
                                 </button>
+
                             </div>
                         </div>
                     </div>
@@ -305,7 +311,7 @@
     <!-- End Modal Create Data-->
 
     <!-- Modal Delete Data-->
-    @foreach ($pendaftaran as $item)
+    {{-- @foreach ($pendaftaran as $item)
         <div class="modal fade" id="delete{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -328,11 +334,11 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
     <!-- End Modal Delete Data-->
 
     <!-- Modal Update Data-->
-    @foreach ($pendaftaran as $item)
+    {{-- @foreach ($pendaftaran as $item)
         <div class="modal fade" id="update{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -554,7 +560,7 @@
 
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
     <!-- End Modal Update Data-->
 
     <!-- Modal Verifikasi Data-->
@@ -621,23 +627,12 @@
         </div>
     </div>
     <!-- End Modal Import Data-->
+    <div id="modals-container"></div>
 
-    <script>
-        fetch('https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json')
-            .then(response => response.json())
-            .then(provinces => {
-                var data = provinces;
-                var tampung = '<option>Pilih Kota/Kabupaten</option>';
-                data.forEach(element => {
-                    tampung +=
-                        `<option data-reg="${element.id}" value="${element.name}">${element.name}</option>`
-                });
-                document.getElementById('kota').innerHTML = tampung;
-            });
-    </script>
 @endsection
 @push('script')
     <!-- Tautkan file JavaScript jQuery -->
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
@@ -715,6 +710,228 @@
                         name: "action"
                     },
                 ],
+                drawCallback: function(settings) {
+                    var api = this.api();
+                    $('#modals-container').empty();
+                    api.rows().every(function(rowIdx, tableLoop, rowLoop) {
+                        var data = this.data();
+                        var modalId = data.id;
+                        var userName = $('<div>').html(data.user_id).text()
+                            .trim(); // Decode HTML entities and trim spaces
+                        $('#modals-container').append(`
+                            <!-- Delete Modal -->
+                            <div class="modal fade" id="delete${data.id}" tabindex="-1" aria-labelledby="deleteLabel${data.id}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteLabel${data.id}">Delete User ${userName}</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url('/dashboard/pendaftaran/destroy/') }}/${data.id}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <p>Apakah anda yakin ingin menghapus data ini?</p>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Update Modal -->
+                            <div class="modal fade" id="update${data.id}" tabindex="-1" aria-labelledby="updateLabel${data.id}" aria-hidden="true">
+                                <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="updateLabel${data.id}">Update Pendaftaran</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{ url('/dashboard/pendaftaran/update/') }}/${data.id}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <input type="hidden" name="user_id" value="${data.user_id}">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="nama_lengkap${data.id}" class="form-control-label">Nama Lengkap</label>
+                                                            <input name="nama_lengkap" type="text" class="form-control" id="nama_lengkap${data.id}" placeholder="Nama Lengkap" value="${data.nama_lengkap}">
+                                                            @error('nama_lengkap')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="tempat_lahir${data.id}" class="form-control-label">Tempat Lahir</label>
+                                                            <input name="tempat_lahir" type="text" class="form-control" id="tempat_lahir${data.id}" placeholder="Tempat lahir" value="${data.tempat_lahir}">
+                                                            @error('tempat_lahir')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="tanggal_lahir${data.id}" class="form-control-label">Tanggal Lahir</label>
+                                                            <input name="tanggal_lahir" type="date" class="form-control" id="tanggal_lahir${data.id}" value="${data.tanggal_lahir}">
+                                                            @error('tanggal_lahir')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="jenis_kelamin${data.id}" class="form-control-label">Jenis Kelamin</label>
+                                                            <select class="form-control form-select" name="jenis_kelamin" id="jenis_kelamin${data.id}">
+                                                                <option selected>Pilih...</option>
+                                                                <option value="Laki-laki" ${data.jenis_kelamin === 'Laki-laki' ? 'selected' : ''}>Laki-Laki</option>
+                                                                <option value="Perempuan" ${data.jenis_kelamin === 'Perempuan' ? 'selected' : ''}>Perempuan</option>
+                                                            </select>
+                                                            @error('jenis_kelamin')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="agama${data.id}" class="form-control-label">Agama</label>
+                                                            <select name="agama" id="agama${data.id}" class="form-control form-select">
+                                                                <option value="">Pilih</option>
+                                                                <option value="Islam" ${data.agama === 'Islam' ? 'selected' : ''}>Islam</option>
+                                                                <option value="Kristen Khatolik" ${data.agama === 'Kristen Khatolik' ? 'selected' : ''}>Kristen Khatolik</option>
+                                                                <option value="Kristen Protestan" ${data.agama === 'Kristen Protestan' ? 'selected' : ''}>Kristen Protestan</option>
+                                                                <option value="Budha" ${data.agama === 'Budha' ? 'selected' : ''}>Budha</option>
+                                                                <option value="Hindu" ${data.agama === 'Hindu' ? 'selected' : ''}>Hindu</option>
+                                                            </select>
+                                                            @error('agama')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="email${data.id}" class="form-control-label">Email</label>
+                                                            <input name="email" type="email" class="form-control" id="email${data.id}" placeholder="Email" value="${data.email}">
+                                                            @error('email')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="hp${data.id}" class="form-control-label">No Hp</label>
+                                                            <input name="hp" type="text" class="form-control" id="hp${data.id}" placeholder="No Hp" value="${data.hp}">
+                                                            @error('hp')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="instagram${data.id}" class="form-control-label">Instagram</label>
+                                                            <input name="instagram" type="text" class="form-control" id="instagram${data.id}" placeholder="Instagram" value="${data.instagram}">
+                                                            @error('instagram')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="alamat${data.id}" class="form-control-label">Alamat</label>
+                                                            <textarea name="alamat" class="form-control" id="alamat${data.id}">${data.alamat}</textarea>
+                                                            @error('alamat')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="example-text-input" class="form-control-label">Asal
+                                                                sekolah</label>
+                                                            <input name="asal_sekolah" placeholder="Asal Sekolah"
+                                                                class="form-control" type="text"
+                                                                value="${data.asal_sekolah}">
+                                                            @error('asal_sekolah')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="alamat_asal_sekolah${modalId}" class="form-control-label">Kota atau Kabupaten Sekolah</label>
+                                                            <select name="alamat_asal_sekolah" id="alamat_asal_sekolah${modalId}" class="form-control form-select">
+                                                                <option value="">Pilih Kab/Kota</option>
+                                                            </select>
+                                                            @error('alamat_asal_sekolah')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="kelas${data.id}" class="form-control-label">Kelas</label>
+                                                            <select name="kelas" id="kelas${data.id}" class="form-control form-select">
+                                                                <option value="">Pilih</option>
+                                                                <option value="VII" ${data.kelas === 'VII' ? 'selected' : ''}>VII</option>
+                                                                <option value="VIII" ${data.kelas === 'VIII' ? 'selected' : ''}>VIII</option>
+                                                                <option value="IX" ${data.kelas === 'IX' ? 'selected' : ''}>IX</option>
+                                                                <option value="X" ${data.kelas === 'X' ? 'selected' : ''}>X</option>
+                                                                <option value="XI" ${data.kelas === 'XI' ? 'selected' : ''}>XI</option>
+                                                                <option value="XII" ${data.kelas === 'XII' ? 'selected' : ''}>XII</option>
+                                                            </select>
+                                                            @error('kelas')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-3">
+                                                            <label for="jurusan${data.id}" class="form-control-label">Jurusan</label>
+                                                            <select name="jurusan" id="jurusan${data.id}" class="form-control form-select">
+                                                                <option value="">Pilih</option>
+                                                                <option value="SMA" ${data.jurusan === 'SMA' ? 'selected' : ''}>SMA</option>
+                                                                <option value="SMK" ${data.jurusan === 'SMK' ? 'selected' : ''}>SMK</option>
+                                                                <option value="MA" ${data.jurusan === 'MA' ? 'selected' : ''}>MA</option>
+                                                            </select>
+                                                            @error('jurusan')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                        // Ambil data kota dari API dan tampilkan di opsi pilihan
+                        fetch(
+                                `https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json`
+                            )
+                            .then(response => response.json())
+                            .then(regencies => {
+                                var options = '';
+                                regencies.forEach(element => {
+                                    options +=
+                                        `<option value="${element.name}">${element.name}</option>`;
+                                });
+                                $(`#alamat_asal_sekolah${modalId}`).html(options);
+
+                                // Set opsi yang dipilih berdasarkan data dari database
+                                $(`#alamat_asal_sekolah${modalId}`).val(data.alamat_asal_sekolah);
+                            });
+                    });
+                }
+
             });
         }
     </script>
