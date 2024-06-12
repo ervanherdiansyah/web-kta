@@ -543,11 +543,6 @@
                                             <select name="alamat_asal_sekolah" id="kota"
                                                 class="form-control form-select">
                                                 <option value="">Pilih Kab/Kota</option>
-                                                <!-- Masukkan logika untuk pilihan kota/kabupaten yang relevan di sini -->
-                                                <option value="Kota 1" @if (old('alamat_asal_sekolah', $biodata->alamat_asal_sekolah) == 'Kota 1') selected @endif>
-                                                    Kota 1</option>
-                                                <option value="Kota 2" @if (old('alamat_asal_sekolah', $biodata->alamat_asal_sekolah) == 'Kota 2') selected @endif>
-                                                    Kota 2</option>
                                             </select>
                                             @error('alamat_asal_sekolah')
                                                 <div class="alert alert-danger">{{ $message }}</div>
