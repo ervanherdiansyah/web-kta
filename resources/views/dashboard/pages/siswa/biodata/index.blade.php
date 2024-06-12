@@ -540,8 +540,9 @@
                                         <div class="mb-3">
                                             <label for="example-text-input" class="form-control-label">Kota atau Kabupaten
                                                 Sekolah</label>
-                                            <select name="alamat_asal_sekolah" id="kota"
-                                                class="form-control form-select">
+                                            <select name="alamat_asal_sekolah" id="kota{{ $biodata->id }}"
+                                                class="form-control form-select"
+                                                data-selected="{{ $biodata->alamat_asal_sekolah }}">
                                                 <option value="">Pilih Kab/Kota</option>
                                             </select>
                                             @error('alamat_asal_sekolah')

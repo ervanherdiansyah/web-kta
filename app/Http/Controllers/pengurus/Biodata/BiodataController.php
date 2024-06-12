@@ -38,6 +38,7 @@ class BiodataController extends Controller
             'alamat_asal_sekolah' => 'required|string|max:255',
         ]);
         $form = Form::create([
+            'user_id' => Auth::user()->id,
             'nama_lengkap' => $request->nama_lengkap,
             'jenis_kelamin' => $request->jenis_kelamin,
             'tempat_lahir' => $request->tempat_lahir,

@@ -129,7 +129,7 @@ class PembayaranController extends Controller
         \Midtrans\Config::$is3ds = true;
 
         // \Midtrans\Config::$overrideNotifUrl = config('app.url') . '/api/callback';
-        \Midtrans\Config::$overrideNotifUrl = 'https://eef6-114-79-49-224.ngrok-free.app/api/callback';
+        \Midtrans\Config::$overrideNotifUrl = 'https://oprecanggota.forumosisjabar.id/api/callback';
 
         $item_details[] = array(
             'id' => rand(), // ID unik untuk ongkir
