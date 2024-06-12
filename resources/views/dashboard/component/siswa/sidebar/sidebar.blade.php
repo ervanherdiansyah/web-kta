@@ -13,7 +13,7 @@
                             <span class="font-weight-bold">{{ Auth::user()->name }}</span>
                         </div>
                         <div>
-                            <span class="font-weight-bold">{{ Auth::user()->profile->nohp }}</span>
+                            <span class="font-weight-bold">{{ Auth::user()->nohp }}</span>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                             <span class="font-weight-bold">{{ Auth::user()->name }}</span>
                         </div>
                         <div>
-                            <span class="font-weight-bold">{{ Auth::user()->profile->nohp }}</span>
+                            <span class="font-weight-bold">{{ Auth::user()->nohp }}</span>
                         </div>
                     </div>
                 </div>
