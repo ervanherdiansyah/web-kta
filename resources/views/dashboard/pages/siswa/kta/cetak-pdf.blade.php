@@ -90,12 +90,12 @@
             }
 
             .first_name {
-                margin-left: 35px;
+                margin-left: 20px;
                 margin-top: 200px
             }
 
             .last_name {
-                margin-left: 35px;
+                margin-left: 20px;
                 margin-top: -25px;
             }
 
