@@ -439,6 +439,13 @@
                             </div>
                         </div>
                         <div class="card-body p-3" style="background-color: rgba(255, 255, 255, 0.8);">
+                            <h6>Catatan</h6>
+                            <ul>
+                                <li><strong>Asal Sekolah:</strong> Huruf Kapital Semua dan maksimal 22 kata untuk cetak di
+                                    KTA/KTP.</li>
+                                <li><strong>Nama Depan:</strong> Maksimal 10 kata untuk cetak di KTA/KTP.</li>
+                                <li><strong>Nama Belakang:</strong> Maksimal 10 kata untuk cetak di KTA/KTP.</li>
+                            </ul>
                             <div class="row">
                                 <div class="col-lg-2 mb-lg-0 mb-4"> </div>
                                 <div class="col-lg-4 mb-lg-0 mb-4">
