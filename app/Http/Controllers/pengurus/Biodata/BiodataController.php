@@ -112,6 +112,15 @@ class BiodataController extends Controller
             // 'kelurahan' => $request->kelurahan,
         ]);
 
+        $cekPembayaran = Pembayaran::where('user_id', Auth::user()->id)->first();
+        if ($cekPembayaran == null) {
+            $pembayaran = Pembayaran::create([
+                'user_id' => Auth::user()->id,
+                'jumlah_pembayaran' => 50000,
+                'tanggal_pembayaran' => now(),
+                'status' => 'Unpaid',
+            ]);
+        }
 
         toast('Berhasil Update Data!!!', 'success');
         return redirect('/pengurus/biodata');
