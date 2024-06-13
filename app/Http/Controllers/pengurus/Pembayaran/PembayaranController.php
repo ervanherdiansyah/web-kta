@@ -64,7 +64,7 @@ class PembayaranController extends Controller
 
         $pembayaran = Pembayaran::where('user_id', Auth::user()->id)->first();
 
-        $total_pembayaran  = 0;
+        $total_pembayaran  = 5400;
         if ($request->shipping_method == 'delivery') {
             $courier = $request->get('courier_code');
             $destination = $request->get('kota_id');
