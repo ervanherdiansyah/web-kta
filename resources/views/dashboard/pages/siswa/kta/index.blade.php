@@ -403,9 +403,9 @@
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between mb-2">
-                                    <input type="hidden" id="base_total" value="50000">
+                                    <input type="hidden" id="base_total" value="55400">
                                     <strong>Total Keseluruhan</strong>
-                                    <strong id="grand_total">Rp50.000</strong>
+                                    <strong id="grand_total">Rp55.400</strong>
                                 </div>
 
                                 <div class="d-flex align-items-center">
