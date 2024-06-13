@@ -418,7 +418,7 @@
                 <div class="row mt-4">
                     <div class="card">
                         <div class="card-header pb-0 pt-3 d-flex" style="background-color: rgba(250, 247, 247, 0.8);">
-                            <h6 class="text-capitalize">Kartu Tanda Anggota</h6>
+                            <h6 class="text-capitalize">Kartu Tanda Pengurus</h6>
                             <div style="margin-left: auto">
                                 <a href="{{ url('/pengurus/cetak-kta') }}" target="_blank" class="btn btn-primary">Cetak
                                     PDF</a>
