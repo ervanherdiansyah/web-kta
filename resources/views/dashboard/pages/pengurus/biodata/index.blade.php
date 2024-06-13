@@ -540,8 +540,9 @@
                                         <div class="mb-3">
                                             <label for="example-text-input" class="form-control-label">Kota atau Kabupaten
                                                 Sekolah</label>
-                                            <select name="alamat_asal_sekolah" id="kota"
-                                                class="form-control form-select">
+                                            <select name="alamat_asal_sekolah" id="kota{{ $biodata->id }}"
+                                                class="form-control form-select"
+                                                data-selected="{{ $biodata->alamat_asal_sekolah }}">
                                                 <option value="">Pilih Kab/Kota</option>
                                             </select>
                                             @error('alamat_asal_sekolah')
@@ -614,21 +615,6 @@
         </footer>
     </div>
     <script>
-        // function getProvinces() {
-        //     fetch('https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json')
-        //         .then(response => response.json())
-        //         .then(provinces => {
-        //             const provinceSelect = document.getElementById('kota');
-        //             provinceSelect.innerHTML = '<option value="">Pilih Provinsi</option>';
-        //             provinces.forEach(province => {
-        //                 const option = document.createElement('option');
-        //                 option.text = province.name;
-        //                 option.value = province.name; // Nilai dari opsi disetel menjadi nama provinsi
-        //                 option.dataset.id = province.id; // Menyimpan ID provinsi ke dalam atribut data
-        //                 provinceSelect.add(option);
-        //             });
-        //         });
-        // }
         fetch('https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json')
             .then(response => response.json())
             .then(provinces => {
@@ -640,5 +626,26 @@
                 });
                 document.getElementById('kota').innerHTML = tampung;
             });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var modalId = {{ $biodata->id }};
+            var selectedValue = document.querySelector(`#kota${modalId}`).getAttribute('data-selected');
+
+            fetch(`https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json`)
+                .then(response => response.json())
+                .then(regencies => {
+                    var options = '<option value="">Pilih Kab/Kota</option>';
+                    regencies.forEach(element => {
+                        options += `<option value="${element.name}">${element.name}</option>`;
+                    });
+
+                    // Mengisi select dengan options
+                    document.querySelector(`#kota${modalId}`).innerHTML = options;
+
+                    // Set opsi yang dipilih berdasarkan data dari database
+                    document.querySelector(`#kota${modalId}`).value = selectedValue;
+                });
+        });
     </script>
 @endsection
