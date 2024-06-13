@@ -627,7 +627,7 @@
                 document.getElementById('kota').innerHTML = tampung;
             });
     </script>
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             // var modalId = {{ $biodata->id }};
             var selectedValue = document.querySelector(`#kota${modalId}`).getAttribute('data-selected');
@@ -647,5 +647,5 @@
                     document.querySelector(`#kota${modalId}`).value = selectedValue;
                 });
         });
-    </script>
+    </script> --}}
 @endsection

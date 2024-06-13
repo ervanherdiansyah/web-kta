@@ -627,9 +627,9 @@
                 document.getElementById('kota').innerHTML = tampung;
             });
     </script>
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // var modalId = {{ $biodata->id }};
+            var modalId = {{ $biodata->id }};
             var selectedValue = document.querySelector(`#kota${modalId}`).getAttribute('data-selected');
 
             fetch(`https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json`)
@@ -647,5 +647,5 @@
                     document.querySelector(`#kota${modalId}`).value = selectedValue;
                 });
         });
-    </script>
+    </script> --}}
 @endsection
