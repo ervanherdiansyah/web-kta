@@ -64,7 +64,7 @@ class PembayaranController extends Controller
 
         $pembayaran = Pembayaran::where('user_id', Auth::user()->id)->first();
 
-
+        $total_pembayaran  = 0;
         if ($request->shipping_method == 'delivery') {
             $courier = $request->get('courier_code');
             $destination = $request->get('kota_id');
@@ -105,6 +105,8 @@ class PembayaranController extends Controller
                 'nama_depan' => $request->nama_depan,
                 'nama_belakang' => $request->nama_belakang,
             ]);
+            $sub_pembayaran = $pembayaran->jumlah_pembayaran + $shipping_fee;
+            $total_pembayaran += $sub_pembayaran;
         } else if ($request->shipping_method == 'pickup') {
             $pembayaran->update([
                 'jenis_order' => $request->shipping_method,
@@ -118,6 +120,7 @@ class PembayaranController extends Controller
                 'nama_depan' => $request->nama_depan,
                 'nama_belakang' => $request->nama_belakang,
             ]);
+            $total_pembayaran += $pembayaran->jumlah_pembayaran;
         }
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = config('midtrans.serverKey');
@@ -133,7 +136,7 @@ class PembayaranController extends Controller
 
         $item_details[] = array(
             'id' => rand(), // ID unik untuk ongkir
-            'price' => $pembayaran->jumlah_pembayaran, // Harga ongkir
+            'price' => $total_pembayaran, // Harga ongkir
             'quantity' => 1, // Jumlahnya adalah 1 karena ongkir adalah satu item
             'name' => 'Biaya Pendaftaran', // Nama item ongkir
         );
@@ -144,7 +147,7 @@ class PembayaranController extends Controller
         $params = array(
             'transaction_details' => array(
                 'order_id' => $order_id_with_random,
-                'gross_amount' => $pembayaran->jumlah_pembayaran,
+                'gross_amount' => $total_pembayaran,
             ),
             'customer_details' => array(
                 'first_name' => Auth::user()->name,
