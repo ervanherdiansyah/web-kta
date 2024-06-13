@@ -63,6 +63,12 @@ class UserAccountController extends Controller
 
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'fullname' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
+            'nohp' => 'required|string|max:255',
+        ]);
         $accountUser = User::create([
             'name' => $request->name,
             'email' => $request->email,
