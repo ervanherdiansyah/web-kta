@@ -20,8 +20,7 @@
     <link href="{{ asset('argon') }}/assets/css/nucleo-svg.css" rel="stylesheet" />
     <!-- CSS Files -->
     <link id="pagestyle" href="{{ asset('argon') }}/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.clientServer') }}">
-    </script>
+    <script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.clientServer') }}"></script>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
