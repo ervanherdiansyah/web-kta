@@ -627,8 +627,11 @@
                 document.getElementById('kota').innerHTML = tampung;
             });
     </script>
-    {{-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
+    <script>
+        // Cek apakah $biodata tidak null
+        var biodataExists = {!! json_encode(isset($biodata)) !!};
+
+        if (biodataExists) {
             var modalId = {{ $biodata->id }};
             var selectedValue = document.querySelector(`#kota${modalId}`).getAttribute('data-selected');
 
@@ -646,6 +649,6 @@
                     // Set opsi yang dipilih berdasarkan data dari database
                     document.querySelector(`#kota${modalId}`).value = selectedValue;
                 });
-        });
-    </script> --}}
+        }
+    </script>
 @endsection
