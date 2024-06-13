@@ -540,7 +540,7 @@
                                         <div class="mb-3">
                                             <label for="example-text-input" class="form-control-label">Kota atau Kabupaten
                                                 Sekolah</label>
-                                            <select name="alamat_asal_sekolah" id="kota{{ $biodata->id }}"
+                                            <select name="alamat_asal_sekolah" id="kotaa"
                                                 class="form-control form-select"
                                                 data-selected="{{ $biodata->alamat_asal_sekolah }}">
                                                 <option value="">Pilih Kab/Kota</option>
@@ -628,27 +628,21 @@
             });
     </script>
     <script>
-        // Cek apakah $biodata tidak null
-        var biodataExists = {!! json_encode(isset($biodata)) !!};
+        var selectedValue = document.querySelector(`#kotaa`).getAttribute('data-selected');
 
-        if (biodataExists) {
-            var modalId = {{ $biodata->id }};
-            var selectedValue = document.querySelector(`#kota${modalId}`).getAttribute('data-selected');
-
-            fetch(`https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json`)
-                .then(response => response.json())
-                .then(regencies => {
-                    var options = '<option value="">Pilih Kab/Kota</option>';
-                    regencies.forEach(element => {
-                        options += `<option value="${element.name}">${element.name}</option>`;
-                    });
-
-                    // Mengisi select dengan options
-                    document.querySelector(`#kota${modalId}`).innerHTML = options;
-
-                    // Set opsi yang dipilih berdasarkan data dari database
-                    document.querySelector(`#kota${modalId}`).value = selectedValue;
+        fetch(`https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json`)
+            .then(response => response.json())
+            .then(regencies => {
+                var options = '<option value="">Pilih Kab/Kota</option>';
+                regencies.forEach(element => {
+                    options += `<option value="${element.name}">${element.name}</option>`;
                 });
-        }
+
+                // Mengisi select dengan options
+                document.querySelector(`#kotaa`).innerHTML = options;
+
+                // Set opsi yang dipilih berdasarkan data dari database
+                document.querySelector(`#kotaa`).value = selectedValue;
+            });
     </script>
 @endsection
