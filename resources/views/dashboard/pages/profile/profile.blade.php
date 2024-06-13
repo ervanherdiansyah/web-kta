@@ -243,6 +243,7 @@
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Foto
                                                 Profile</label>
+                                            <label>(foto 3x4 selfie formal & file foto maksimal 1 mb)</label>
                                             <input name="foto" class="form-control" type="file">
                                             @error('foto')
                                                 <div class="alert alert-danger">{{ $message }}</div>

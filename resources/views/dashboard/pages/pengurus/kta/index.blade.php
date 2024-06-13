@@ -10,7 +10,7 @@
             color: white;
         }
 
-        style foto .margin-foto {
+        .margin-foto {
             margin-top: 31px;
             margin-left: 16px;
         }
@@ -18,6 +18,8 @@
         .img-web {
             height: 164px;
             width: 120px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
             border-bottom-left-radius: 50px;
             border-bottom-right-radius: 50px;
             object-fit: cover;
@@ -27,24 +29,30 @@
         /* style Name */
 
         .first_name {
-            margin-left: 35px;
-            margin-top: 200px
+            margin-left: 20px;
+            margin-top: 18px
         }
 
         .last_name {
-            margin-left: 35px;
+            margin-left: 20px;
+            margin-top: -25px;
         }
 
         .name-font {
-            color: white;
-            font-size: 22px;
+            color: #efc471;
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        .font-color {
+            color: #efc471;
         }
 
         /* style gender */
 
         .gender {
             margin-left: 50px;
-            margin-top: 54px
+            margin-top: 28px
         }
 
         /* style school */
@@ -64,49 +72,47 @@
             /* style Foto */
 
             .margin-foto {
-                margin-top: 37px;
+                margin-top: 34px;
                 margin-left: 17px;
             }
 
             .img-phone {
                 height: 181px;
                 width: 137px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
                 border-bottom-left-radius: 50px;
                 border-bottom-right-radius: 50px;
                 object-fit: cover;
                 margin-right: 20px;
             }
 
-            /* style Name */
-
             .first_name {
-                margin-left: 35px;
-                margin-top: 200px
+                margin-left: 21px;
+                margin-top: 23px
             }
 
             .last_name {
-                margin-left: 35px;
+                margin-left: 21px;
+                margin-top: -25px
             }
 
             .name-font {
-                color: white;
-                font-size: 22px;
+                color: #efc471;
+                font-size: 40px;
+                font-weight: 700;
             }
-
-            /* style gender */
 
             .gender {
                 margin-left: 50px;
-                margin-top: 15%
+                margin-top: 22px;
             }
 
-            /* style school */
             .school {
                 margin-left: 50px;
                 margin-top: 5px
             }
 
-            /* style origin-school */
             .origin-school {
                 margin-left: 50px;
                 margin-top: 7px
@@ -423,31 +429,33 @@
                                 <div class="col-lg-2 mb-lg-0 mb-4"> </div>
                                 <div class="col-lg-4 mb-lg-0 mb-4">
                                     <div class="card bg-dark text-white">
-                                        <img src="{{ asset('assets/img/FRONT.png') }}" class="card-img" alt="...">
+                                        <img src="{{ asset('assets/img/kta4.png') }}" class="card-img" alt="...">
                                         <div class="card-img-overlay">
                                             <div class="align-items-center">
-                                                {{-- <div class="margin-foto">
-                                                <img src="{{ asset('storage/' . Auth::user()->foto) }}"
-                                                    class="img-web img-phone" alt="member_photo">
-                                            </div> --}}
+                                                <div class="margin-foto">
+                                                    <img src="{{ asset('storage/' . Auth::user()->foto) }}"
+                                                        class="img-web" alt="member_photo">
+                                                </div>
                                                 <div class="first_name">
-                                                    <h5 class="font-weight-bold name-font">
+                                                    <h5 class="name-font">
                                                         {{ $dataForm->user->nama_depan }}</h5>
                                                 </div>
                                                 <div class="last_name">
-                                                    <h5 class="font-weight-bold name-font">
+                                                    <h5 class="name-font">
                                                         {{ $dataForm->user->nama_belakang }}</h5>
                                                 </div>
                                                 <div class="gender">
-                                                    <p class="mb-0 font-weight-bold">
+                                                    <p class="mb-0 font-weight-bold font-color">
                                                         {{ $dataForm->jenis_kelamin }}
                                                     </p>
                                                 </div>
                                                 <div class="school">
-                                                    <p class="mb-0 font-weight-bold">{{ $dataForm->asal_sekolah }}</p>
+                                                    <p class="mb-0 font-weight-bold font-color">
+                                                        {{ $dataForm->asal_sekolah }}</p>
                                                 </div>
                                                 <div class="origin-school">
-                                                    <p class="mb-0 font-weight-bold">{{ $dataForm->alamat_asal_sekolah }}
+                                                    <p class="mb-0 font-weight-bold font-color">
+                                                        {{ $dataForm->alamat_asal_sekolah }}
                                                     </p>
                                                 </div>
                                             </div>
@@ -456,7 +464,7 @@
                                 </div>
                                 <div class="col-lg-4 mb-lg-0 mb-4">
                                     <div class="card bg-dark text-white">
-                                        <img src="{{ asset('assets/img/BACK.png') }}" class="card-img" alt="...">
+                                        <img src="{{ asset('assets/img/kta3.png') }}" class="card-img" alt="...">
                                     </div>
                                 </div>
                                 <div class="col-lg-2 mb-lg-0 mb-4"> </div>

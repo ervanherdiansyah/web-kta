@@ -13,10 +13,11 @@ class PembayaranController extends Controller
 {
     public function index(Request $request)
     {
-        $pembayaran = Pembayaran::latest()->paginate(10);
+        $pembayaran = Pembayaran::with('provinsi', 'kota')->latest()->get();
+        // dd($pembayaran);
 
         if ($request->ajax()) {
-            $data = Pembayaran::with('user')->latest();
+            $data = Pembayaran::with('user', 'provinsi', 'kota')->latest()->get();
 
             // Proses pencarian
             if (!empty($request->search['value'])) {
@@ -41,18 +42,51 @@ class PembayaranController extends Controller
                 ->addColumn('status', function ($data) {
                     return htmlspecialchars($data->status);
                 })
+                ->addColumn('jenis_order', function ($data) {
+                    return htmlspecialchars($data->jenis_order);
+                })
+                ->addColumn('provinsi_id', function ($data) {
+                    return htmlspecialchars(optional($data->provinsi)->name ?? '');
+                })
+                ->addColumn('kota_id', function ($data) {
+                    return htmlspecialchars(optional($data->kota)->name ?? '');
+                })
+                ->addColumn('kecamatan', function ($data) {
+                    return htmlspecialchars($data->kecamatan);
+                })
+                ->addColumn('kelurahan', function ($data) {
+                    return htmlspecialchars($data->kelurahan);
+                })
+                ->addColumn('kode_pos', function ($data) {
+                    return htmlspecialchars($data->kode_pos);
+                })
+                ->addColumn('courier', function ($data) {
+                    return htmlspecialchars($data->courier);
+                })
+                ->addColumn('shipping_price', function ($data) {
+                    return htmlspecialchars($data->shipping_price);
+                })
+                ->addColumn('shipping_status', function ($data) {
+                    return htmlspecialchars($data->shipping_status);
+                })
+                ->addColumn('no_wa', function ($data) {
+                    return htmlspecialchars($data->no_wa);
+                })
                 ->addColumn('action', function ($data) {
+                    $phoneNumber = preg_replace('/^0/', '62', $data->no_wa);
                     return
                         '<a type="button" class="" data-bs-toggle="modal"
-                                                    data-bs-target="#update' . $data->id . '">
-                                                    <i class="fas fa-edit text-success text-sm opacity-10"></i>
-                                                </a> 
-                                                
-                                                <a type="button" class="" data-bs-toggle="modal"
-                                                    data-bs-target="#delete' . $data->id . '">
-                                                    <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
-                                                </a> 
-                                                ';
+                            data-bs-target="#update' . $data->id . '">
+                            <i class="fas fa-edit text-success text-sm opacity-10"></i>
+                        </a>                 
+                        <a type="button" class="" data-bs-toggle="modal"
+                            data-bs-target="#delete' . $data->id . '">
+                            <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
+                        </a> 
+                        <a href="https://wa.me/' . $phoneNumber . '" target="_blank">
+                            <i class="fa fa-whatsapp text-success text-sm opacity-10" aria-hidden="true"></i>
+                        </a>
+                        ';
                 })
                 ->rawColumns(['user_id', 'jumlah_pembayaran', 'status', 'action'])
                 ->make(true);
@@ -84,6 +118,7 @@ class PembayaranController extends Controller
 
         // Lakukan proses update
         $pembayaran->status = $request->status;
+        $pembayaran->shipping_status = $request->shipping_status;
 
         $pembayaran->save();
 

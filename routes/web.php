@@ -84,6 +84,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::delete('/pembayaran/destroy/{id}', [PembayaranPembayaranController::class, 'destroy']);
 
             Route::get('/cetak-all-kta', [KtaSiswaController::class, 'cetakAllKTA']);
+            Route::get('/cetak-kta-peserta/{id}', [KtaSiswaController::class, 'cetakKTAPeserta']);
+            Route::get('/cetak-kta-pengurus/{id}', [KtaSiswaController::class, 'cetakKTPPengurus']);
 
             //Change Password
             Route::get('/changepassword', [UserAccountController::class, 'indexupdatepassword']);

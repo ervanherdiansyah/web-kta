@@ -32,7 +32,40 @@
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Status</th>
-                                        {{-- <th class="text-secondary opacity-7"></th> --}}
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Jenis Order</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Alamat</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Provinsi</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Kota/Kab</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Kecamatan</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Kelurahan</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Kode Pos</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Courier</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Harga Ongkir</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Shipping Status</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Nomor Whatsapp</th>
+                                        <th class="text-secondary opacity-7"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -198,7 +231,7 @@
                 responsive: true,
                 serverSide: true,
                 searching: true,
-                ordering: false,
+                ordering: true,
                 ajax: {
                     url: "{{ url('/dashboard/pembayaran') }}",
                 },
@@ -214,10 +247,54 @@
                         data: "status",
                         name: "status"
                     },
-                    // {
-                    //     data: "action",
-                    //     name: "action"
-                    // },
+                    {
+                        data: "jenis_order",
+                        name: "jenis_order"
+                    },
+                    {
+                        data: "alamat",
+                        name: "alamat"
+                    },
+                    {
+                        data: "provinsi_id",
+                        name: "provinsi_id"
+                    },
+                    {
+                        data: "kota_id",
+                        name: "kota_id"
+                    },
+                    {
+                        data: "kecamatan",
+                        name: "kecamatan"
+                    },
+                    {
+                        data: "kelurahan",
+                        name: "kelurahan"
+                    },
+                    {
+                        data: "kode_pos",
+                        name: "kode_pos"
+                    },
+                    {
+                        data: "courier",
+                        name: "courier"
+                    },
+                    {
+                        data: "shipping_price",
+                        name: "shipping_price"
+                    },
+                    {
+                        data: "shipping_status",
+                        name: "shipping_status"
+                    },
+                    {
+                        data: "no_wa",
+                        name: "no_wa"
+                    },
+                    {
+                        data: "action",
+                        name: "action"
+                    },
                 ],
                 drawCallback: function(settings) {
                     var api = this.api();
@@ -252,7 +329,7 @@
 
                             <!-- Update Modal -->
                             <div class="modal fade" id="update${data.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg">
+                                <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="exampleModalLabel">Update Pembayaran</h5>
@@ -264,23 +341,30 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="example-text-input" class="form-control-label">Nama</label>
-                                                            <input name="user_id" class="form-control" type="text" value="${userName}">
+                                                            <label for="status${data.id}" class="form-control-label">Status</label>
+                                                            <select name="status" class="form-control form-select" id="status${data.id}">
+                                                                <option value="Paid" ${data.status === 'Paid' ? 'selected' : ''}>Paid</option>
+                                                                <option value="Unpaid" ${data.status === 'Unpaid' ? 'selected' : ''}>Unpaid</option>
+                                                            </select>
+                                                            @error('status')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="example-text-input" class="form-control-label">Jumlah pembayaran</label>
-                                                            <input name="jumlah_pembayaran" class="form-control" type="text" value="${data.jumlah_pembayaran}">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label for="example-text-input" class="form-control-label">Status</label>
-                                                            <input name="status" class="form-control" type="text" value="${data.status}">
+                                                            <label for="shipping_status${data.id}" class="form-control-label">shipping_status</label>
+                                                            <select name="shipping_status" class="form-control form-select" id="shipping_status${data.id}">
+                                                                <option value="dikirim" ${data.shipping_status === 'dikirim' ? 'selected' : ''}>Dikirim</option>
+                                                                <option value="diproses" ${data.shipping_status === 'diproses' ? 'selected' : ''}>Diproses</option>
+                                                            </select>
+                                                            @error('shipping_status')
+                                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                     <button type="submit" class="btn btn-primary">Update</button>

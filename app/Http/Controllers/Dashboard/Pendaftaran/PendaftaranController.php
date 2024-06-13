@@ -9,6 +9,7 @@ use App\Models\Form;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
@@ -17,12 +18,16 @@ class PendaftaranController extends Controller
 {
     public function index(Request $request)
     {
-        $pendaftaran = Form::latest()->paginate(10);
-
+        $response = Http::get('https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json');
+        $kota = $response->json();
         if ($request->ajax()) {
-            $data = Form::latest();
-
             // Proses pencarian
+            if ($request->has('filter_kota') && $request->filter_kota != '') {
+                $filterKota = $request->filter_kota;
+                $data = Form::where('alamat_asal_sekolah', $filterKota)->latest()->get();
+            } else {
+                $data = Form::latest()->get();
+            }
             if (!empty($request->search['value'])) {
                 $searchValue = $request->search['value'];
                 $data->where(function ($query) use ($searchValue) {
@@ -92,13 +97,16 @@ class PendaftaranController extends Controller
                             data-bs-target="#delete' . $data->id . '">
                             <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
                         </a> 
+                        <a href="' . url('/dashboard/cetak-kta-peserta/' . $data->user_id) . '" target="_blank">
+                            <i class="fa fa-print text-info text-sm opacity-10" aria-hidden="true"></i>
+                        </a>
                         ';
                 })
                 ->rawColumns(['nama_lengkap', 'kelas', 'jurusan', 'asal_sekolah', 'alamat_asal_sekolah', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'email', 'hp', 'instagram', 'alamat', 'action'])
                 ->make(true);
         }
 
-        return view('dashboard.pages.pendaftaran.pendaftaran', compact('pendaftaran'));
+        return view('dashboard.pages.pendaftaran.pendaftaran', compact('kota'));
     }
 
     public function store(Request $request)

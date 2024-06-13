@@ -85,6 +85,7 @@ class UserAccountController extends Controller
         $accountUser->update([
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
         ]);
         toast('Berhasil Update Data!!!', 'success');
         return redirect('/dashboard/account');

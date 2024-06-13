@@ -27,24 +27,26 @@
         /* style Name */
 
         .first_name {
-            margin-left: 35px;
-            margin-top: 200px
+            margin-left: 20px;
+            margin-top: 195px
         }
 
         .last_name {
-            margin-left: 35px;
+            margin-left: 20px;
+            margin-top: -25px;
         }
 
         .name-font {
-            color: white;
-            font-size: 22px;
+            color: #557571;
+            font-size: 40px;
+            font-weight: 700;
         }
 
         /* style gender */
 
         .gender {
             margin-left: 50px;
-            margin-top: 54px
+            margin-top: 33px
         }
 
         /* style school */
@@ -57,6 +59,10 @@
         .origin-school {
             margin-left: 50px;
             margin-top: 7px
+        }
+
+        .text {
+            color: #557571;
         }
 
         @media (max-width: 768px) {
@@ -89,7 +95,7 @@
             }
 
             .name-font {
-                color: white;
+                color: #557571;
                 font-size: 22px;
             }
 
@@ -110,6 +116,10 @@
             .origin-school {
                 margin-left: 50px;
                 margin-top: 7px
+            }
+
+            .text {
+                color: #557571;
             }
         }
     </style>
@@ -431,23 +441,25 @@
                                                     class="img-web img-phone" alt="member_photo">
                                             </div> --}}
                                                 <div class="first_name">
-                                                    <h5 class="font-weight-bold name-font">
+                                                    <h5 class="name-font">
                                                         {{ $dataForm->user->nama_depan }}</h5>
                                                 </div>
                                                 <div class="last_name">
-                                                    <h5 class="font-weight-bold name-font">
+                                                    <h5 class="name-font">
                                                         {{ $dataForm->user->nama_belakang }}</h5>
                                                 </div>
                                                 <div class="gender">
-                                                    <p class="mb-0 font-weight-bold">
+                                                    <p class="mb-0 font-weight-bold text">
                                                         {{ $dataForm->jenis_kelamin }}
                                                     </p>
                                                 </div>
                                                 <div class="school">
-                                                    <p class="mb-0 font-weight-bold">{{ $dataForm->asal_sekolah }}</p>
+                                                    <p class="mb-0 font-weight-bold text">{{ $dataForm->asal_sekolah }}
+                                                    </p>
                                                 </div>
                                                 <div class="origin-school">
-                                                    <p class="mb-0 font-weight-bold">{{ $dataForm->alamat_asal_sekolah }}
+                                                    <p class="mb-0 font-weight-bold text">
+                                                        {{ $dataForm->alamat_asal_sekolah }}
                                                     </p>
                                                 </div>
                                             </div>

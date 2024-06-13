@@ -28,13 +28,13 @@
     @if (Request::is('pengurus/profile*'))
         <div class="position-absolute w-100 min-height-300 top-0"
             style="background-image: url('{{ config('app.url') }}/argon/assets/img/bgp.jpg'); background-position-y: 50%;">
-            <span class="mask opacity-6" style="background-color: #17A55C;"></span>
+            <span class="mask opacity-6" style="background-color: #2C5499;"></span>
         </div>
     @else
-        <div class="min-height-300 position-absolute w-100" style="background-color: #17A55C;"></div>
+        <div class="min-height-300 position-absolute w-100" style="background-color: #2C5499;"></div>
     @endif
     @include('dashboard.component.pengurus.sidebar.sidebar')
-    @if (Request::is('peserta/profile*'))
+    @if (Request::is('pengurus/profile*'))
         <div class="main-content position-relative max-height-vh-100 h-100">
             {{-- @include('dashboard.component.pengurus.navbar.navbar') --}}
 

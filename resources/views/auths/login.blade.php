@@ -128,10 +128,9 @@
                                 </div>
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-4 text-sm mx-auto">
-                                        Don't have an account?
-                                        <a href="{{ url('/register') }}" id="signUpLink"
-                                            class="text-primary text-gradient font-weight-bold">Sign
-                                            up</a>
+                                        Lupa Password
+                                        <a href="" id="signUpLink"
+                                            class="text-primary text-gradient font-weight-bold">Lupa Password</a>
                                     </p>
                                 </div>
                             </div>

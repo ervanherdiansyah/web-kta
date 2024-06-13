@@ -40,6 +40,36 @@ class KtaSiswaController extends Controller
         return view('dashboard.pages.siswa.kta.cetak-pdf', compact('dataProfile', 'dataForm', 'pembayaran'));
     }
 
+    public function cetakKTAPeserta($id)
+    {
+        $dataProfile =  Profile::where('user_id', $id)->first();
+        // $dataForm = Form::get();
+        $dataForm = Form::where('user_id', $id)->first();
+        $pembayaran = Pembayaran::where('user_id', $id)->first();
+        // dd($dataForm);
+        return view('dashboard.pages.pendaftaran.cetakPeserta-pdf', compact('dataProfile', 'dataForm', 'pembayaran'));
+    }
+
+    public function cetakKTP()
+    {
+        $dataProfile =  Profile::where('user_id', Auth::user()->id)->first();
+        // $dataForm = Form::get();
+        $dataForm = Form::where('user_id', Auth::user()->id)->first();
+        $pembayaran = Pembayaran::where('user_id', Auth::user()->id)->first();
+
+        return view('dashboard.pages.pengurus.kta.cetak-pdf', compact('dataProfile', 'dataForm', 'pembayaran'));
+    }
+
+    public function cetakKTPPengurus($id)
+    {
+        $dataProfile =  Profile::where('user_id', $id)->first();
+        // $dataForm = Form::get();
+        $dataForm = Form::where('user_id', $id)->first();
+        $pembayaran = Pembayaran::where('user_id', $id)->first();
+
+        return view('dashboard.pages.pendaftaran.cetakPengurus-pdf', compact('dataProfile', 'dataForm', 'pembayaran'));
+    }
+
     public function cetakAllKTA()
     {
         $pembayaran = Pembayaran::where('status', 'Paid')->get();

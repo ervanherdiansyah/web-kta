@@ -16,6 +16,10 @@
                             <h6 class="d-none d-lg-block">Data Peserta</h6>
 
                             <div class="d-flex flex-wrap align-items-center ms-auto gap-2">
+                                <button type="button" class="btn btn-primary btn-sm ms-auto" data-bs-toggle="modal"
+                                    data-bs-target="#filterkota">
+                                    Filter Kota
+                                </button>
                                 <a href="{{ url('/dashboard/cetak-all-kta') }}" target="_blank"
                                     class="btn btn-primary btn-sm">Cetak
                                     KTA</a>
@@ -36,7 +40,7 @@
                     </div>
                     <div class="card-body px-4 pt-0 pb-2">
                         <div class="table-responsive p-0">
-                            <table id="myTable" class="table align-items-center mb-0">
+                            <table id="myTable" class="table align-items-center mb-0 display">
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -309,6 +313,46 @@
         </div>
     </div>
     <!-- End Modal Create Data-->
+
+    <!-- Modal Filter Data-->
+    <div class="modal fade" id="filterkota" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pendaftaran</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="filterForm" action="{{ url('/dashboard/pendaftaran') }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="example-text-input" class="form-control-label">Kota / Kabupaten</label>
+                                    <select name="filter_kota" id="filter_kota" class="form-control form-select">
+                                        <option value="">Pilih</option>
+                                        @foreach ($kota as $item)
+                                            <option value="{{ $item['name'] }}">{{ $item['name'] }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('filter_kota')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Filter</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- End Modal Filter Data-->
 
     <!-- Modal Delete Data-->
     {{-- @foreach ($pendaftaran as $item)
@@ -629,6 +673,18 @@
     <!-- End Modal Import Data-->
     <div id="modals-container"></div>
 
+    {{-- <script>
+        $(document).ready(function() {
+            $('#filterForm').on('submit', function(e) {
+                e.preventDefault();
+                var filterKota = $('#filter_kota').val();
+
+                // Panggil DataTables dan gunakan parameter `filter_kota`
+                $('#example').DataTable().ajax.url('/dashboard/pendaftaran?filter_kota=' + filterKota)
+                .load();
+            });
+        });
+    </script> --}}
 @endsection
 @push('script')
     <!-- Tautkan file JavaScript jQuery -->
@@ -639,86 +695,87 @@
     <script type="text/javascript">
         $(document).ready(function() {
             loadData();
-        });
 
-        function loadData() {
-            $('#myTable').DataTable({
-                processing: true,
-                pagination: true,
-                responsive: true,
-                serverSide: true,
-                searching: true,
-                ordering: false,
-                ajax: {
-                    url: "{{ url('/dashboard/pendaftaran') }}",
-                },
-                columns: [{
-                        data: "nama_lengkap",
-                        name: "nama_lengkap"
+            function loadData() {
+                var table = $('#myTable').DataTable({
+                    processing: true,
+                    pagination: true,
+                    responsive: true,
+                    serverSide: true,
+                    searching: true,
+                    ordering: false,
+                    ajax: {
+                        url: "{{ url('/dashboard/pendaftaran') }}",
+                        data: function(d) {
+                            d.filter_kota = $('#filter_kota').val();
+                        }
                     },
-                    {
-                        data: "kelas",
-                        name: "kelas"
-                    },
-                    {
-                        data: "jurusan",
-                        name: "jurusan"
-                    },
-                    {
-                        data: "asal_sekolah",
-                        name: "asal_sekolah"
-                    },
-                    {
-                        data: "alamat_asal_sekolah",
-                        name: "alamat_asal_sekolah"
-                    },
-                    {
-                        data: "jenis_kelamin",
-                        name: "jenis_kelamin"
-                    },
-                    {
-                        data: "tempat_lahir",
-                        name: "tempat_lahir"
-                    },
-                    {
-                        data: "tanggal_lahir",
-                        name: "tanggal_lahir"
-                    },
-                    {
-                        data: "agama",
-                        name: "agama"
-                    },
-
-                    {
-                        data: "email",
-                        name: "email"
-                    },
-                    {
-                        data: "hp",
-                        name: "hp"
-                    },
-                    {
-                        data: "instagram",
-                        name: "instagram"
-                    },
-                    {
-                        data: "alamat",
-                        name: "alamat"
-                    },
-                    {
-                        data: "action",
-                        name: "action"
-                    },
-                ],
-                drawCallback: function(settings) {
-                    var api = this.api();
-                    $('#modals-container').empty();
-                    api.rows().every(function(rowIdx, tableLoop, rowLoop) {
-                        var data = this.data();
-                        var modalId = data.id;
-                        var userName = $('<div>').html(data.user_id).text()
-                            .trim(); // Decode HTML entities and trim spaces
-                        $('#modals-container').append(`
+                    columns: [{
+                            data: "nama_lengkap",
+                            name: "nama_lengkap"
+                        },
+                        {
+                            data: "kelas",
+                            name: "kelas"
+                        },
+                        {
+                            data: "jurusan",
+                            name: "jurusan"
+                        },
+                        {
+                            data: "asal_sekolah",
+                            name: "asal_sekolah"
+                        },
+                        {
+                            data: "alamat_asal_sekolah",
+                            name: "alamat_asal_sekolah"
+                        },
+                        {
+                            data: "tempat_lahir",
+                            name: "tempat_lahir"
+                        },
+                        {
+                            data: "tanggal_lahir",
+                            name: "tanggal_lahir"
+                        },
+                        {
+                            data: "jenis_kelamin",
+                            name: "jenis_kelamin"
+                        },
+                        {
+                            data: "agama",
+                            name: "agama"
+                        },
+                        {
+                            data: "email",
+                            name: "email"
+                        },
+                        {
+                            data: "hp",
+                            name: "hp"
+                        },
+                        {
+                            data: "instagram",
+                            name: "instagram"
+                        },
+                        {
+                            data: "alamat",
+                            name: "alamat"
+                        },
+                        {
+                            data: "action",
+                            name: "action"
+                        },
+                    ],
+                    drawCallback: function(settings) {
+                        var api = this.api();
+                        $('#modals-container').empty();
+                        api.rows().every(function(rowIdx, tableLoop, rowLoop) {
+                            var data = this.data();
+                            var modalId = data.id;
+                            var userName = $('<div>').html(data.user_id).text()
+                                .trim(); // Decode HTML entities and trim spaces
+                            $('#modals-container').append(`
                             <!-- Delete Modal -->
                             <div class="modal fade" id="delete${data.id}" tabindex="-1" aria-labelledby="deleteLabel${data.id}" aria-hidden="true">
                                 <div class="modal-dialog">
@@ -913,26 +970,32 @@
                                 </div>
                             </div>
                         `);
-                        // Ambil data kota dari API dan tampilkan di opsi pilihan
-                        fetch(
-                                `https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json`
-                            )
-                            .then(response => response.json())
-                            .then(regencies => {
-                                var options = '';
-                                regencies.forEach(element => {
-                                    options +=
-                                        `<option value="${element.name}">${element.name}</option>`;
+                            // Ambil data kota dari API dan tampilkan di opsi pilihan
+                            fetch(
+                                    `https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json`
+                                )
+                                .then(response => response.json())
+                                .then(regencies => {
+                                    var options = '';
+                                    regencies.forEach(element => {
+                                        options +=
+                                            `<option value="${element.name}">${element.name}</option>`;
+                                    });
+                                    $(`#alamat_asal_sekolah${modalId}`).html(options);
+
+                                    // Set opsi yang dipilih berdasarkan data dari database
+                                    $(`#alamat_asal_sekolah${modalId}`).val(data
+                                        .alamat_asal_sekolah);
                                 });
-                                $(`#alamat_asal_sekolah${modalId}`).html(options);
+                        });
+                    }
 
-                                // Set opsi yang dipilih berdasarkan data dari database
-                                $(`#alamat_asal_sekolah${modalId}`).val(data.alamat_asal_sekolah);
-                            });
-                    });
-                }
-
-            });
-        }
+                });
+                $('#filterForm').on('submit', function(e) {
+                    e.preventDefault();
+                    table.ajax.reload();
+                });
+            }
+        });
     </script>
 @endpush
