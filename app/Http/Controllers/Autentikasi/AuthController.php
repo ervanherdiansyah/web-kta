@@ -146,7 +146,7 @@ class AuthController extends Controller
 
         $pembayaran = Pembayaran::create([
             'user_id' => $userId,
-            'jumlah_pembayaran' => 35000,
+            'jumlah_pembayaran' => 50000,
             'tanggal_pembayaran' => now(),
             'status' => 'Unpaid',
         ]);
