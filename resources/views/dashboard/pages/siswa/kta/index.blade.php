@@ -355,6 +355,13 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <p>Ket: Untuk Pickup KTA, Stiker, Box, Thanks Card, Pin FOJB, Lanyard dan Wadah
+                                                KTA diambil ketika kegiatan SMILE FOJB. Untuk informasi kegiatan akan
+                                                dihubungi oleh panitia. Terimakasih</p>
+                                        </div>
+                                    </div>
                                 </form>
 
                             </div>
@@ -396,6 +403,9 @@
                                 <div class="d-flex justify-content-between mb-2">
                                     <span>Biaya Lain-lain</span>
                                     <span>Rp5.400</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>(ppn dan fee transaksi)</span>
                                 </div>
                                 <div class="d-flex justify-content-between mb-2">
                                     <span>Biaya Pengiriman</span>
