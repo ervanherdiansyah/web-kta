@@ -113,7 +113,7 @@ class BiodataController extends Controller
         ]);
 
         $cekPembayaran = Pembayaran::where('user_id', Auth::user()->id)->first();
-        if (count($cekPembayaran)) {
+        if ($cekPembayaran == null) {
             $pembayaran = Pembayaran::create([
                 'user_id' => Auth::user()->id,
                 'jumlah_pembayaran' => 50000,
