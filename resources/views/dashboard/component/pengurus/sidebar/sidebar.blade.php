@@ -98,7 +98,7 @@
             <img class="w-50 mx-auto" src="{{ asset('assets/img/logo-fojb.png') }}" alt="sidebar_illustration">
             <div class="card-body text-center p-3 w-100 pt-0">
                 <div class="docs-info">
-                    <h6 class="mb-0">WEBSITE OPREC ANGGOTA</h6>
+                    <h6 class="mb-0">WEBSITE PENGURUS</h6>
                     {{-- <p class="text-xs font-weight-bold mb-0">Please check our docs</p> --}}
                 </div>
             </div>
