@@ -63,20 +63,27 @@ class UserAccountController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|min:8',
-            'role' => 'required|string|max:255',
-        ]);
-        $accountUser = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => $request->role,
-        ]);
-        toast('Berhasil Tambah Data!!!', 'success');
-        return redirect('/dashboard/account');
+        try {
+            //code...
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255|unique:users,email',
+                'password' => 'required|min:8',
+                'role' => 'required|string|max:255',
+            ]);
+            $accountUser = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'role' => $request->role,
+            ]);
+            toast('Berhasil Tambah Data!!!', 'success');
+            return redirect('/dashboard/account');
+        } catch (\Throwable $th) {
+            //throw $th;
+            toast($th->getMessage(), 'warning');
+            return redirect('/dashboard/account');
+        }
     }
 
     public function edit($id)
