@@ -30,7 +30,7 @@ class KtaSiswaController extends Controller
         return response()->json($cities);
     }
 
-    public function cetakKTA()
+    public function cetakKTP()
     {
         $dataProfile =  Profile::where('user_id', Auth::user()->id)->first();
         // $dataForm = Form::get();
@@ -40,14 +40,29 @@ class KtaSiswaController extends Controller
         return view('dashboard.pages.pengurus.kta.cetak-pdf', compact('dataProfile', 'dataForm', 'pembayaran'));
     }
 
-    public function cetakAllKTA()
+    public function cetakKTPPengurus($id)
     {
-        $pembayaran = Pembayaran::where('status', 'Paid')->get();
+        $dataProfile =  Profile::where('user_id', $id)->first();
+        // $dataForm = Form::get();
+        $dataForm = Form::where('user_id', $id)->first();
+        $pembayaran = Pembayaran::where('user_id', $id)->first();
+
+        return view('dashboard.pages.pendaftaran.cetakPengurus-pdf', compact('dataProfile', 'dataForm', 'pembayaran'));
+    }
+
+    public function cetakAllKTP()
+    {
+        $pembayaran = Pembayaran::join('users', 'pembayarans.user_id', '=', 'users.id')
+            ->where('users.role', 'pengurus')
+            ->where('pembayarans.status', 'Paid')
+            ->orderBy('pembayarans.created_at', 'DESC')
+            ->with('user.form')
+            ->get(['pembayarans.*']);
         if ($pembayaran->isEmpty()) {
             toast('Tidak Ada Data Status Pembayaran Paid!!!', 'warning');
-            return view('dashboard.pages.pendaftaran.cetak-pdf', compact('pembayaran'));
+            return view('dashboard.pages.pendaftaran.cetakallpengurus-pdf', compact('pembayaran'));
         }
-        return view('dashboard.pages.pendaftaran.cetak-pdf', compact('pembayaran'));
+        return view('dashboard.pages.pendaftaran.cetakallpengurus-pdf', compact('pembayaran'));
     }
 
     public function cetakPDF()

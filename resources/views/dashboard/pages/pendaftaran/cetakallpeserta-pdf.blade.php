@@ -168,41 +168,42 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
+    @include('sweetalert::alert')
+
     <main class="main-content position-relative border-radius-lg ">
-        {{-- @foreach ($dataForm as $dataForm) --}}
-        <div class="container-fluid mt-3">
-            <div class="d-flex justify-content-between">
-                <div class="card">
-                    <img src="{{ asset('assets/img/FRONT2.png') }}" class="card-img" alt="...">
-                    <div class="card-img-overlay">
-                        <div class="first_name mb-2">
-                            <h5 class="name-font text">
-                                {{ $pembayaran->user->nama_depan }}</h5>
-                        </div>
-                        <div class="last_name mb-2">
-                            <h5 class="name-font text">
-                                {{ $pembayaran->user->nama_belakang }}</h5>
-                        </div>
-                        <div class="gender mb-2">
-                            <p class="mb-0 font-weight-bold text">
-                                {{ $pembayaran->user->form->jenis_kelamin }}
-                            </p>
-                        </div>
-                        <div class="school mb-2">
-                            <p class="mb-0 font-weight-bold text">{{ $pembayaran->user->form->asal_sekolah }}</p>
-                        </div>
-                        <div class="origin-school">
-                            <p class="mb-0 font-weight-bold text">{{ $pembayaran->user->form->alamat_asal_sekolah }}
-                            </p>
+        @foreach ($pembayaran as $data)
+            <div class="container-fluid mt-3">
+                <div class="d-flex justify-content-between">
+                    <div class="card">
+                        <img src="{{ asset('assets/img/FRONT2.png') }}" class="card-img" alt="...">
+                        <div class="card-img-overlay">
+                            <div class="first_name mb-2">
+                                <h5 class="font-weight-bold name-font text">
+                                    {{ $data->user->nama_depan }}</h5>
+                            </div>
+                            <div class="last_name mb-2">
+                                <h5 class="font-weight-bold name-font text">
+                                    {{ $data->user->nama_belakang }}</h5>
+                            </div>
+                            <div class="gender mb-2">
+                                <p class="mb-0 font-weight-bold text">
+                                    {{ $data->user->form->jenis_kelamin }}
+                                </p>
+                            </div>
+                            <div class="school mb-2">
+                                <p class="mb-0 font-weight-bold text">{{ $data->user->form->asal_sekolah }}</p>
+                            </div>
+                            <div class="origin-school">
+                                <p class="mb-0 font-weight-bold text">{{ $data->user->form->alamat_asal_sekolah }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card">
-                    <img src="{{ asset('assets/img/BACK2.png') }}" class="card-img" alt="...">
+                    <div class="card">
+                        <img src="{{ asset('assets/img/BACK2.png') }}" class="card-img" alt="...">
+                    </div>
                 </div>
             </div>
-        </div>
-        {{-- @endforeach --}}
+        @endforeach
     </main>
 
 </body>

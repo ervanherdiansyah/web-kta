@@ -6,27 +6,32 @@ use App\Exports\FormExport;
 use App\Http\Controllers\Controller;
 use App\Imports\FormImport;
 use App\Models\Form;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
-class PendaftaranController extends Controller
+class PengurusController extends Controller
 {
     public function index(Request $request)
     {
         $response = Http::get('https://kanglerian.github.io/api-wilayah-indonesia/api/regencies/32.json');
         $kota = $response->json();
+
         if ($request->ajax()) {
             // Proses pencarian
             if ($request->has('filter_kota') && $request->filter_kota != '') {
                 $filterKota = $request->filter_kota;
-                $data = Form::where('alamat_asal_sekolah', $filterKota)->latest()->get();
+                $data = Form::join('users', 'forms.user_id', '=', 'users.id')
+                    ->where('users.role', 'pengurus')
+                    ->where('forms.alamat_asal_sekolah', $filterKota)
+                    ->orderBy('forms.created_at', 'DESC')
+                    ->get(['forms.*']);
             } else {
-                $data = Form::latest()->get();
+                $data = Form::join('users', 'forms.user_id', '=', 'users.id')
+                    ->where('users.role', 'pengurus')
+                    ->orderBy('forms.created_at', 'DESC')
+                    ->get(['forms.*']);
             }
             if (!empty($request->search['value'])) {
                 $searchValue = $request->search['value'];
@@ -97,14 +102,16 @@ class PendaftaranController extends Controller
                             data-bs-target="#delete' . $data->id . '">
                             <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
                         </a> 
-                        
+                        <a href="' . url('/dashboard/cetak-kta-pengurus/' . $data->user_id) . '" target="_blank">
+                            <i class="fa fa-print text-info text-sm opacity-10" aria-hidden="true"></i>
+                        </a>
                         ';
                 })
                 ->rawColumns(['nama_lengkap', 'kelas', 'jurusan', 'asal_sekolah', 'alamat_asal_sekolah', 'jenis_kelamin', 'tempat_lahir', 'tanggal_lahir', 'agama', 'email', 'hp', 'instagram', 'alamat', 'action'])
                 ->make(true);
         }
 
-        return view('dashboard.pages.pendaftaran.pendaftaran', compact('kota'));
+        return view('dashboard.pages.pendaftaran.pengurus', compact('kota'));
     }
 
     public function store(Request $request)
@@ -157,7 +164,7 @@ class PendaftaranController extends Controller
 
         ]);
         toast('Berhasil Tambah Data!!!', 'success');
-        return redirect('/dashboard/pendaftaran');
+        return redirect('/dashboard/pengurus');
         // try {
 
         // } catch (\Throwable $th) {
@@ -207,7 +214,7 @@ class PendaftaranController extends Controller
         $pendaftaran->save();
 
         toast('Berhasil Update Data!!!', 'success');
-        return redirect('/dashboard/pendaftaran');
+        return redirect('/dashboard/pengurus');
     }
 
     public function destroy($id)
@@ -216,7 +223,7 @@ class PendaftaranController extends Controller
         $pendaftaran->delete();
 
         toast('Berhasil Hapus Data!!!', 'success');
-        return redirect('/dashboard/pendaftaran');
+        return redirect('/dashboard/pengurus');
     }
 
     public function exportExcel()
@@ -228,6 +235,6 @@ class PendaftaranController extends Controller
         Excel::import(new FormImport, $request->file('upload'));
 
         toast('Berhasil Import Data!!!', 'success');
-        return redirect('/dashboard/pendaftaran');
+        return redirect('/dashboard/pengurus');
     }
 }

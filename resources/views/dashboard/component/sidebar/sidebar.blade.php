@@ -42,8 +42,29 @@
                     <span class="nav-link-text ms-1">Semua Data</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('dashboard/pengurus') ? 'active' : '' }}"
+                    href="{{ url('/dashboard/pengurus') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa fa-book text-info text-sm opacity-10" aria-hidden="true"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Data Pengurus</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('dashboard/peserta') ? 'active' : '' }}"
+                    href="{{ url('/dashboard/peserta') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa fa-book text-info text-sm opacity-10" aria-hidden="true"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Data Peserta</span>
+                </a>
+            </li>
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data Information</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data Pembayaran
+                </h6>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('dashboard/pembayaran') ? 'active' : '' }} "
@@ -52,8 +73,32 @@
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-single-copy-04 text-danger text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Pembayaran</span>
+                    <span class="nav-link-text ms-1">Semua Data Pembayaran</span>
                 </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('dashboard/pembayaran-paid') ? 'active' : '' }} "
+                    href="{{ url('/dashboard/pembayaran-paid') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-copy-04 text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Data Paid</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('dashboard/pembayaran-unpaid') ? 'active' : '' }} "
+                    href="{{ url('/dashboard/pembayaran-unpaid') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-copy-04 text-danger text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Data Unpaid</span>
+                </a>
+            </li>
+            <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data User Account
+                </h6>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ request()->is('dashboard/account') ? 'active' : '' }}"

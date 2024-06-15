@@ -22,36 +22,42 @@
     <link id="pagestyle" href="{{ asset('argon') }}/assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
     <style>
         .margin-foto {
-            margin-top: 31px;
-            margin-left: 16px;
+            margin-top: 33px;
+            margin-left: 17px;
         }
 
         .img-web {
             height: 164px;
             width: 120px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
             border-bottom-left-radius: 50px;
             border-bottom-right-radius: 50px;
             object-fit: cover;
             margin-right: 20px;
         }
 
+        /* style Name */
+
         .first_name {
-            margin-left: 35px;
-            margin-top: 200px
+            margin-left: 20px;
+            margin-top: 18px
         }
 
         .last_name {
-            margin-left: 35px;
+            margin-left: 20px;
+            margin-top: -25px
         }
 
         .name-font {
-            color: white;
-            font-size: 22px;
+            color: #efc471;
+            font-size: 40px;
+            font-weight: 700;
         }
 
         .gender {
             margin-left: 50px;
-            margin-top: 54px
+            margin-top: 28px
         }
 
         .school {
@@ -65,18 +71,20 @@
         }
 
         .text {
-            color: white !important;
+            color: #efc471 !important;
         }
 
         @media (max-width: 768px) {
             .margin-foto {
-                margin-top: 37px;
+                margin-top: 34px;
                 margin-left: 17px;
             }
 
             .img-phone {
                 height: 181px;
                 width: 137px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
                 border-bottom-left-radius: 50px;
                 border-bottom-right-radius: 50px;
                 object-fit: cover;
@@ -84,22 +92,24 @@
             }
 
             .first_name {
-                margin-left: 35px;
-                margin-top: 200px
+                margin-left: 21px;
+                margin-top: 23px
             }
 
             .last_name {
-                margin-left: 35px;
+                margin-left: 21px;
+                margin-top: -25px
             }
 
             .name-font {
-                color: white;
-                font-size: 22px;
+                color: #efc471;
+                font-size: 40px;
+                font-weight: 700;
             }
 
             .gender {
                 margin-left: 50px;
-                margin-top: 19%
+                margin-top: 22px;
             }
 
             .school {
@@ -113,7 +123,7 @@
             }
 
             .text {
-                color: white !important;
+                color: #efc471 !important;
             }
         }
 
@@ -148,7 +158,7 @@
             }
 
             .text {
-                color: white !important;
+                color: #efc471 !important;
             }
 
         }
@@ -159,21 +169,23 @@
 </head>
 
 <body class="g-sidenav-show bg-gray-100">
-    @include('sweetalert::alert')
-
     <main class="main-content position-relative border-radius-lg ">
         @foreach ($pembayaran as $data)
             <div class="container-fluid mt-3">
                 <div class="d-flex justify-content-between">
                     <div class="card">
-                        <img src="{{ asset('assets/img/FRONT2.png') }}" class="card-img" alt="...">
+                        <img src="{{ asset('assets/img/kta4.png') }}" class="card-img" alt="...">
                         <div class="card-img-overlay">
+                            <div class="margin-foto">
+                                <img src="{{ asset('storage/' . Auth::user()->foto) }}" class="img-web"
+                                    alt="member_photo">
+                            </div>
                             <div class="first_name mb-2">
-                                <h5 class="font-weight-bold name-font text">
+                                <h5 class="name-font text">
                                     {{ $data->user->nama_depan }}</h5>
                             </div>
                             <div class="last_name mb-2">
-                                <h5 class="font-weight-bold name-font text">
+                                <h5 class="name-font text">
                                     {{ $data->user->nama_belakang }}</h5>
                             </div>
                             <div class="gender mb-2">
@@ -185,12 +197,14 @@
                                 <p class="mb-0 font-weight-bold text">{{ $data->user->form->asal_sekolah }}</p>
                             </div>
                             <div class="origin-school">
-                                <p class="mb-0 font-weight-bold text">{{ $data->user->form->alamat_asal_sekolah }}</p>
+                                <p class="mb-0 font-weight-bold text">
+                                    {{ $data->user->form->alamat_asal_sekolah }}
+                                </p>
                             </div>
                         </div>
                     </div>
                     <div class="card">
-                        <img src="{{ asset('assets/img/BACK2.png') }}" class="card-img" alt="...">
+                        <img src="{{ asset('assets/img/kta3.png') }}" class="card-img" alt="...">
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Data\Guru;
 use App\Models\Data\Siswa;
 use App\Models\Form;
+use App\Models\Pembayaran;
 use App\Models\Pendaftaran\Pendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,8 +40,12 @@ class HomeController extends Controller
             ->join('users', 'forms.user_id', '=', 'users.id')
             ->where('users.role', 'pengurus')
             ->count();
+        $jumlahPembayaran = Pembayaran::where('status', 'Paid')->sum('jumlah_pembayaran');
+        $jumlahOngkir = Pembayaran::where('status', 'Paid')->sum('shipping_price');
+        $grandPembayaran = $jumlahPembayaran + $jumlahOngkir;
 
-        // return view('dashboard.pages.home.home', compact('labels', 'data', 'dataChart', 'labelsChart', 'totalPendaftaran', 'totalSiswa', 'totalGuru'));
-        return view('dashboard.pages.home.home', compact('totalPeserta', 'totalPengurus', 'labels', 'data'));
+        // dd($grandPembayaran);
+
+        return view('dashboard.pages.home.home', compact('totalPeserta', 'totalPengurus', 'labels', 'data', 'grandPembayaran'));
     }
 }

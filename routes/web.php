@@ -3,8 +3,12 @@
 use App\Http\Controllers\Autentikasi\AuthController;
 use App\Http\Controllers\Dashboard\Account\UserAccountController;
 use App\Http\Controllers\Dashboard\Home\HomeController;
+use App\Http\Controllers\Dashboard\Pembayaran\PaidController;
 use App\Http\Controllers\Dashboard\Pembayaran\PembayaranController as PembayaranPembayaranController;
+use App\Http\Controllers\Dashboard\Pembayaran\UnpaidController;
 use App\Http\Controllers\Dashboard\Pendaftaran\PendaftaranController;
+use App\Http\Controllers\Dashboard\Pendaftaran\PengurusController;
+use App\Http\Controllers\Dashboard\Pendaftaran\PesertaController;
 use App\Http\Controllers\Dashboard\Profile\ProfileController;
 use App\Http\Controllers\pengurus\Biodata\BiodataController as BiodataBiodataController;
 use App\Http\Controllers\pengurus\Home\HomeController as PengurusHomeHomeController;
@@ -69,6 +73,26 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/pendaftaran/export', [PendaftaranController::class, 'exportExcel']);
             Route::post('/pendaftaran/import', [PendaftaranController::class, 'importExcel']);
 
+            //Pengurus
+            Route::get('/pengurus', [PengurusController::class, 'index'])->name('pengurus.index');
+            Route::post('/pengurus/create', [PengurusController::class, 'store']);
+            Route::get('/pengurus/edit/{id}', [PengurusController::class, 'edit']);
+            Route::post('/pengurus/update/{id}', [PengurusController::class, 'update']);
+            Route::delete('/pengurus/destroy/{id}', [PengurusController::class, 'destroy']);
+            Route::post('/pengurus/update/status/{id}', [PengurusController::class, 'updatestatus']);
+            Route::get('/pengurus/export', [PengurusController::class, 'exportExcel']);
+            Route::post('/pengurus/import', [PengurusController::class, 'importExcel']);
+
+            //Peserta
+            Route::get('/peserta', [PesertaController::class, 'index'])->name('peserta.index');
+            Route::post('/peserta/create', [PesertaController::class, 'store']);
+            Route::get('/peserta/edit/{id}', [PesertaController::class, 'edit']);
+            Route::post('/peserta/update/{id}', [PesertaController::class, 'update']);
+            Route::delete('/peserta/destroy/{id}', [PesertaController::class, 'destroy']);
+            Route::post('/peserta/update/status/{id}', [PesertaController::class, 'updatestatus']);
+            Route::get('/peserta/export', [PesertaController::class, 'exportExcel']);
+            Route::post('/peserta/import', [PesertaController::class, 'importExcel']);
+
             //Profile
             Route::get('/profile', [ProfileController::class, 'index']);
             Route::post('/profile/create', [ProfileController::class, 'store']);
@@ -83,10 +107,25 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/pembayaran/update/{id}', [PembayaranPembayaranController::class, 'update']);
             Route::delete('/pembayaran/destroy/{id}', [PembayaranPembayaranController::class, 'destroy']);
 
-            Route::get('/cetak-all-kta', [KtaSiswaController::class, 'cetakAllKTA']);
-            Route::get('/cetak-kta-peserta/{id}', [KtaSiswaController::class, 'cetakKTAPeserta']);
-            Route::get('/cetak-kta-pengurus/{id}', [KtaSiswaController::class, 'cetakKTPPengurus']);
+            //Data Pembayaran Paid
+            Route::get('/pembayaran-paid', [PaidController::class, 'index']);
+            Route::post('/pembayaran-paid/create', [PaidController::class, 'store']);
+            Route::get('/pembayaran-paid/edit/{id}', [PaidController::class, 'edit']);
+            Route::post('/pembayaran-paid/update/{id}', [PaidController::class, 'update']);
+            Route::delete('/pembayaran-paid/destroy/{id}', [PaidController::class, 'destroy']);
 
+            //Data Pembayaran Unpaid
+            Route::get('/pembayaran-unpaid', [UnpaidController::class, 'index']);
+            Route::post('/pembayaran-unpaid/create', [UnpaidController::class, 'store']);
+            Route::get('/pembayaran-unpaid/edit/{id}', [UnpaidController::class, 'edit']);
+            Route::post('/pembayaran-unpaid/update/{id}', [UnpaidController::class, 'update']);
+            Route::delete('/pembayaran-unpaid/destroy/{id}', [UnpaidController::class, 'destroy']);
+
+            Route::get('/cetak-all-kta-pengurus', [KtaKtaSiswaController::class, 'cetakAllKTP']);
+            Route::get('/cetak-kta-pengurus/{id}', [KtaKtaSiswaController::class, 'cetakKTPPengurus']);
+
+            Route::get('/cetak-all-kta-peserta', [KtaSiswaController::class, 'cetakAllKTA']);
+            Route::get('/cetak-kta-peserta/{id}', [KtaSiswaController::class, 'cetakKTAPeserta']);
             //Change Password
             Route::get('/changepassword', [UserAccountController::class, 'indexupdatepassword']);
             Route::post('/changepassword', [UserAccountController::class, 'updatepassword'])->name('changepassword');
@@ -165,7 +204,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::delete('/biodata/destroy/{id}', [BiodataBiodataController::class, 'destroy']);
 
             //cetak kta
-            Route::get('/cetak-kta', [KtaKtaSiswaController::class, 'cetakKTA']);
+            Route::get('/cetak-kta', [KtaKtaSiswaController::class, 'cetakKTP']);
 
             //Profile
             Route::get('/profile', [PengurusProfileProfileController::class, 'index']);
