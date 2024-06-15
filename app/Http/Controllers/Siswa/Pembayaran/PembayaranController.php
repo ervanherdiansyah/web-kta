@@ -97,6 +97,7 @@ class PembayaranController extends Controller
                 'courier' => $courierName,
                 'shipping_price' => $shipping_fee,
                 'shipping_status' => 'diproses',
+                'shipping_paket' => $request->delivery_package,
                 'no_wa' => $request->no_wa,
             ]);
 

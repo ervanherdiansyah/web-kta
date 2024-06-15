@@ -20,9 +20,9 @@
                                     data-bs-target="#filterkota">
                                     Filter Kota
                                 </button>
-                                <a href="{{ url('/dashboard/cetak-all-kta') }}" target="_blank"
+                                {{-- <a href="{{ url('/dashboard/cetak-all-kta') }}" target="_blank"
                                     class="btn btn-primary btn-sm">Cetak
-                                    KTA</a>
+                                    KTA</a> --}}
                                 <a href="{{ url('/dashboard/pendaftaran/export') }}"
                                     class="btn btn-primary btn-sm ms-auto">Export</a>
                                 {{-- <button type="button" class="btn btn-primary btn-sm ms-auto" data-bs-toggle="modal"

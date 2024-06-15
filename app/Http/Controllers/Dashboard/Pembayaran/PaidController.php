@@ -64,6 +64,9 @@ class PaidController extends Controller
                 ->addColumn('shipping_price', function ($data) {
                     return htmlspecialchars($data->shipping_price);
                 })
+                ->addColumn('shipping_paket', function ($data) {
+                    return htmlspecialchars($data->shipping_paket);
+                })
                 ->addColumn('shipping_status', function ($data) {
                     return htmlspecialchars($data->shipping_status);
                 })
