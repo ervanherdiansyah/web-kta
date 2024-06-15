@@ -61,6 +61,9 @@
                                             Harga Ongkir</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Shipping Paket</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Shipping Status</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
@@ -277,6 +280,10 @@ aria-hidden="true">
                     {
                         data: "shipping_price",
                         name: "shipping_price"
+                    },
+                    {
+                        data: "shipping_paket",
+                        name: "shipping_paket"
                     },
                     {
                         data: "shipping_status",
