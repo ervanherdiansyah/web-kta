@@ -66,7 +66,7 @@
                                 <div class="numbers">
                                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Pembayaran</p>
                                     <h5 class="font-weight-bolder">
-                                        {{ $grandPembayaran }}
+                                        Rp.{{ number_format($grandPembayaran) }}
                                     </h5>
                                     <p class="mb-0">
                                         <span class="text-success text-sm font-weight-bolder"></span>
