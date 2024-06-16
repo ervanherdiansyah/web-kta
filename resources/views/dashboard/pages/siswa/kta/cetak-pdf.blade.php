@@ -72,9 +72,196 @@
 
         .text {
             color: #557571 !important;
+            font-weight: 700;
         }
 
-        @media (max-width: 768px) {
+        @media screen and (max-width: 375px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 37px;
+                margin-left: 17px;
+            }
+
+            .img-phone {
+                height: 181px;
+                width: 137px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 3px;
+                margin-top: 95px
+            }
+
+            .last_name {
+                margin-left: 3px;
+                margin-top: -15px;
+            }
+
+            .name-font {
+                color: #557571;
+                font-size: 20px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 20px;
+                margin-top: 14px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 20px;
+                margin-top: -8px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 20px;
+                margin-top: -8px
+            }
+
+            .text {
+                color: #557571;
+                /* font-size: */
+                font-weight: 700;
+                font-size: 10px
+            }
+        }
+
+        @media screen and (min-width: 376px) and (max-width: 425px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 37px;
+                margin-left: 17px;
+            }
+
+            .img-phone {
+                height: 181px;
+                width: 137px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 6px;
+                margin-top: 115px
+            }
+
+            .last_name {
+                margin-left: 6px;
+                margin-top: -15px;
+            }
+
+            .name-font {
+                color: #557571;
+                font-size: 20px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 25px;
+                margin-top: 21px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 25px;
+                margin-top: -4px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 25px;
+                margin-top: -6px
+            }
+
+            .text {
+                color: #557571;
+                /* font-size: */
+                font-weight: 700;
+                font-size: 10px
+            }
+        }
+
+        @media screen and (min-width: 426px) and (max-width: 430px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 37px;
+                margin-left: 17px;
+            }
+
+            .img-phone {
+                height: 181px;
+                width: 137px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 6px;
+                margin-top: 118px
+            }
+
+            .last_name {
+                margin-left: 6px;
+                margin-top: -15px;
+            }
+
+            .name-font {
+                color: #557571;
+                font-size: 20px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 25px;
+                margin-top: 21px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 25px;
+                margin-top: -4px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 25px;
+                margin-top: -6px
+            }
+
+            .text {
+                color: #557571;
+                /* font-size: */
+                font-weight: 700;
+                font-size: 10px
+            }
+        }
+
+        @media screen and (min-width: 431px) and (max-width: 768px) {
             .margin-foto {
                 margin-top: 37px;
                 margin-left: 17px;
@@ -176,23 +363,23 @@
                     <img src="{{ asset('assets/img/FRONT2.png') }}" class="card-img" alt="...">
                     <div class="card-img-overlay">
                         <div class="first_name mb-2">
-                            <h5 class="name-font text">
+                            <h5 class="name-font ">
                                 {{ $pembayaran->user->nama_depan }}</h5>
                         </div>
                         <div class="last_name mb-2">
-                            <h5 class="name-font text">
+                            <h5 class="name-font ">
                                 {{ $pembayaran->user->nama_belakang }}</h5>
                         </div>
                         <div class="gender mb-2">
-                            <p class="mb-0 font-weight-bold text">
+                            <p class="mb-0 text">
                                 {{ $pembayaran->user->form->jenis_kelamin }}
                             </p>
                         </div>
                         <div class="school mb-2">
-                            <p class="mb-0 font-weight-bold text">{{ $pembayaran->user->form->asal_sekolah }}</p>
+                            <p class="mb-0 text">{{ $pembayaran->user->form->asal_sekolah }}</p>
                         </div>
                         <div class="origin-school">
-                            <p class="mb-0 font-weight-bold text">{{ $pembayaran->user->form->alamat_asal_sekolah }}
+                            <p class="mb-0 text">{{ $pembayaran->user->form->alamat_asal_sekolah }}
                             </p>
                         </div>
                     </div>

@@ -46,6 +46,8 @@
 
         .font-color {
             color: #efc471;
+            /* font-size: */
+            font-weight: 700;
         }
 
         /* style gender */
@@ -67,18 +69,17 @@
             margin-top: 7px
         }
 
-        @media (max-width: 768px) {
-
+        @media screen and (max-width: 375px) {
             /* style Foto */
 
             .margin-foto {
-                margin-top: 34px;
-                margin-left: 17px;
+                margin-top: 28px;
+                margin-left: 14px;
             }
 
-            .img-phone {
-                height: 181px;
-                width: 137px;
+            .img-web {
+                height: 154px;
+                width: 113px;
                 border-top-left-radius: 10px;
                 border-top-right-radius: 10px;
                 border-bottom-left-radius: 50px;
@@ -87,25 +88,211 @@
                 margin-right: 20px;
             }
 
+            /* style Name */
+
             .first_name {
-                margin-left: 21px;
-                margin-top: 23px
+                margin-left: 18px;
+                margin-top: 25px
             }
 
             .last_name {
-                margin-left: 21px;
-                margin-top: -25px
+                margin-left: 18px;
+                margin-top: -25px;
             }
 
             .name-font {
                 color: #efc471;
+                font-size: 35px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 50px;
+                margin-top: 25px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 50px;
+                margin-top: 5px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 50px;
+                margin-top: 5px
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 15px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 376px) and (max-width: 425px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 36px;
+                margin-left: 19px;
+            }
+
+            .img-web {
+                height: 178px;
+                width: 132px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 23px;
+                margin-top: 28px
+            }
+
+            .last_name {
+                margin-left: 23px;
+                margin-top: -25px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 38px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 53px;
+                margin-top: 37px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 53px;
+                margin-top: 7px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 53px;
+                margin-top: 8px
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 17px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 426px) and (max-width: 430px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 36px;
+                margin-left: 19px;
+            }
+
+            .img-web {
+                height: 181px;
+                width: 134px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 23px;
+                margin-top: 31px
+            }
+
+            .last_name {
+                margin-left: 23px;
+                margin-top: -25px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 38px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 53px;
+                margin-top: 37px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 53px;
+                margin-top: 8px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 53px;
+                margin-top: 9px
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 17px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 431px) and (max-width: 768px) {
+            .margin-foto {
+                margin-top: 37px;
+                margin-left: 17px;
+            }
+
+            .img-phone {
+                height: 181px;
+                width: 137px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            .first_name {
+                margin-left: 20px;
+                margin-top: 200px
+            }
+
+            .last_name {
+                margin-left: 20px;
+                margin-top: -25px;
+            }
+
+            .name-font {
+                color: #557571;
                 font-size: 40px;
                 font-weight: 700;
+
             }
 
             .gender {
                 margin-left: 50px;
-                margin-top: 22px;
+                margin-top: 31px
             }
 
             .school {
@@ -116,6 +303,10 @@
             .origin-school {
                 margin-left: 50px;
                 margin-top: 7px
+            }
+
+            .text {
+                color: #557571 !important;
             }
         }
     </style>
@@ -462,16 +653,16 @@
                                                         {{ $dataForm->user->nama_belakang }}</h5>
                                                 </div>
                                                 <div class="gender">
-                                                    <p class="mb-0 font-weight-bold font-color">
+                                                    <p class="mb-0 font-color">
                                                         {{ $dataForm->jenis_kelamin }}
                                                     </p>
                                                 </div>
                                                 <div class="school">
-                                                    <p class="mb-0 font-weight-bold font-color">
+                                                    <p class="mb-0 font-color">
                                                         {{ $dataForm->asal_sekolah }}</p>
                                                 </div>
                                                 <div class="origin-school">
-                                                    <p class="mb-0 font-weight-bold font-color">
+                                                    <p class="mb-0 font-color">
                                                         {{ $dataForm->alamat_asal_sekolah }}
                                                     </p>
                                                 </div>
