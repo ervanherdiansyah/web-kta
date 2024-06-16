@@ -61,11 +61,11 @@
                 window.snap.pay('{{ $snapToken }}', {
                     onSuccess: function(result) {
                         /* You may add your own implementation here */
-                        window.location.href = '/pengurus/pembayaran';
+                        window.location.href = '/pengurus/kta';
                     },
                     onPending: function(result) {
                         /* You may add your own implementation here */
-                        window.location.href = '/pengurus/pembayaran';
+                        window.location.href = '/pengurus/kta';
 
                     },
                     onError: function(result) {
