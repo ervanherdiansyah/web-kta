@@ -75,7 +75,131 @@
             font-weight: 700;
         }
 
-        @media screen and (max-width: 375px) {
+        @media screen and (max-width: 320px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 37px;
+                margin-left: 17px;
+            }
+
+            .img-phone {
+                height: 181px;
+                width: 137px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 1px;
+                margin-top: 76px;
+            }
+
+            .last_name {
+                margin-left: 1px;
+                margin-top: -15px;
+            }
+
+            .name-font {
+                color: #557571;
+                font-size: 16px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 12px;
+                margin-top: 18px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 12px;
+                margin-top: -4px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 12px;
+                margin-top: -4px
+            }
+
+            .text {
+                color: #557571;
+                /* font-size: */
+                font-weight: 700;
+                font-size: 6px
+            }
+        }
+
+        @media screen and (min-width: 321px) and (max-width: 360px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 37px;
+                margin-left: 17px;
+            }
+
+            .img-phone {
+                height: 181px;
+                width: 137px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 3px;
+                margin-top: 90px;
+            }
+
+            .last_name {
+                margin-left: 3px;
+                margin-top: -15px;
+            }
+
+            .name-font {
+                color: #557571;
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 16px;
+                margin-top: 18px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 16px;
+                margin-top: -3px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 16px;
+                margin-top: -3px
+            }
+
+            .text {
+                color: #557571;
+                /* font-size: */
+                font-weight: 700;
+                font-size: 7px
+            }
+        }
+
+        @media screen and (min-width: 361px) and (max-width: 375px) {
             /* style Foto */
 
             .margin-foto {
@@ -137,7 +261,131 @@
             }
         }
 
-        @media screen and (min-width: 376px) and (max-width: 425px) {
+        @media screen and (min-width: 376px) and (max-width: 390px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 37px;
+                margin-left: 17px;
+            }
+
+            .img-phone {
+                height: 181px;
+                width: 137px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 3px;
+                margin-top: 100px
+            }
+
+            .last_name {
+                margin-left: 3px;
+                margin-top: -15px;
+            }
+
+            .name-font {
+                color: #557571;
+                font-size: 20px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 20px;
+                margin-top: 17px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 20px;
+                margin-top: -7px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 20px;
+                margin-top: -8px
+            }
+
+            .text {
+                color: #557571;
+                /* font-size: */
+                font-weight: 700;
+                font-size: 10px
+            }
+        }
+
+        @media screen and (min-width: 391px) and (max-width: 414px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 37px;
+                margin-left: 17px;
+            }
+
+            .img-phone {
+                height: 181px;
+                width: 137px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 5px;
+                margin-top: 110px
+            }
+
+            .last_name {
+                margin-left: 5px;
+                margin-top: -15px;
+            }
+
+            .name-font {
+                color: #557571;
+                font-size: 20px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 22px;
+                margin-top: 22px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 22px;
+                margin-top: -7px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 22px;
+                margin-top: -8px
+            }
+
+            .text {
+                color: #557571;
+                /* font-size: */
+                font-weight: 700;
+                font-size: 10px
+            }
+        }
+
+        @media screen and (min-width: 415px) and (max-width: 425px) {
             /* style Foto */
 
             .margin-foto {
@@ -261,7 +509,7 @@
             }
         }
 
-        @media screen and (min-width: 431px) and (max-width: 768px) {
+        /* @media screen and (min-width: 431px) and (max-width: 768px) {
             .margin-foto {
                 margin-top: 37px;
                 margin-left: 17px;
@@ -311,7 +559,7 @@
             .text {
                 color: #557571 !important;
             }
-        }
+        } */
 
         .card {
             max-width: 320px;

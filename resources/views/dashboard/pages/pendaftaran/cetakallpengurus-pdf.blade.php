@@ -74,7 +74,448 @@
             color: #efc471 !important;
         }
 
-        @media (max-width: 768px) {
+        @media screen and (max-width: 320px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 6px;
+                margin-left: -3px;
+            }
+
+            .img-web {
+                height: 70px;
+                width: 53px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: -2px;
+                margin-top: 10px
+            }
+
+            .last_name {
+                margin-left: -2px;
+                margin-top: -16px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 17px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 13px;
+                margin-top: 8px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 13px;
+                margin-top: -4px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 13px;
+                margin-top: -5px;
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 7px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 321px) and (max-width: 360px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 8px;
+                margin-left: -1px;
+            }
+
+            .img-web {
+                height: 81px;
+                width: 61px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 2px;
+                margin-top: 10px
+            }
+
+            .last_name {
+                margin-left: 2px;
+                margin-top: -16px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 17px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 16px;
+                margin-top: 18px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 16px;
+                margin-top: -6px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 16px;
+                margin-top: -4px;
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 8px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 361px) and (max-width: 375px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 9px;
+                margin-left: -1px;
+            }
+
+            .img-web {
+                height: 85px;
+                width: 64px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 2px;
+                margin-top: 12px
+            }
+
+            .last_name {
+                margin-left: 2px;
+                margin-top: -16px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 18px;
+                margin-top: 17px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 18px;
+                margin-top: -5px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 18px;
+                margin-top: -3px;
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 8px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 376px) and (max-width: 390px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 10px;
+                margin-left: 1px;
+            }
+
+            .img-web {
+                height: 90px;
+                width: 66px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 3px;
+                margin-top: 14px
+            }
+
+            .last_name {
+                margin-left: 3px;
+                margin-top: -16px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 20px;
+                margin-top: 18px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 20px;
+                margin-top: -5px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 20px;
+                margin-top: -2px;
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 8px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 391px) and (max-width: 414px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 10px;
+                margin-left: 2px;
+            }
+
+            .img-web {
+                height: 98px;
+                width: 70px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 4px;
+                margin-top: 16px
+            }
+
+            .last_name {
+                margin-left: 4px;
+                margin-top: -16px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 22px;
+                margin-top: 21px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 22px;
+                margin-top: -3px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 22px;
+                margin-top: -2px;
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 9px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 415px) and (max-width: 425px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 13px;
+                margin-left: 2px;
+            }
+
+            .img-web {
+                height: 98px;
+                width: 73px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 6px;
+                margin-top: 18px
+            }
+
+            .last_name {
+                margin-left: 6px;
+                margin-top: -16px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 22px;
+                margin-top: 23px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 22px;
+                margin-top: -3px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 22px;
+                margin-top: -2px;
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 9px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 426px) and (max-width: 430px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 14px;
+                margin-left: 3px;
+            }
+
+            .img-web {
+                height: 99px;
+                width: 73px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 8px;
+                margin-top: 20px
+            }
+
+            .last_name {
+                margin-left: 8px;
+                margin-top: -16px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 18px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 22px;
+                margin-top: 22px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 22px;
+                margin-top: -3px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 22px;
+                margin-top: -2px;
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 9px;
+                font-weight: 700;
+            }
+        }
+
+        /* @media (max-width: 768px) {
             .margin-foto {
                 margin-top: 34px;
                 margin-left: 17px;
@@ -125,7 +566,7 @@
             .text {
                 color: #efc471 !important;
             }
-        }
+        } */
 
         .card {
             max-width: 320px;

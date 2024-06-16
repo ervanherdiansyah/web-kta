@@ -69,7 +69,133 @@
             margin-top: 7px
         }
 
-        @media screen and (max-width: 375px) {
+        @media screen and (max-width: 320px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 20px;
+                margin-left: 8px;
+            }
+
+            .img-web {
+                height: 126px;
+                width: 93px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 13px;
+                margin-top: 25px
+            }
+
+            .last_name {
+                margin-left: 13px;
+                margin-top: -20px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 24px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 37px;
+                margin-top: 26px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 37px;
+                margin-top: 3px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 37px;
+                margin-top: 7px
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 12px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width:321px) and (max-width: 360px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 27px;
+                margin-left: 12px;
+            }
+
+            .img-web {
+                height: 143px;
+                width: 109px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 18px;
+                margin-top: 25px
+            }
+
+            .last_name {
+                margin-left: 18px;
+                margin-top: -25px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 30px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 45px;
+                margin-top: 35px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 45px;
+                margin-top: 7px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 45px;
+                margin-top: 8px
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 13px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 361px) and (max-width: 375px) {
             /* style Foto */
 
             .margin-foto {
@@ -132,7 +258,133 @@
             }
         }
 
-        @media screen and (min-width: 376px) and (max-width: 425px) {
+        @media screen and (min-width: 376px) and (max-width: 390px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 30px;
+                margin-left: 14px;
+            }
+
+            .img-web {
+                height: 160px;
+                width: 120px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 18px;
+                margin-top: 25px
+            }
+
+            .last_name {
+                margin-left: 18px;
+                margin-top: -25px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 35px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 50px;
+                margin-top: 34px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 50px;
+                margin-top: 7px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 50px;
+                margin-top: 7px
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 15px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 391px) and (max-width: 414px) {
+            /* style Foto */
+
+            .margin-foto {
+                margin-top: 33px;
+                margin-left: 16px;
+            }
+
+            .img-web {
+                height: 174px;
+                width: 130px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 50px;
+                border-bottom-right-radius: 50px;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+
+            /* style Name */
+
+            .first_name {
+                margin-left: 18px;
+                margin-top: 30px
+            }
+
+            .last_name {
+                margin-left: 18px;
+                margin-top: -25px;
+            }
+
+            .name-font {
+                color: #efc471;
+                font-size: 35px;
+                font-weight: 700;
+            }
+
+            /* style gender */
+
+            .gender {
+                margin-left: 50px;
+                margin-top: 40px
+            }
+
+            /* style school */
+            .school {
+                margin-left: 50px;
+                margin-top: 9px
+            }
+
+            /* style origin-school */
+            .origin-school {
+                margin-left: 50px;
+                margin-top: 9px
+            }
+
+            .font-color {
+                color: #efc471;
+                font-size: 15px;
+                font-weight: 700;
+            }
+        }
+
+        @media screen and (min-width: 415px) and (max-width: 425px) {
             /* style Foto */
 
             .margin-foto {
@@ -259,23 +511,29 @@
         }
 
         @media screen and (min-width: 431px) and (max-width: 768px) {
+            /* style Foto */
+
             .margin-foto {
-                margin-top: 37px;
-                margin-left: 17px;
+                margin-top: 31px;
+                margin-left: 16px;
             }
 
-            .img-phone {
-                height: 181px;
-                width: 137px;
+            .img-web {
+                height: 164px;
+                width: 120px;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
                 border-bottom-left-radius: 50px;
                 border-bottom-right-radius: 50px;
                 object-fit: cover;
                 margin-right: 20px;
             }
 
+            /* style Name */
+
             .first_name {
                 margin-left: 20px;
-                margin-top: 200px
+                margin-top: 18px
             }
 
             .last_name {
@@ -284,29 +542,34 @@
             }
 
             .name-font {
-                color: #557571;
+                color: #efc471;
                 font-size: 40px;
                 font-weight: 700;
-
             }
+
+            .font-color {
+                color: #efc471;
+                /* font-size: */
+                font-weight: 700;
+            }
+
+            /* style gender */
 
             .gender {
                 margin-left: 50px;
-                margin-top: 31px
+                margin-top: 28px
             }
 
+            /* style school */
             .school {
                 margin-left: 50px;
                 margin-top: 5px
             }
 
+            /* style origin-school */
             .origin-school {
                 margin-left: 50px;
                 margin-top: 7px
-            }
-
-            .text {
-                color: #557571 !important;
             }
         }
     </style>
