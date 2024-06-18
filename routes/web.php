@@ -107,6 +107,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/pembayaran/update/{id}', [PembayaranPembayaranController::class, 'update']);
             Route::delete('/pembayaran/destroy/{id}', [PembayaranPembayaranController::class, 'destroy']);
 
+            Route::get('/pembayaran/export', [PembayaranPembayaranController::class, 'exportExcel']);
+
             //Data Pembayaran Paid
             Route::get('/pembayaran-paid', [PaidController::class, 'index']);
             Route::post('/pembayaran-paid/create', [PaidController::class, 'store']);

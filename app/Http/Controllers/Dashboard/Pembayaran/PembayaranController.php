@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Dashboard\Pembayaran;
 
+use App\Exports\PembayaranExport;
 use App\Http\Controllers\Controller;
 use App\Models\Pembayaran;
 use App\Models\Spp;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class PembayaranController extends Controller
@@ -147,5 +149,10 @@ class PembayaranController extends Controller
 
         toast('Berhasil Hapus Data!!!', 'success');
         return redirect('/dashboard/pembayaran');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new PembayaranExport, 'data-pembayaran.xlsx');
     }
 }
