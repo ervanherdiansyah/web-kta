@@ -42,7 +42,7 @@ class PembayaranController extends Controller
                 })
                 ->addColumn('updated_at', function ($data) {
 
-                    if ($data->created_at === $data->updated_at) {
+                    if ($data->status == "Unpaid") {
                         $tanggal = "-";
                     } else {
                         $tanggal = \Carbon\Carbon::parse($data->updated_at)->format('d F Y');

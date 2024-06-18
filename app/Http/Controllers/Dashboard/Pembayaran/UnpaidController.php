@@ -39,7 +39,14 @@ class UnpaidController extends Controller
                     return htmlspecialchars($data->jumlah_pembayaran);
                 })
                 ->addColumn('updated_at', function ($data) {
-                    return htmlspecialchars($data->updated_at);
+
+                    if ($data->status == "Unpaid") {
+                        $tanggal = "-";
+                    } else {
+                        $tanggal = \Carbon\Carbon::parse($data->updated_at)->format('d F Y');
+                    }
+
+                    return htmlspecialchars($tanggal);
                 })
                 ->addColumn('status', function ($data) {
                     return htmlspecialchars($data->status);
