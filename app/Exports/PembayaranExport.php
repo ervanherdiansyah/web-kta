@@ -2,7 +2,6 @@
 
 namespace App\Exports;
 
-use App\Models\Form;
 use App\Models\Pembayaran;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -15,12 +14,13 @@ class PembayaranExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        $guru = Pembayaran::with(['provinsi', 'kota'])->where('status', 'Paid')->get();
+        $guru = Pembayaran::with('provinsi', 'kota')->where('status', 'Paid')->get();
         $data = $guru->map(function ($item, $index) {
             // Hapus kolom 'id' dari hasil toArray()
             $itemArray = $item->toArray();
             unset($itemArray['id']);
             unset($itemArray['created_at']);
+            unset($itemArray['updated_at']);
             unset($itemArray['user_id']);
             unset($itemArray['tanggal_pembayaran']);
             $itemArray['provinsi'] = $item->provinsi->name ?? '';;
