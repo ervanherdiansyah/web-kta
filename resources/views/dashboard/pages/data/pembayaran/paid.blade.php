@@ -250,8 +250,8 @@
                         name: "jumlah_pembayaran"
                     },
                     {
-                        data: "updated_at",
-                        name: "updated_at"
+                        data: "tanggal_pembayaran",
+                        name: "tanggal_pembayaran"
                     },
                     {
                         data: "status",
