@@ -41,7 +41,14 @@ class PembayaranController extends Controller
                     return htmlspecialchars($data->jumlah_pembayaran);
                 })
                 ->addColumn('updated_at', function ($data) {
-                    return htmlspecialchars($data->updated_at);
+
+                    if ($data->created_at === $data->updated_at) {
+                        $tanggal = "-";
+                    } else {
+                        $tanggal = \Carbon\Carbon::parse($data->updated_at)->format('d F Y');
+                    }
+
+                    return htmlspecialchars($tanggal);
                 })
                 ->addColumn('status', function ($data) {
                     return htmlspecialchars($data->status);
