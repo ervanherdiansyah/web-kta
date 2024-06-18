@@ -38,10 +38,6 @@ class PaidController extends Controller
                 ->addColumn('jumlah_pembayaran', function ($data) {
                     return htmlspecialchars($data->jumlah_pembayaran);
                 })
-                ->addColumn('tanggal_pembayaran', function ($data) {
-                    $updated_at = Carbon::createFromFormat('Y-m-d', $data->updated_at)->translatedFormat('d F Y');
-                    return htmlspecialchars($data->updated_at);
-                })
                 ->addColumn('status', function ($data) {
                     return htmlspecialchars($data->status);
                 })
