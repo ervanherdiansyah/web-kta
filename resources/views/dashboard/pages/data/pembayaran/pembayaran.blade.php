@@ -17,8 +17,7 @@
                                 data-bs-target="#exampleModal">
                                 Tambah Pembayaran
                             </button> --}}
-                            <a href="{{ url('/dashboard/pembayaran/export') }}"
-                                class="btn btn-primary btn-sm ms-auto">Export</a>
+
                         </div>
                     </div>
                     <div class="card-body px-4 pt-0 pb-2">

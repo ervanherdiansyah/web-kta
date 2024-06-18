@@ -23,8 +23,8 @@ class PembayaranExport implements FromCollection, WithHeadings
             unset($itemArray['created_at']);
             unset($itemArray['user_id']);
             unset($itemArray['tanggal_pembayaran']);
-            $itemArray['provinsi'] = $item->provinsi->name;
-            $itemArray['kota'] = $item->kota->name;
+            $itemArray['provinsi'] = $item->provinsi->name ?? '';;
+            $itemArray['kota'] = $item->kota->name ?? '';;
             $itemArray['tanggal_pembayaran'] = $item->updated_at;
 
             // Menggabungkan nomor urutan dan data siswa
