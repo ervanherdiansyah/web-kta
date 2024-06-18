@@ -24,9 +24,24 @@ class PembayaranExport implements FromCollection, WithHeadings
             unset($itemArray['provinsi_id']);
             unset($itemArray['kota_id']);
             unset($itemArray['user_id']);
-            unset($itemArray['tanggal_pembayaran']);
+            unset($itemArray['kecamatan']);
+            unset($itemArray['kelurahan']);
+            unset($itemArray['kode_pos']);
+            unset($itemArray['courier']);
+            unset($itemArray['shipping_price']);
+            unset($itemArray['shipping_status']);
+            unset($itemArray['shipping_paket']);
+            unset($itemArray['no_wa']);
             $itemArray['provinsi'] = $item->provinsi->name ?? '';;
             $itemArray['kota'] = $item->kota->name ?? '';;
+            $itemArray['kecamatan'] = $item->kecamatan;
+            $itemArray['kelurahan'] = $item->kelurahan;
+            $itemArray['kode_pos'] = $item->kode_pos;
+            $itemArray['courier'] = $item->courier;
+            $itemArray['shipping_price'] = $item->shipping_price;
+            $itemArray['shipping_status'] = $item->shipping_status;
+            $itemArray['shipping_paket'] = $item->shipping_paket;
+            $itemArray['no_wa'] = $item->no_wa;
             $itemArray['tanggal_pembayaran'] = $item->updated_at;
 
             // Menggabungkan nomor urutan dan data siswa
@@ -54,7 +69,7 @@ class PembayaranExport implements FromCollection, WithHeadings
             'courier',
             'shipping_price',
             'shipping_status',
-            'shipping_status',
+            'shipping_paket',
             'no_wa',
             'tanggal_pembayaran'
         ];
