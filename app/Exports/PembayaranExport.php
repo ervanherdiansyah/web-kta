@@ -24,6 +24,7 @@ class PembayaranExport implements FromCollection, WithHeadings
             unset($itemArray['provinsi_id']);
             unset($itemArray['kota_id']);
             unset($itemArray['user_id']);
+            unset($itemArray['tanggal_pembayaran']);
             unset($itemArray['kecamatan']);
             unset($itemArray['kelurahan']);
             unset($itemArray['kode_pos']);
