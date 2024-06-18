@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Pembayaran;
 use App\Models\Spp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -38,6 +39,10 @@ class PembayaranController extends Controller
                 })
                 ->addColumn('jumlah_pembayaran', function ($data) {
                     return htmlspecialchars($data->jumlah_pembayaran);
+                })
+                ->addColumn('updated_at', function ($data) {
+                    $updated_at = Carbon::createFromFormat('Y-m-d', $data->updated_at)->translatedFormat('d F Y');
+                    return htmlspecialchars($updated_at);
                 })
                 ->addColumn('status', function ($data) {
                     return htmlspecialchars($data->status);

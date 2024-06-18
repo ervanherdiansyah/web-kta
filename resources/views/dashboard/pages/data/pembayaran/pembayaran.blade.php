@@ -31,6 +31,9 @@
                                             Jumlah Pembayaran</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Tanggal Pembayaran</th>
+                                        <th
+                                            class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Status</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
@@ -245,6 +248,10 @@
                     {
                         data: "jumlah_pembayaran",
                         name: "jumlah_pembayaran"
+                    },
+                    {
+                        data: "updated_at",
+                        name: "updated_at"
                     },
                     {
                         data: "status",
