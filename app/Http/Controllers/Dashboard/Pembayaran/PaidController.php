@@ -38,6 +38,9 @@ class PaidController extends Controller
                 ->addColumn('jumlah_pembayaran', function ($data) {
                     return htmlspecialchars($data->jumlah_pembayaran);
                 })
+                ->addColumn('updated_at', function ($data) {
+                    return htmlspecialchars($data->updated_at);
+                })
                 ->addColumn('status', function ($data) {
                     return htmlspecialchars($data->status);
                 })
