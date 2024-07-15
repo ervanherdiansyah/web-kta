@@ -43,7 +43,7 @@ class AuthController extends Controller
             toast('Berhasil Login!!!', 'success');
             return '/peserta/biodata';
         } else if (Auth::user()->role === 'pengurus') {
-            toast('SELAMAT & SUKSES Atas terpilihnya sebagai Pengurus Forum OSIS Jawa Barat Generasi 12', 'success');
+            Alert::success('Atas terpilihnya sebagai Pengurus Forum OSIS Jawa Barat Generasi 12', 'SELAMAT & SUKSES');
             return '/pengurus/biodata';
         }
     }
