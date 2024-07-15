@@ -618,7 +618,8 @@
                     <img src="{{ asset('assets/img/kta4.png') }}" class="card-img" alt="...">
                     <div class="card-img-overlay">
                         <div class="margin-foto">
-                            <img src="{{ asset('storage/' . Auth::user()->foto) }}" class="img-web" alt="member_photo">
+                            <img src="{{ asset('storage/' . $pembayaran->user->foto) }}" class="img-web"
+                                alt="member_photo">
                         </div>
                         <div class="first_name mb-2">
                             <h5 class="name-font text">
