@@ -189,6 +189,7 @@ Route::group(['middleware' => 'auth'], function () {
             //Pendaftaran
             Route::get('/pendaftaran', [PengurusPendaftaranPendaftaranController::class, 'index']);
             Route::post('/pendaftaran/create', [PengurusPendaftaranPendaftaranController::class, 'store']);
+            Route::post('/pendaftaran/update', [PengurusPendaftaranPendaftaranController::class, 'store']);
 
             //pembayaran
             Route::get('/pembayaran', [PengurusPembayaranPembayaranController::class, 'index']);
