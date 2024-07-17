@@ -69,7 +69,7 @@ class PendaftaranController extends Controller
         if ($cekPembayaran == null) {
             $pembayaran = PembayaranSmile::create([
                 'user_id' => Auth::user()->id,
-                'nominal' => 357900,
+                'nominal' => 27900,
                 'status' => 'Unpaid',
             ]);
         }
