@@ -58,7 +58,7 @@
                     <span class="nav-link-text ms-1">KTP</span>
                 </a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->is('pengurus') ? 'active' : '' }}" target="_blank"
                     href="{{ url('https://strawpoll.com/w4nWWD68WnA') }}">
                     <div
@@ -67,17 +67,17 @@
                     </div>
                     <span class="nav-link-text ms-1">E-Vote Caketum</span>
                 </a>
-            </li>
-            {{-- <li class="nav-item">
-                <a class="nav-link {{ request()->is('pengurus/pendaftaran') ? 'active' : '' }}" target="_blank"
+            </li> --}}
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('pengurus/pendaftaran') ? 'active' : '' }}"
                     href="{{ url('/pengurus/pendaftaran') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="fa fa-pencil-square-o text-success text-sm opacity-10" aria-hidden="true"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Pendaftaran</span>
+                    <span class="nav-link-text ms-1">Pendaftaran Smile</span>
                 </a>
-            </li> --}}
+            </li>
             {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->is('pengurus/pembayaran') ? 'active' : '' }}"
                     href="{{ url('/pengurus/pembayaran') }}">

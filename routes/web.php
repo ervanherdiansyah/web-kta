@@ -144,6 +144,7 @@ Route::group(['middleware' => 'auth'], function () {
             //Pendaftaran
             Route::get('/pendaftaran', [PendaftaranPendaftaranController::class, 'index']);
             Route::post('/pendaftaran/create', [PendaftaranPendaftaranController::class, 'store']);
+            Route::post('/pendaftaran/update/{id}', [PendaftaranPendaftaranController::class, 'update']);
 
             //pembayaran
             Route::get('/pembayaran', [PembayaranController::class, 'index']);
@@ -189,7 +190,7 @@ Route::group(['middleware' => 'auth'], function () {
             //Pendaftaran
             Route::get('/pendaftaran', [PengurusPendaftaranPendaftaranController::class, 'index']);
             Route::post('/pendaftaran/create', [PengurusPendaftaranPendaftaranController::class, 'store']);
-            Route::post('/pendaftaran/update', [PengurusPendaftaranPendaftaranController::class, 'store']);
+            Route::post('/pendaftaran/update/{id}', [PengurusPendaftaranPendaftaranController::class, 'update']);
 
             //pembayaran
             Route::get('/pembayaran', [PengurusPembayaranPembayaranController::class, 'index']);

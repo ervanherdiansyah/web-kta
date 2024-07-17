@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Models\Pendaftaran;
+namespace App\Models;
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pendaftaran extends Model
+class PembayaranSmile extends Model
 {
     use HasFactory;
-    protected $table = 'pendaftarans_smile';
+    protected $table = 'pembayaran_smiles';
     protected $guarded = ['id'];
     public function user()
     {

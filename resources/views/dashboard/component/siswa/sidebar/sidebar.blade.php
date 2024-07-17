@@ -58,6 +58,16 @@
                     <span class="nav-link-text ms-1">KTA</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('peserta/pendaftaran') ? 'active' : '' }}"
+                    href="{{ url('/peserta/pendaftaran') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa fa-pencil-square-o text-success text-sm opacity-10" aria-hidden="true"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Pendaftaran Smile</span>
+                </a>
+            </li>
             {{-- <li class="nav-item">
                 <a class="nav-link {{ request()->is('peserta/pembayaran') ? 'active' : '' }}"
                     href="{{ url('/peserta/pembayaran') }}">
