@@ -36,7 +36,7 @@ class PendaftaranController extends Controller
             'no_pendamping' => 'required|string|max:15',
             'jurusan1' => 'required|string|max:255',
             'jurusan2' => 'required|string|max:255',
-            'kta' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk file PDF dengan ukuran maksimal 2MB
+            'kta' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Validasi untuk file PDF dengan ukuran maksimal 2MB
         ]);
         $file_name = null;
         if ($request->hasFile('kta')) {
@@ -101,7 +101,7 @@ class PendaftaranController extends Controller
             'no_pendamping' => 'required|string|max:15',
             'jurusan1' => 'required|string|max:255',
             'jurusan2' => 'required|string|max:255',
-            'kta' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validasi untuk file PDF dengan ukuran maksimal 2MB
+            'kta' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Validasi untuk file PDF dengan ukuran maksimal 2MB
         ]);
 
         // Temukan data pendaftaran berdasarkan ID

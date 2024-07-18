@@ -111,7 +111,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Nomor KK</label>
+                                            <label for="example-text-input" class="form-control-label">Nomor Kartu
+                                                keluarga</label>
                                             <input name="no_kk" placeholder="no_kk" class="form-control" type="text"
                                                 value="{{ old('no_kk') }}">
                                             @error('no_kk')
@@ -503,7 +504,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="example-text-input" class="form-control-label">
-                                                KTP</label>
+                                                KTP/KK</label>
                                             <input name="kta" placeholder="kta format pdf" class="form-control"
                                                 type="file" value="{{ old('kta') }}">
                                             @error('kta')
@@ -604,7 +605,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Nomor KK</label>
+                                            <label for="example-text-input" class="form-control-label">Nomor Kartu
+                                                Keluarga</label>
                                             <input name="no_kk" class="form-control" type="text"
                                                 value="{{ $pendaftaran->no_kk ?? '' }}"
                                                 @if (isset($pendaftaran) && $pendaftaran->no_kk) readonly @endif>
@@ -698,7 +700,6 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                 </div>
                             </form>
                         @endif
@@ -812,7 +813,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Nomor KK</label>
+                                            <label for="example-text-input" class="form-control-label">Nomor Kartu
+                                                Keluarga</label>
                                             <input name="no_kk" placeholder="no_kk" class="form-control"
                                                 type="text" value="{{ old('no_kk', $pendaftaran->no_kk) }}">
                                             @error('no_kk')
@@ -1125,7 +1127,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="example-text-input" class="form-control-label">
-                                                KTP</label>
+                                                KTP/KK</label>
                                             <input name="kta" placeholder="kta format pdf" class="form-control"
                                                 type="file" value="{{ old('kta') }}">
                                             @error('kta')
