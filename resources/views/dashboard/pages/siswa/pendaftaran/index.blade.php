@@ -498,30 +498,33 @@
                                 </div>
                             </form>
                         @else
-                            <div class="card">
-                                <div class="card-body">
-                                    <div>
-                                        <span>
-                                            <h5>Highlight Rangkaian Acara:</h5>
-                                            <ul>
-                                                <li>Talkshow</li>
-                                                <li>Trial Class</li>
-                                                <li>Campus Tour</li>
-                                                <li>Music Performance</li>
-                                                <li>Pelantikan & Pengukuhan FOJB Gen 12</li>
-                                                <li>Menyambut Hari Indonesia Menabung</li>
-                                            </ul>
-                                            <h5>Benefit:</h5>
-                                            <ul>
-                                                <li>Konsumsi</li>
-                                                <li>Berpartisipasi pada rangkaian Hari Indonesia Menabung</li>
-                                                <li>Mendapatkan rekening Bank BJB</li>
-                                                <li>E-Certificate</li>
-                                            </ul>
-                                        </span>
+                            @if ($pembayaran->status == 'Paid')
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div>
+                                            <span>
+                                                <h5>Highlight Rangkaian Acara:</h5>
+                                                <ul>
+                                                    <li>Talkshow</li>
+                                                    <li>Trial Class</li>
+                                                    <li>Campus Tour</li>
+                                                    <li>Music Performance</li>
+                                                    <li>Pelantikan & Pengukuhan FOJB Gen 12</li>
+                                                    <li>Menyambut Hari Indonesia Menabung</li>
+                                                </ul>
+                                                <h5>Benefit:</h5>
+                                                <ul>
+                                                    <li>Konsumsi</li>
+                                                    <li>Berpartisipasi pada rangkaian Hari Indonesia Menabung</li>
+                                                    <li>Mendapatkan rekening Bank BJB</li>
+                                                    <li>E-Certificate</li>
+                                                </ul>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
+
                             <div class="card">
                                 <div class="card-body">
                                     @if ($pembayaran->status == 'Unpaid')
