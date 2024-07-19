@@ -500,6 +500,7 @@
                         @else
                             <div class="card">
                                 <div class="card-body">
+                                    @if ($pembayaran->status == 'Paid')
                                     <div>
                                         <span>
                                             <h5>Selamat anda telah melakukan pembayaran adm Pengurus Gen 12 :</h5>
@@ -517,6 +518,8 @@
                                             </ul>
                                         </span>
                                     </div>
+                                    @endif
+                                    
                                 </div>
                             </div>
                             <div class="card">
