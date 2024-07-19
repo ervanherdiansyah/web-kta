@@ -15,7 +15,9 @@ class PendaftaranController extends Controller
     {
         $user = Auth::user()->id;
         $pendaftaran = Pendaftaran::where('user_id', $user)->first();
-        return view('dashboard.pages.siswa.pendaftaran.index', compact('pendaftaran'));
+        $pembayaran = PembayaranSmile::where('user_id', $user)->first();
+
+        return view('dashboard.pages.siswa.pendaftaran.index', compact('pendaftaran', 'pembayaran'));
     }
 
     public function store(Request $request)
