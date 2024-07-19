@@ -32,11 +32,11 @@ class PendaftaranController extends Controller
             'tanggal_lahir' => 'required|date',
             'nama_ibu_kandung' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'nama_pendamping' => 'required|string|max:255',
-            'no_pendamping' => 'required|string|max:15',
+            // 'nama_pendamping' => 'required|string|max:255',
+            // 'no_pendamping' => 'required|string|max:15',
             'jurusan1' => 'required|string|max:255',
             'jurusan2' => 'required|string|max:255',
-            'kta' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Validasi untuk file PDF dengan ukuran maksimal 2MB
+            // 'kta' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Validasi untuk file PDF dengan ukuran maksimal 2MB
         ]);
         $file_name = null;
         if ($request->hasFile('kta')) {
@@ -97,11 +97,11 @@ class PendaftaranController extends Controller
             'tanggal_lahir' => 'required|date',
             'nama_ibu_kandung' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
-            'nama_pendamping' => 'required|string|max:255',
-            'no_pendamping' => 'required|string|max:15',
+            // 'nama_pendamping' => 'required|string|max:255',
+            // 'no_pendamping' => 'required|string|max:15',
             'jurusan1' => 'required|string|max:255',
             'jurusan2' => 'required|string|max:255',
-            'kta' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Validasi untuk file PDF dengan ukuran maksimal 2MB
+            // 'kta' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Validasi untuk file PDF dengan ukuran maksimal 2MB
         ]);
 
         // Temukan data pendaftaran berdasarkan ID
@@ -138,6 +138,31 @@ class PendaftaranController extends Controller
         ]);
 
         toast('Berhasil Update Data!!!', 'success');
+        return redirect('/peserta/pendaftaran');
+    }
+
+    public function uploadBuktiPembayaran(Request $request)
+    {
+
+        // Temukan data pendaftaran berdasarkan ID
+        $pembayaran = PembayaranSmile::where('user_id', Auth::user()->id)->first();
+
+        // Handle file upload untuk kta
+        if ($request->hasFile('bukti_pembayaran')) {
+            // Handle file upload untuk bukti_pembayaran
+            $file_name = $request->bukti_pembayaran->getClientOriginalName();
+            $namaGambar = str_replace(' ', '_', $file_name);
+            $image = $request->bukti_pembayaran->storeAs('public/bukti_pembayaran', $namaGambar);
+            $file_name = 'bukti_pembayaran/' . $namaGambar;
+
+            // Update data pendaftaran dengan file_name baru
+            $pembayaran->update([
+                'bukti_pembayaran' => $file_name,
+                'status' => 'Paid',
+            ]);
+        }
+
+        toast('Berhasil Upload Bukti Pembayaran!!!', 'success');
         return redirect('/peserta/pendaftaran');
     }
 }

@@ -146,6 +146,9 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/pendaftaran/create', [PendaftaranPendaftaranController::class, 'store']);
             Route::post('/pendaftaran/update/{id}', [PendaftaranPendaftaranController::class, 'update']);
 
+            Route::post('/pendaftaran/uploadbuktipembayaran', [PendaftaranPendaftaranController::class, 'uploadBuktiPembayaran']);
+
+
             //pembayaran
             Route::get('/pembayaran', [PembayaranController::class, 'index']);
             Route::post('/pembayaran/create', [PembayaranController::class, 'store']);
@@ -191,6 +194,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/pendaftaran', [PengurusPendaftaranPendaftaranController::class, 'index']);
             Route::post('/pendaftaran/create', [PengurusPendaftaranPendaftaranController::class, 'store']);
             Route::post('/pendaftaran/update/{id}', [PengurusPendaftaranPendaftaranController::class, 'update']);
+
+            Route::post('/pendaftaran/uploadbuktipembayaran', [PengurusPendaftaranPendaftaranController::class, 'uploadBuktiPembayaran']);
 
             //pembayaran
             Route::get('/pembayaran', [PengurusPembayaranPembayaranController::class, 'index']);

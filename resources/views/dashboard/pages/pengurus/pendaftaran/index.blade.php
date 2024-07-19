@@ -36,44 +36,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Kelas</label>
-                                            <select name="kelas" id="" class="form-control form-select">
-                                                <option value="">Pilih</option>
-                                                <option value="X" @if (old('kelas') == 'X') selected @endif>
-                                                    X
-                                                </option>
-                                                <option value="XI" @if (old('kelas') == 'XI') selected @endif>
-                                                    XI
-                                                </option>
-                                                <option value="XII" @if (old('kelas') == 'XII') selected @endif>
-                                                    XII
-                                                </option>
-                                            </select>
-                                            @error('kelas')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Asal
-                                                sekolah</label>
-                                            <input name="asal_sekolah" placeholder="Asal Sekolah" class="form-control"
-                                                type="text" value="{{ old('asal_sekolah') }}">
-                                            @error('asal_sekolah')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Kota atau
-                                                Kabupaten Sekolah</label>
-                                            <select name="alamat_asal_sekolah" id="kota"
-                                                class="form-control form-select">
-                                                <option value="">Pilih Kab/Kota</option>
-                                            </select>
-                                            @error('alamat_asal_sekolah')
+                                            <label for="example-text-input" class="form-control-label">Tanggal
+                                                Lahir</label>
+                                            <input name="tanggal_lahir" type="date" class="form-control"
+                                                value="{{ old('tanggal_lahir') }}">
+                                            @error('tanggal_lahir')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -101,32 +68,54 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">NIK</label>
-                                            <input name="nik" placeholder="nik" class="form-control" type="text"
-                                                value="{{ old('nik') }}">
-                                            @error('nik')
+                                            <label for="example-text-input" class="form-control-label">Alamat</label>
+                                            <textarea name="alamat" id="" class="form-control">{{ old('alamat') }}</textarea>
+                                            @error('alamat')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Nomor Kartu
-                                                keluarga</label>
-                                            <input name="no_kk" placeholder="no_kk" class="form-control" type="text"
-                                                value="{{ old('no_kk') }}">
-                                            @error('no_kk')
+                                            <label for="example-text-input" class="form-control-label">Asal
+                                                sekolah</label>
+                                            <input name="asal_sekolah" placeholder="Asal Sekolah" class="form-control"
+                                                type="text" value="{{ old('asal_sekolah') }}">
+                                            @error('asal_sekolah')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Tanggal
-                                                Lahir</label>
-                                            <input name="tanggal_lahir" type="date" class="form-control"
-                                                value="{{ old('tanggal_lahir') }}">
-                                            @error('tanggal_lahir')
+                                            <label for="example-text-input" class="form-control-label">Kelas</label>
+                                            <select name="kelas" id="" class="form-control form-select">
+                                                <option value="">Pilih</option>
+                                                <option value="X" @if (old('kelas') == 'X') selected @endif>
+                                                    X
+                                                </option>
+                                                <option value="XI" @if (old('kelas') == 'XI') selected @endif>
+                                                    XI
+                                                </option>
+                                                <option value="XII" @if (old('kelas') == 'XII') selected @endif>
+                                                    XII
+                                                </option>
+                                            </select>
+                                            @error('kelas')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="example-text-input" class="form-control-label">Kota atau
+                                                Kabupaten Sekolah</label>
+                                            <select name="alamat_asal_sekolah" id="kota"
+                                                class="form-control form-select">
+                                                <option value="">Pilih Kab/Kota</option>
+                                            </select>
+                                            @error('alamat_asal_sekolah')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -144,31 +133,22 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Alamat</label>
-                                            <textarea name="alamat" id="" class="form-control">{{ old('alamat') }}</textarea>
-                                            @error('alamat')
+                                            <label for="example-text-input" class="form-control-label">Nomor Induk
+                                                Penduduk</label>
+                                            <input name="nik" placeholder="nik" class="form-control" type="text"
+                                                value="{{ old('nik') }}">
+                                            @error('nik')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Nama
-                                                Pendamping</label>
-                                            <input name="nama_pendamping" type="text" class="form-control"
-                                                value="{{ old('nama_pendamping') }}">
-                                            @error('nama_pendamping')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Nomor
-                                                Pendamping</label>
-                                            <input name="no_pendamping" type="text" class="form-control"
-                                                value="{{ old('no_pendamping') }}">
-                                            @error('no_pendamping')
+                                            <label for="example-text-input" class="form-control-label">Nomor Kartu
+                                                Keluarga</label>
+                                            <input name="no_kk" placeholder="no_kk" class="form-control"
+                                                type="text" value="{{ old('no_kk') }}">
+                                            @error('no_kk')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -501,7 +481,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="example-text-input" class="form-control-label">
                                                 KTP/KK</label>
@@ -511,13 +491,70 @@
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Submit</button>
                                 </div>
                             </form>
                         @else
+                            <div class="card">
+                                <div class="card-body">
+                                    <div>
+                                        <span>
+                                            <h5>Selamat anda telah melakukan pembayaran adm Pengurus Gen 12 :</h5>
+                                            <h5>Benefit:</h5>
+                                            <ul>
+                                                <li>PDH</li>
+                                                <li>Merch Smile</li>
+                                                <li>Tas</li>
+                                                <li>Kaos</li>
+                                                <li>Tumbler</li>
+                                                <li>Ganci</li>
+                                                <li>Stiker</li>
+                                                <li>Pulpen</li>
+                                                <li>Fasilitas makan dan tempat istirahat selama kegiatan Smile</li>
+                                            </ul>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    @if ($pembayaran->status == 'Unpaid')
+                                        <div class="row">
+                                            <div class="col-md-6" style="text-align: center;">
+                                                <h5>Klik untuk Membayar</h5>
+                                                <h3><a href="https://app.midtrans.com/payment-links/1721288858879"
+                                                        class="btn btn-primary" target="_blank">Pembayaran</a></h3>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <form action="{{ url('/pengurus/pendaftaran/uploadbuktipembayaran') }}"
+                                                    method="POST" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <h5>Upload Bukti Pembayaran</h5>
+                                                    <input name="bukti_pembayaran" class="form-control" type="file"
+                                                        value="{{ old('bukti_pembayaran') }}">
+                                                    @error('bukti_pembayaran')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                    <div style="padding-top: 5px">
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: center;">
+                                                <h5>Pembayaran Berhasil</h5>
+                                            </div>
+                                        </div>
+                                    @endif
+
+                                </div>
+                            </div>
+
                             <form action="{{ url('/pengurus/pendaftaran/update/' . $pendaftaran->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -536,35 +573,12 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Kelas</label>
-                                            <input name="tempat_lahir" class="form-control" type="text"
-                                                value="{{ $pendaftaran->kelas ?? '' }} "
-                                                @if (isset($pendaftaran) && $pendaftaran->kelas) readonly @endif>
-                                            @error('kelas')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Asal
-                                                Sekolah</label>
-                                            <input name="asal_sekolah" class="form-control" type="text"
-                                                value="{{ $pendaftaran->asal_sekolah ?? '' }}"
-                                                @if (isset($pendaftaran) && $pendaftaran->asal_sekolah) readonly @endif>
-                                            @error('asal_sekolah')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Kota atau Kabupaten
-                                                Sekolah</label>
-                                            <input name="alamat_asal_sekolah" class="form-control" type="text"
-                                                value="{{ $pendaftaran->alamat_asal_sekolah ?? '' }}"
-                                                @if (isset($pendaftaran) && $pendaftaran->alamat_asal_sekolah) readonly @endif>
-                                            @error('alamat_asal_sekolah')
+                                            <label for="example-text-input" class="form-control-label">Tanggal
+                                                Lahir</label>
+                                            <input name="tanggal_lahir" class="form-control" type="text"
+                                                value="{{ $pendaftaran->tanggal_lahir ?? '' }} "
+                                                @if (isset($pendaftaran) && $pendaftaran->tanggal_lahir) readonly @endif>
+                                            @error('tanggal_lahir')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -581,6 +595,7 @@
                                             @enderror
                                         </div>
                                     </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="example-text-input" class="form-control-label">Email</label>
@@ -594,35 +609,47 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">NIK</label>
-                                            <input name="nik" class="form-control" type="text"
-                                                value="{{ $pendaftaran->nik ?? '' }}"
-                                                @if (isset($pendaftaran) && $pendaftaran->nik) readonly @endif>
-                                            @error('nik')
+                                            <label for="example-text-input" class="form-control-label">Alamat</label>
+                                            <input name="alamat" class="form-control" type="text"
+                                                value="{{ $pendaftaran->alamat ?? '' }}"
+                                                @if (isset($pendaftaran) && $pendaftaran->alamat) readonly @endif>
+                                            @error('alamat')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="example-text-input" class="form-control-label">Asal
+                                                Sekolah</label>
+                                            <input name="asal_sekolah" class="form-control" type="text"
+                                                value="{{ $pendaftaran->asal_sekolah ?? '' }}"
+                                                @if (isset($pendaftaran) && $pendaftaran->asal_sekolah) readonly @endif>
+                                            @error('asal_sekolah')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Nomor Kartu
-                                                Keluarga</label>
-                                            <input name="no_kk" class="form-control" type="text"
-                                                value="{{ $pendaftaran->no_kk ?? '' }}"
-                                                @if (isset($pendaftaran) && $pendaftaran->no_kk) readonly @endif>
-                                            @error('no_kk')
+                                            <label for="example-text-input" class="form-control-label">Kelas</label>
+                                            <input name="tempat_lahir" class="form-control" type="text"
+                                                value="{{ $pendaftaran->kelas ?? '' }} "
+                                                @if (isset($pendaftaran) && $pendaftaran->kelas) readonly @endif>
+                                            @error('kelas')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Tanggal
-                                                Lahir</label>
-                                            <input name="tanggal_lahir" class="form-control" type="text"
-                                                value="{{ $pendaftaran->tanggal_lahir ?? '' }} "
-                                                @if (isset($pendaftaran) && $pendaftaran->tanggal_lahir) readonly @endif>
-                                            @error('tanggal_lahir')
+                                            <label for="example-text-input" class="form-control-label">Kota atau Kabupaten
+                                                Sekolah</label>
+                                            <input name="alamat_asal_sekolah" class="form-control" type="text"
+                                                value="{{ $pendaftaran->alamat_asal_sekolah ?? '' }}"
+                                                @if (isset($pendaftaran) && $pendaftaran->alamat_asal_sekolah) readonly @endif>
+                                            @error('alamat_asal_sekolah')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -642,35 +669,24 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Alamat</label>
-                                            <input name="alamat" class="form-control" type="text"
-                                                value="{{ $pendaftaran->alamat ?? '' }}"
-                                                @if (isset($pendaftaran) && $pendaftaran->alamat) readonly @endif>
-                                            @error('alamat')
+                                            <label for="example-text-input" class="form-control-label">Nomor Induk
+                                                Kependudukan</label>
+                                            <input name="nik" class="form-control" type="text"
+                                                value="{{ $pendaftaran->nik ?? '' }}"
+                                                @if (isset($pendaftaran) && $pendaftaran->nik) readonly @endif>
+                                            @error('nik')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Nama
-                                                Pendamping</label>
-                                            <input name="nama_pendamping" class="form-control" type="text"
-                                                value="{{ $pendaftaran->nama_pendamping ?? '' }}"
-                                                @if (isset($pendaftaran) && $pendaftaran->nama_pendamping) readonly @endif>
-                                            @error('nama_pendamping')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="example-text-input" class="form-control-label">Nomor
-                                                Pendamping</label>
-                                            <input name="no_pendamping" class="form-control" type="text"
-                                                value="{{ $pendaftaran->no_pendamping ?? '' }}"
-                                                @if (isset($pendaftaran) && $pendaftaran->no_pendamping) readonly @endif>
-                                            @error('no_pendamping')
+                                            <label for="example-text-input" class="form-control-label">Nomor Kartu
+                                                Keluarga</label>
+                                            <input name="no_kk" class="form-control" type="text"
+                                                value="{{ $pendaftaran->no_kk ?? '' }}"
+                                                @if (isset($pendaftaran) && $pendaftaran->no_kk) readonly @endif>
+                                            @error('no_kk')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -700,6 +716,7 @@
                                             @enderror
                                         </div>
                                     </div>
+
                                 </div>
                             </form>
                         @endif
@@ -737,46 +754,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Kelas</label>
-                                            <select name="kelas" id="" class="form-control form-select">
-                                                <option value="">Pilih</option>
-                                                <option value="X" @if (old('kelas', $pendaftaran->kelas) == 'X') selected @endif>
-                                                    X
-                                                </option>
-                                                <option value="XI" @if (old('kelas', $pendaftaran->kelas) == 'XI') selected @endif>
-                                                    XI
-                                                </option>
-                                                <option value="XII" @if (old('kelas', $pendaftaran->kelas) == 'XII') selected @endif>
-                                                    XII
-                                                </option>
-                                            </select>
-                                            @error('kelas')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Asal
-                                                sekolah</label>
-                                            <input name="asal_sekolah" placeholder="Asal Sekolah" class="form-control"
-                                                type="text"
-                                                value="{{ old('asal_sekolah', $pendaftaran->asal_sekolah) }}">
-                                            @error('asal_sekolah')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Kota atau Kabupaten
-                                                Sekolah</label>
-                                            <select name="alamat_asal_sekolah" id="kotaa"
-                                                class="form-control form-select"
-                                                data-selected="{{ $pendaftaran->alamat_asal_sekolah }}">
-                                                <option value="">Pilih Kab/Kota</option>
-                                            </select>
-                                            @error('alamat_asal_sekolah')
+                                            <label for="example-text-input" class="form-control-label">Tanggal
+                                                Lahir</label>
+                                            <input name="tanggal_lahir" type="date" class="form-control"
+                                                value="{{ old('tanggal_lahir', $pendaftaran->tanggal_lahir) }}">
+                                            @error('tanggal_lahir')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -803,32 +785,55 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">NIK</label>
-                                            <input name="nik" placeholder="nik" class="form-control" type="text"
-                                                value="{{ old('nik', $pendaftaran->nik) }}">
-                                            @error('nik')
+                                            <label for="example-text-input" class="form-control-label">Alamat</label>
+                                            <textarea name="alamat" id="" class="form-control">{{ old('alamat', $pendaftaran->alamat) }}</textarea>
+                                            @error('alamat')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Nomor Kartu
-                                                Keluarga</label>
-                                            <input name="no_kk" placeholder="no_kk" class="form-control"
-                                                type="text" value="{{ old('no_kk', $pendaftaran->no_kk) }}">
-                                            @error('no_kk')
+                                            <label for="example-text-input" class="form-control-label">Asal
+                                                sekolah</label>
+                                            <input name="asal_sekolah" placeholder="Asal Sekolah" class="form-control"
+                                                type="text"
+                                                value="{{ old('asal_sekolah', $pendaftaran->asal_sekolah) }}">
+                                            @error('asal_sekolah')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Tanggal
-                                                Lahir</label>
-                                            <input name="tanggal_lahir" type="date" class="form-control"
-                                                value="{{ old('tanggal_lahir', $pendaftaran->tanggal_lahir) }}">
-                                            @error('tanggal_lahir')
+                                            <label for="example-text-input" class="form-control-label">Kelas</label>
+                                            <select name="kelas" id="" class="form-control form-select">
+                                                <option value="">Pilih</option>
+                                                <option value="X" @if (old('kelas', $pendaftaran->kelas) == 'X') selected @endif>
+                                                    X
+                                                </option>
+                                                <option value="XI" @if (old('kelas', $pendaftaran->kelas) == 'XI') selected @endif>
+                                                    XI
+                                                </option>
+                                                <option value="XII" @if (old('kelas', $pendaftaran->kelas) == 'XII') selected @endif>
+                                                    XII
+                                                </option>
+                                            </select>
+                                            @error('kelas')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="example-text-input" class="form-control-label">Kota atau Kabupaten
+                                                Sekolah</label>
+                                            <select name="alamat_asal_sekolah" id="kotaa"
+                                                class="form-control form-select"
+                                                data-selected="{{ $pendaftaran->alamat_asal_sekolah }}">
+                                                <option value="">Pilih Kab/Kota</option>
+                                            </select>
+                                            @error('alamat_asal_sekolah')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -847,31 +852,22 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Alamat</label>
-                                            <textarea name="alamat" id="" class="form-control">{{ old('alamat', $pendaftaran->alamat) }}</textarea>
-                                            @error('alamat')
+                                            <label for="example-text-input" class="form-control-label">Nomor Induk
+                                                Kependudukan</label>
+                                            <input name="nik" placeholder="nik" class="form-control" type="text"
+                                                value="{{ old('nik', $pendaftaran->nik) }}">
+                                            @error('nik')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Nama
-                                                Pendamping</label>
-                                            <input name="nama_pendamping" type="text" class="form-control"
-                                                value="{{ old('nama_pendamping', $pendaftaran->nama_pendamping) }}">
-                                            @error('nama_pendamping')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-3">
-                                            <label for="example-text-input" class="form-control-label">Nomor
-                                                Pendamping</label>
-                                            <input name="no_pendamping" type="text" class="form-control"
-                                                value="{{ old('no_pendamping', $pendaftaran->no_pendamping) }}">
-                                            @error('no_pendamping')
+                                            <label for="example-text-input" class="form-control-label">Nomor Kartu
+                                                Keluarga</label>
+                                            <input name="no_kk" placeholder="no_kk" class="form-control"
+                                                type="text" value="{{ old('no_kk', $pendaftaran->no_kk) }}">
+                                            @error('no_kk')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
@@ -1124,7 +1120,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    {{-- <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="example-text-input" class="form-control-label">
                                                 KTP/KK</label>
@@ -1134,7 +1130,7 @@
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
