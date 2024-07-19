@@ -498,30 +498,32 @@
                                 </div>
                             </form>
                         @else
-                            <div class="card">
-                                <div class="card-body">
-                                    @if ($pembayaran->status == 'Paid')
-                                    <div>
-                                        <span>
-                                            <h5>Selamat anda telah melakukan pembayaran adm Pengurus Gen 12 :</h5>
-                                            <h5>Benefit:</h5>
-                                            <ul>
-                                                <li>PDH</li>
-                                                <li>Merch Smile</li>
-                                                <li>Tas</li>
-                                                <li>Kaos</li>
-                                                <li>Tumbler</li>
-                                                <li>Ganci</li>
-                                                <li>Stiker</li>
-                                                <li>Pulpen</li>
-                                                <li>Fasilitas makan dan tempat istirahat selama kegiatan Smile</li>
-                                            </ul>
-                                        </span>
+                            @if ($pembayaran->status == 'Paid')
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <div>
+                                            <span>
+                                                <h5>Selamat anda telah melakukan pembayaran adm Pengurus Gen 12 :</h5>
+                                                <h5>Benefit:</h5>
+                                                <ul>
+                                                    <li>PDH</li>
+                                                    <li>Merch Smile</li>
+                                                    <li>Tas</li>
+                                                    <li>Kaos</li>
+                                                    <li>Tumbler</li>
+                                                    <li>Ganci</li>
+                                                    <li>Stiker</li>
+                                                    <li>Pulpen</li>
+                                                    <li>Fasilitas makan dan tempat istirahat selama kegiatan Smile</li>
+                                                </ul>
+                                            </span>
+                                        </div>
+
+
                                     </div>
-                                    @endif
-                                    
                                 </div>
-                            </div>
+                            @endif
                             <div class="card">
                                 <div class="card-body">
                                     @if ($pembayaran->status == 'Unpaid')
