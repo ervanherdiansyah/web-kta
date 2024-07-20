@@ -1,22 +1,102 @@
 <?php
 
-namespace App\Http\Controllers\pengurus\Pendaftaran;
+namespace App\Http\Controllers\Dashboard\Smile;
 
+use App\Exports\SmileExport;
 use App\Http\Controllers\Controller;
 use App\Models\PembayaranSmile;
 use App\Models\Pendaftaran\Pendaftaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
+use Yajra\DataTables\Facades\DataTables;
 
-class PendaftaranController extends Controller
+class SmileController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $user = Auth::user()->id;
-        $pendaftaran = Pendaftaran::where('user_id', $user)->first();
-        $pembayaran = PembayaranSmile::where('user_id', $user)->first();
-        return view('dashboard.pages.pengurus.pendaftaran.index', compact('pendaftaran', 'pembayaran'));
+        $user = User::get();
+        if ($request->ajax()) {
+            $data = Pendaftaran::latest()->get();
+            if (!empty($request->search['value'])) {
+                $searchValue = $request->search['value'];
+                $data->where(function ($query) use ($searchValue) {
+                    $query->where('nama_lengkap', 'like', '%' . $searchValue . '%')
+                        ->orWhere('tanggal_lahir', 'like', '%' . $searchValue . '%')
+                        ->orWhere('hp', 'like', '%' . $searchValue . '%')
+                        ->orWhere('email', 'like', '%' . $searchValue . '%')
+                        ->orWhere('alamat', 'like', '%' . $searchValue . '%')
+                        ->orWhere('asal_sekolah', 'like', '%' . $searchValue . '%')
+                        ->orWhere('kelas', 'like', '%' . $searchValue . '%')
+                        ->orWhere('alamat_asal_sekolah', 'like', '%' . $searchValue . '%')
+                        ->orWhere('nama_ibu_kandung', 'like', '%' . $searchValue . '%')
+                        ->orWhere('nik', 'like', '%' . $searchValue . '%')
+                        ->orWhere('no_kk', 'like', '%' . $searchValue . '%')
+                        ->orWhere('jurusan1', 'like', '%' . $searchValue . '%')
+                        ->orWhere('jurusan2', 'like', '%' . $searchValue . '%');
+                });
+            }
+
+            return DataTables::of($data)
+                ->addColumn('nama_lengkap', function ($data) {
+                    return $data->nama_lengkap;
+                })
+                ->addColumn('tanggal_lahir', function ($data) {
+                    return $data->tanggal_lahir;
+                })
+                ->addColumn('hp', function ($data) {
+                    return $data->hp;
+                })
+                ->addColumn('email', function ($data) {
+                    return $data->email;
+                })
+                ->addColumn('alamat', function ($data) {
+                    return $data->alamat;
+                })
+                ->addColumn('asal_sekolah', function ($data) {
+                    return $data->asal_sekolah;
+                })
+                ->addColumn('kelas', function ($data) {
+                    return $data->kelas;
+                })
+                ->addColumn('alamat_asal_sekolah', function ($data) {
+                    return $data->alamat_asal_sekolah;
+                })
+                ->addColumn('nama_ibu_kandung', function ($data) {
+                    return $data->nama_ibu_kandung;
+                })
+                ->addColumn('nik', function ($data) {
+                    return $data->nik;
+                })
+                ->addColumn('no_kk', function ($data) {
+                    return $data->no_kk;
+                })
+                ->addColumn('jurusan1', function ($data) {
+                    return $data->jurusan1;
+                })
+                ->addColumn('jurusan2', function ($data) {
+                    return $data->jurusan2;
+                })
+                ->addColumn('action', function ($data) {
+                    return
+                        '<a type="button" class="" data-bs-toggle="modal"
+                            data-bs-target="#update' . $data->id . '">
+                            <i class="fas fa-edit text-success text-sm opacity-10"></i>
+                        </a> 
+                        <a type="button" class="" data-bs-toggle="modal"
+                            data-bs-target="#delete' . $data->id . '">
+                            <i class="fas fa-trash fa-xs text-danger text-sm opacity-10"></i>
+                        </a> 
+                        
+                        ';
+                })
+                ->rawColumns(['nama_lengkap', 'tanggal_lahir', 'hp', 'email', 'alamat', 'asal_sekolah', 'kelas', 'alamat_asal_sekolah', 'nama_ibu_kandung', 'nik', 'no_kk', 'jurusan1', 'jurusan2', 'action'])
+                ->make(true);
+        }
+
+        return view('dashboard.pages.smile.index', compact('user'));
     }
 
     public function store(Request $request)
@@ -47,7 +127,7 @@ class PendaftaranController extends Controller
         }
 
         $pendaftaran = Pendaftaran::create([
-            'user_id' => Auth::user()->id,
+            'user_id' => $request->user_id,
             'nama_lengkap' => $request->nama_lengkap,
             'kelas' => $request->kelas,
             'asal_sekolah' => $request->asal_sekolah,
@@ -66,16 +146,16 @@ class PendaftaranController extends Controller
             'kta' => $file_name ? 'kta/' . $namaGambar : null,
         ]);
 
-        $cekPembayaran = PembayaranSmile::where('user_id', Auth::user()->id)->first();
+        $cekPembayaran = PembayaranSmile::where('user_id', $pendaftaran->user_id)->first();
         if ($cekPembayaran == null) {
             $pembayaran = PembayaranSmile::create([
-                'user_id' => Auth::user()->id,
-                'nominal' => 300000,
+                'user_id' => $pendaftaran->user_id,
+                'nominal' => 357900,
                 'status' => 'Unpaid',
             ]);
         }
         toast('Berhasil Tambah Data!!!', 'success');
-        return redirect('/pengurus/pendaftaran');
+        return redirect('/dashboard/pendaftaran-smile');
         // try {
 
         // } catch (\Throwable $th) {
@@ -139,31 +219,20 @@ class PendaftaranController extends Controller
         ]);
 
         toast('Berhasil Update Data!!!', 'success');
-        return redirect('/pengurus/pendaftaran');
+        return redirect('/dashboard/pendaftaran-smile');
     }
 
-    public function uploadBuktiPembayaran(Request $request)
+    public function destroy($id)
     {
+        $pendaftaran = Pendaftaran::findOrFail($id);
+        $pendaftaran->delete();
 
-        // Temukan data pendaftaran berdasarkan ID
-        $pembayaran = PembayaranSmile::where('user_id', Auth::user()->id)->first();
+        toast('Berhasil Hapus Data!!!', 'success');
+        return redirect('/dashboard/pendaftaran-smile');
+    }
 
-        // Handle file upload untuk kta
-        if ($request->hasFile('bukti_pembayaran')) {
-            // Handle file upload untuk bukti_pembayaran
-            $file_name = $request->bukti_pembayaran->getClientOriginalName();
-            $namaGambar = str_replace(' ', '_', $file_name);
-            $image = $request->bukti_pembayaran->storeAs('public/bukti_pembayaran', $namaGambar);
-            $file_name = 'bukti_pembayaran/' . $namaGambar;
-
-            // Update data pendaftaran dengan file_name baru
-            $pembayaran->update([
-                'bukti_pembayaran' => $file_name,
-                'status' => 'Paid',
-            ]);
-        }
-
-        toast('Berhasil Upload Bukti Pembayaran!!!', 'success');
-        return redirect('/pengurus/pendaftaran');
+    public function exportExcel()
+    {
+        return Excel::download(new SmileExport, 'data-smile.xlsx');
     }
 }

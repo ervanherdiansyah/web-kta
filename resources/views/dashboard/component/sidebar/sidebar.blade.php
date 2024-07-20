@@ -63,6 +63,30 @@
                 </a>
             </li>
             <li class="nav-item mt-3">
+                <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data Smile
+                </h6>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('dashboard/pendaftaran-smile') ? 'active' : '' }}"
+                    href="{{ url('/dashboard/pendaftaran-smile') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa fa-book text-info text-sm opacity-10" aria-hidden="true"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Data Pendaftaran Smile</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('dashboard/pembayaran-smile') ? 'active' : '' }}"
+                    href="{{ url('/dashboard/pembayaran-smile') }}">
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa fa-book text-info text-sm opacity-10" aria-hidden="true"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Data Pembayaran Smile</span>
+                </a>
+            </li>
+            <li class="nav-item mt-3">
                 <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Data Pembayaran
                 </h6>
             </li>

@@ -128,9 +128,9 @@
                                 </div>
                                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                                     <p class="mb-4 text-sm mx-auto">
-                                        Lupa Password
-                                        <a href="" id="signUpLink"
-                                            class="text-primary text-gradient font-weight-bold">Lupa Password</a>
+                                        Register
+                                        <a href="{{ url('/form') }}" id="signUpLink"
+                                            class="text-primary text-gradient font-weight-bold">Sign up</a>
                                     </p>
                                 </div>
                             </div>

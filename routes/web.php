@@ -10,6 +10,8 @@ use App\Http\Controllers\Dashboard\Pendaftaran\PendaftaranController;
 use App\Http\Controllers\Dashboard\Pendaftaran\PengurusController;
 use App\Http\Controllers\Dashboard\Pendaftaran\PesertaController;
 use App\Http\Controllers\Dashboard\Profile\ProfileController;
+use App\Http\Controllers\Dashboard\Smile\PembayaranSmileController;
+use App\Http\Controllers\Dashboard\Smile\SmileController;
 use App\Http\Controllers\pengurus\Biodata\BiodataController as BiodataBiodataController;
 use App\Http\Controllers\pengurus\Home\HomeController as PengurusHomeHomeController;
 use App\Http\Controllers\pengurus\Kta\KtaSiswaController as KtaKtaSiswaController;
@@ -72,6 +74,22 @@ Route::group(['middleware' => 'auth'], function () {
             Route::post('/pendaftaran/update/status/{id}', [PendaftaranController::class, 'updatestatus']);
             Route::get('/pendaftaran/export', [PendaftaranController::class, 'exportExcel']);
             Route::post('/pendaftaran/import', [PendaftaranController::class, 'importExcel']);
+
+            //Pendaftaran Smile
+            Route::get('/pendaftaran-smile', [SmileController::class, 'index'])->name('pendaftaran.index');
+            Route::post('/pendaftaran-smile/create', [SmileController::class, 'store']);
+            Route::get('/pendaftaran-smile/edit/{id}', [SmileController::class, 'edit']);
+            Route::post('/pendaftaran-smile/update/{id}', [SmileController::class, 'update']);
+            Route::delete('/pendaftaran-smile/destroy/{id}', [SmileController::class, 'destroy']);
+            Route::get('/pendaftaran-smile/export', [SmileController::class, 'exportExcel']);
+
+            //Pendaftaran Smile
+            Route::get('/pembayaran-smile', [PembayaranSmileController::class, 'index'])->name('pembayaran.index');
+            Route::post('/pembayaran-smile/create', [PembayaranSmileController::class, 'store']);
+            Route::get('/pembayaran-smile/edit/{id}', [PembayaranSmileController::class, 'edit']);
+            Route::post('/pembayaran-smile/update/{id}', [PembayaranSmileController::class, 'update']);
+            Route::delete('/pembayaran-smile/destroy/{id}', [PembayaranSmileController::class, 'destroy']);
+            // Route::get('/pembayaran-smile/export', [PembayaranSmileController::class, 'exportExcel']);
 
             //Pengurus
             Route::get('/pengurus', [PengurusController::class, 'index'])->name('pengurus.index');

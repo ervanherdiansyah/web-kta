@@ -530,7 +530,7 @@
                                         <div class="row">
                                             <div class="col-md-6" style="text-align: center;">
                                                 <h5>Klik untuk Membayar</h5>
-                                                <h3><a href="https://app.midtrans.com/payment-links/1721288858879"
+                                                <h3><a href="https://app.midtrans.com/payment-links/1721399163006"
                                                         class="btn btn-primary" target="_blank">Pembayaran</a></h3>
                                             </div>
                                             <div class="col-md-6">
