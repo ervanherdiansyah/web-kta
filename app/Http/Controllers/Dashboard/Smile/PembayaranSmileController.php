@@ -38,7 +38,7 @@ class PembayaranSmileController extends Controller
                 ->addColumn('bukti_pembayaran', function ($data) {
                     $imageUrl = asset('storage/' . $data->bukti_pembayaran);
                     return '<a href="' . $imageUrl . '" data-lightbox="bukti-pembayaran" data-title="Bukti Pembayaran">
-                                <img src="' . $imageUrl . '" alt="Bukti Pembayaran" style="max-width: 200px;">
+                                <img src="' . $imageUrl . '" alt="Bukti Pembayaran" style="max-width: 100px;">
                             </a>';
                 })
                 ->addColumn('action', function ($data) {
