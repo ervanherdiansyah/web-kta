@@ -76,7 +76,7 @@ class PembayaranSmileController extends Controller
             $image = $request->bukti_pembayaran->storeAs('public/bukti_pembayaran', $namaGambar);
         }
         $pembayaran = PembayaranSmile::create([
-            'user_id' => $request->id,
+            'user_id' => $request->user_id,
             'nominal' => $request->nominal,
             'status' => 'Unpaid',
             'bukti_pembayaran' => $file_name ? 'bukti_pembayaran/' . $namaGambar : null,
@@ -90,7 +90,7 @@ class PembayaranSmileController extends Controller
     {
         // Validasi data
         $validatedData = $request->validate([
-            'nominal' => 'required|string|max:255',
+            // 'nominal' => 'required|string|max:255',
             'status' => 'required|string|max:255',
         ]);
 
@@ -106,7 +106,7 @@ class PembayaranSmileController extends Controller
         }
         // Update data pembayaran
         $pembayaran->update([
-            'nominal' => $request->nominal,
+            // 'nominal' => $request->nominal,
             'status' => $request->status,
         ]);
 

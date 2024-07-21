@@ -96,7 +96,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            {{-- <div class="col-md-6">
+                            <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="example-text-input" class="form-control-label">Nominal</label>
                                     <input name="nominal" type="text" class="form-control" placeholder="Nominal"
@@ -105,7 +105,7 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="example-text-input" class="form-control-label">Status</label>
