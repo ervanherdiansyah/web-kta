@@ -38,9 +38,9 @@
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                             Nama</th>
-                                        <th
+                                        {{-- <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Nominal</th>
+                                            Nominal</th> --}}
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Status</th>
@@ -94,7 +94,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="example-text-input" class="form-control-label">Nominal</label>
                                     <input name="nominal" type="text" class="form-control" placeholder="Nominal"
@@ -103,7 +103,7 @@
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="example-text-input" class="form-control-label">Status</label>
@@ -143,6 +143,15 @@
     </div>
     <!-- End Modal Create Data-->
     <div id="modals-container"></div>
+    {{-- <div class="col-md-6">
+        <div class="mb-3">
+            <label for="nominal${data.id}" class="form-control-label">Nominal</label>
+            <input name="nominal" type="text" class="form-control" id="nominal${data.id}" value="${data.nominal}">
+            @error('nominal')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+        </div>
+    </div> --}}
 @endsection
 @push('script')
     <!-- Tautkan file JavaScript jQuery -->
@@ -170,10 +179,10 @@
                             data: "user_id",
                             name: "user_id"
                         },
-                        {
-                            data: "nominal",
-                            name: "nominal"
-                        },
+                        // {
+                        //     data: "nominal",
+                        //     name: "nominal"
+                        // },
                         {
                             data: "status",
                             name: "status"
@@ -245,15 +254,7 @@
                                                             @enderror
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="mb-3">
-                                                            <label for="nominal${data.id}" class="form-control-label">Nominal</label>
-                                                            <input name="nominal" type="text" class="form-control" id="nominal${data.id}" value="${data.nominal}">
-                                                            @error('nominal')
-                                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <div class="col-md-6">
                                                         <div class="mb-3">
                                                             <label for="example-text-input" class="form-control-label">

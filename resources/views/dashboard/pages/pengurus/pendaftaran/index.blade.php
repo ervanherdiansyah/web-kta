@@ -528,10 +528,24 @@
                                 <div class="card-body">
                                     @if ($pembayaran->status == 'Unpaid')
                                         <div class="row">
-                                            <div class="col-md-6" style="text-align: center;">
-                                                <h5>Klik untuk Membayar</h5>
-                                                <h3><a href="https://app.midtrans.com/payment-links/1721399163006"
-                                                        class="btn btn-primary" target="_blank">Pembayaran</a></h3>
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <div class="col-md-6" style="text-align: center;">
+                                                        <h5>Pengurus Pusat</h5>
+                                                        <h6>Klik untuk Membayar</h6>
+                                                        <h3><a href="https://app.midtrans.com/payment-links/1721399163006"
+                                                                class="btn btn-primary" target="_blank">Pembayaran</a>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="col-md-6" style="text-align: center;">
+                                                        <h5>Pengurus Wilayah </h5>
+                                                        <h6>Klik untuk Membayar </h6>
+                                                        <h3><a href="https://app.midtrans.com/payment-links/1721447740979"
+                                                                class="btn btn-primary" target="_blank">Pembayaran</a>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <div class="col-md-6">
                                                 <form action="{{ url('/pengurus/pendaftaran/uploadbuktipembayaran') }}"
