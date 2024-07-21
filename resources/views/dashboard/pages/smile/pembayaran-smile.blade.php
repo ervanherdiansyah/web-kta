@@ -3,6 +3,8 @@
 @section('css')
     {{-- <link rel="stylesheet" href="//cdn.datatables.net/2.0.1/css/dataTables.dataTables.min.css" /> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <link href="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/css/lightbox.min.css" rel="stylesheet">
+
 
 @endsection
 @section('content')
@@ -158,6 +160,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lightbox2@2.11.3/dist/js/lightbox.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -304,6 +307,14 @@
                     table.ajax.reload();
                 });
             }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            lightbox.option({
+                'resizeDuration': 200,
+                'wrapAround': true
+            });
         });
     </script>
 @endpush

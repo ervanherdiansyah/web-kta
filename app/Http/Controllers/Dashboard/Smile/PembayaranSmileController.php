@@ -36,7 +36,10 @@ class PembayaranSmileController extends Controller
                     return $data->status;
                 })
                 ->addColumn('bukti_pembayaran', function ($data) {
-                    return '<img src="' . asset('storage/' . $data->bukti_pembayaran) . '" alt="Bukti Pembayaran" height="50">';
+                    $imageUrl = asset('storage/' . $data->bukti_pembayaran);
+                    return '<a href="' . $imageUrl . '" data-lightbox="bukti-pembayaran" data-title="Bukti Pembayaran">
+                                <img src="' . $imageUrl . '" alt="Bukti Pembayaran" style="max-width: 200px;">
+                            </a>';
                 })
                 ->addColumn('action', function ($data) {
                     return
