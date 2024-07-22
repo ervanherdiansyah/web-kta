@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\Models\Form;
+use App\Models\Pendaftaran\Pendaftaran;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -14,7 +15,7 @@ class SmileExport implements FromCollection, WithHeadings
      */
     public function collection()
     {
-        $guru = Form::all();
+        $guru = Pendaftaran::all();
         $data = $guru->map(function ($item, $index) {
             // Hapus kolom 'id' dari hasil toArray()
             $itemArray = $item->toArray();
